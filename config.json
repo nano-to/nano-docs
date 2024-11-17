@@ -1,0 +1,52 @@
+{
+	"site_title": "Blog - Nano.to",
+	"title": "Nano.to Blog",
+	"domain": "blog.nano.to",
+	"theme": "simple",
+	"source": "./articles",
+	"dest": "./docs",
+	"path": "",
+	"twitter": "@nano2dev",
+	"color": "#3498db",
+	"footer": "<a href='../'>Nano.to Blog</a>",
+	"website": "nano.to",
+	"contact": "support@nano.to",
+	"navigation": [
+		{
+			"title": "Introduction",
+			"menu": [
+				{ "title": "Getting Started", "url": "/checkout.html" }
+			]
+		},
+		{
+			"title": "Usernames",
+			"menu": [
+				{ "title": "Getting Started", "url": "/checkout.html" },
+				{ "title": "Lease Username", "url": "/checkout.html" },
+				{ "title": "Checkout API", "url": "/checkout.html" },
+				{ "title": "Checkout UI", "url": "/checkout.html" }
+			]
+		},
+		{
+			"title": "Developer API",
+			"menu": [
+				{ "title": "cURL SDK", "url": "#" },
+				{ "title": "JavaScript SDK", "url": "#" },
+				{ "title": "Python SDK", "url": "#" },
+				{ "title": "PHP SDK", "url": "#" },
+				{ "title": "Java SDK", "url": "#" },
+				{ "title": "Rust SDK", "url": "#" }
+			]
+		},
+		{
+			"title": "Miscellaneous",
+			"menu": [
+				{ "title": "Run Nano Node", "url": "#" },
+				{ "title": "Common RPC Errors", "url": "#" }
+			]
+		}
+	],
+	"metrics": true,
+	"json_api": true,
+	"rss_api": true
+}
