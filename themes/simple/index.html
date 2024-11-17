@@ -1,4 +1,4 @@
-<html class="mac dark" lang="en-US" dir="ltr">
+<html class="mac" lang="en-US" dir="ltr">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <script type="text/javascript" async="" src="https://eu-assets.i.posthog.com/static/array.js"></script><script type="text/javascript" async="" src="assets/array.js"></script><script type="module" src="assets/client"></script>
@@ -10,18 +10,88 @@
       <meta property="og:locale" content="en">
       <meta property="og:title" content="Nano.to | All-in-one toolkit from ingest to adaptive video playback">
       <meta property="og:site_name" content="Nano.to">
-      <script id="check-dark-mode">;(() => {
-         const preference = localStorage.getItem('vitepress-theme-appearance') || 'auto'
-         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-         if (!preference || preference === 'auto' ? prefersDark : preference === 'dark')
+      <script id="check-dark-mode">
+         if (localStorage.getItem('dark-mode') || window.matchMedia('(prefers-color-scheme: dark)').matches)
            document.documentElement.classList.add('dark')
-         })()
       </script>
       <script id="check-mac-os">document.documentElement.classList.toggle('mac', /Mac|iPhone|iPod|iPad/i.test(navigator.platform))</script>
+      <link rel="stylesheet" href="css/search.css">
       <link rel="stylesheet" href="css/style.css">
+      <style>
+         .orbit {
+            position: absolute;
+            border: 2px dashed #00000012;
+            border-radius: 50%;
+         }
+         .dark .orbit {
+            border-color: #FFFFFF12;
+         }
+         .orbit img {
+            position: absolute;
+            max-width: 80px;
+         }
+         .dark img.phone {
+            filter: invert(1);
+         }
+         .orbit.one {
+            width: 250px;
+            height: 250px;
+         }
+         .orbit.one img {
+            right: -58px;
+            top: -35px;
+         }
+         .orbit.one:before {
+            content: "";
+         }
+         .orbit.two {
+            width: 350px;
+            height: 350px;
+         }
+         .orbit.two img {
+            top: 10px;
+         }
+         .orbit.three {
+         }
+         .orbit.three img {
+            left: 100px;
+            bottom: -150px;
+         }
+         .orbit.three img.controller {
+            max-width: 65px;
+            left: -170px;
+            bottom: -140px;
+            height: 72px;
+         }
+
+         @keyframes orbit {
+           0% {
+             transform: translateX(-50%) rotate(0deg) translate(100px) rotate(0deg);
+           }
+           100% {
+             transform: translateX(-50%) rotate(360deg) translate(100px) rotate(-360deg);
+           }
+         }
+
+
+
+      </style>
    </head>
    <body>
       <div id="app" data-v-app="">
+
+         <div onclick="hide_search()" id="search-backdrop" style="display: none;"></div>
+         <div id="search" style="display: none;">
+            <div>
+                <div class="search-input">
+                    <svg class="search-icon" width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <input id="search-input" type="text" oninput="search(this)" placeholder="Search">
+                    <svg id="clear-search" style=" display: none; right: 15px; left: auto; " onclick="reset_search()" class="close-icon" width="20" height="20" viewBox="0 0 20 20"><path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </div>
+            </div>
+            <div id="search-results"></div>
+         </div>
+
          <div data-v-702a693e="" class="Layout">
             <header data-v-14f22a90="" data-v-702a693e="" class="VPNav">
                <div data-v-84a11e99="" data-v-14f22a90="" class="VPNavBar home top">
@@ -32,7 +102,7 @@
                         </div>
                         <div data-v-84a11e99="" class="content">
                            <div data-v-84a11e99="" class="content-body">
-                              <div data-v-84a11e99="" class="VPNavBarSearch search">
+                              <div data-v-84a11e99="" class="VPNavBarSearch search" onclick="show_search()">
                                  <!--v-if-->
                                  <div id="docsearch"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div>
                               </div>
@@ -55,8 +125,8 @@
                                  </div>
                               </nav>
                               <!--v-if-->
-                              <div data-v-bbc89006="" data-v-84a11e99="" class="VPNavBarAppearance appearance"><button data-v-5dcf7ba4="" data-v-3c3cad28="" data-v-bbc89006="" class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to light theme" aria-checked="true"><span data-v-5dcf7ba4="" class="check"><span data-v-5dcf7ba4="" class="icon"><span data-v-3c3cad28="" class="vpi-sun sun"></span><span data-v-3c3cad28="" class="vpi-moon moon"></span></span></span></button></div>
-                              <div data-v-9a809f43="" data-v-e36d8c48="" data-v-84a11e99="" class="VPSocialLinks VPNavBarSocialLinks social-links"><a data-v-67d207bd="" data-v-9a809f43="" class="VPSocialLink no-icon" href="https://github.com/nano-to/rpc" aria-label="github" target="_blank" rel="noopener"><span class="vpi-social-github" style="--icon: url('https://api.iconify.design/simple-icons/github.svg');"></span></a></div>
+                              <div data-v-bbc89006="" data-v-84a11e99="" onclick="toggleDarkMode()" class="VPNavBarAppearance appearance"><button data-v-5dcf7ba4="" data-v-3c3cad28="" data-v-bbc89006="" class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to light theme" aria-checked="true"><span data-v-5dcf7ba4="" class="check"><span data-v-5dcf7ba4="" class="icon"><span data-v-3c3cad28="" class="vpi-sun sun"></span><span data-v-3c3cad28="" class="vpi-moon moon"></span></span></span></button></div>
+                              <div data-v-9a809f43="" data-v-e36d8c48="" data-v-84a11e99="" class="VPSocialLinks VPNavBarSocialLinks social-links"><a data-v-67d207bd="" data-v-9a809f43="" class="VPSocialLink no-icon" href="https://github.com/nano-to/rpc" aria-label="github" target="_blank" rel="noopener"><span class="vpi-social-github" style="--icon: url('/img/github.svg');"></span></a></div>
                               <div data-v-ce7cea34="" data-v-584350b7="" data-v-84a11e99="" class="VPFlyout VPNavBarExtra extra">
                                  <button data-v-ce7cea34="" type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation"><span data-v-ce7cea34="" class="vpi-more-horizontal icon"></span></button>
                                  <div data-v-ce7cea34="" class="menu">
@@ -102,7 +172,17 @@
                            </div>
                         </div>
                         <div data-v-89d2fc22="" class="image">
-                           <div data-v-89d2fc22="" class="image-container">
+                           <div data-v-89d2fc22="" class="image-container" style="position: relative;">
+                              <div class="orbit one">
+                                 <img src="/img/server.svg" alt="">
+                              </div>
+                              <div class="orbit two">
+                                 <img src="/img/laptop.svg" alt="">
+                              </div>
+                              <div class="orbit three">
+                                 <img src="/img/phone.svg" class="phone" alt="">
+                                 <img src="/img/controller.svg" class="controller" alt="">
+                              </div>
                               <div data-v-89d2fc22="" class="image-bg"></div>
                               <img data-v-0c71c7f1="" class="VPImage image-src" src="assets/logo-mascotte.png" alt="Nano Currency">
                            </div>
@@ -127,7 +207,7 @@
                                  <article data-v-e8895942="" class="box">
                                     <img data-v-0c71c7f1="" class="VPImage" src="assets/lock.svg" width="46" height="48" alt="">
                                     <h2 data-v-e8895942="" class="title">Non-Custodial SDK</h2>
-                                    <p data-v-e8895942="" class="details">Maintain full ownership and control over your assets</p>
+                                    <p data-v-e8895942="" class="details">Maintain full ownership and control over your assets.</p>
                                     <!--v-if-->
                                  </article>
                               </div>
@@ -170,5 +250,7 @@
             </footer>
          </div>
       </div>
+   <script src="../js/search.js"></script>
+   <script src="../js/script.js"></script>
    </body>
 </html>

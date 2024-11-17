@@ -23,8 +23,7 @@
 			"menu": [
 				{ "title": "Getting Started", "url": "/checkout.html" },
 				{ "title": "Lease Username", "url": "/checkout.html" },
-				{ "title": "Checkout API", "url": "/checkout.html" },
-				{ "title": "Checkout UI", "url": "/checkout.html" }
+				{ "title": "Nano.to Checkout", "url": "/checkout.html" }
 			]
 		},
 		{
