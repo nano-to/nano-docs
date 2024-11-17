@@ -15,13 +15,12 @@
 		{
 			"title": "Introduction",
 			"menu": [
-				{ "title": "Getting Started", "url": "/checkout.html" }
+				{ "title": "Get Started", "url": "/checkout.html" }
 			]
 		},
 		{
 			"title": "Usernames",
 			"menu": [
-				{ "title": "Getting Started", "url": "/checkout.html" },
 				{ "title": "Lease Username", "url": "/checkout.html" },
 				{ "title": "Nano.to Checkout", "url": "/checkout.html" }
 			]
@@ -29,7 +28,6 @@
 		{
 			"title": "Developer API",
 			"menu": [
-				{ "title": "cURL SDK", "url": "#" },
 				{ "title": "JavaScript SDK", "url": "#" },
 				{ "title": "Python SDK", "url": "#" },
 				{ "title": "PHP SDK", "url": "#" },

@@ -6,7 +6,7 @@
      left: 0;
      right: 0;
      top: 20vh;
-     padding: 20px;
+     padding: 10px;
      border-radius: 10px;
      font-family: Arial;
      z-index: 999;
@@ -39,7 +39,7 @@
      color: #FFF;
  }
  .search-item {
-     background: #f1f1f1;
+/*     background: #f1f1f1;*/
      padding: 10px;
      border-radius: 5px;
      margin-bottom: 5px;
@@ -98,4 +98,8 @@
  }
  .dark-mode .search-box {
      background: #212630;
+ }
+
+ .dark #search {
+    background: #212121;
  }
