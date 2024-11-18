@@ -3,7 +3,7 @@
 ## version
 
 ```bash
-curl -d '{ "action": "undefined" }' \
+curl -d '{ "action": "version" }' \
 -H "Content-Type: application/json" \
 "https://rpc.nano.to"
 ```
@@ -362,19 +362,6 @@ curl -d '{
 ```
 
   
-## block_sign
-
-```bash
-curl -d '{ "action": "undefined" }' \
--H "Content-Type: application/json" \
-"https://rpc.nano.to"
-```
-
-```json
-undefined
-```
-
-  
 ## process
 
 ```bash
@@ -433,7 +420,7 @@ curl -d '{
 ## block_count
 
 ```bash
-curl -d '{ "action": "undefined" }' \
+curl -d '{ "action": "block_count" }' \
 -H "Content-Type: application/json" \
 "https://rpc.nano.to"
 ```
@@ -491,7 +478,7 @@ curl -d '{
 ## reps
 
 ```bash
-curl -d '{ "action": "undefined" }' \
+curl -d '{ "action": "reps" }' \
 -H "Content-Type: application/json" \
 "https://rpc.nano.to"
 ```
@@ -721,7 +708,7 @@ curl -d '{
 ## market_data
 
 ```bash
-curl -d '{ "action": "undefined" }' \
+curl -d '{ "action": "market_data" }' \
 -H "Content-Type: application/json" \
 "https://rpc.nano.to"
 ```
