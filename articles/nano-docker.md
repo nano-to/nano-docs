@@ -1,17 +1,19 @@
-- title: Introducing Nano Docker - One-Click Nano Currency Node Installation
-- date: 12-16-2023
-- tags: Release
-- image: //repository-images.githubusercontent.com/501828214/eb7fe2ec-792e-415c-9eaf-365cdfc87aac
-- author: @nano2dev
-- address: @development
-- goal: 500|Nano.to Development
+- title: Run Your Own Nano Node
+- edit: //github.com/fwd/nano-docker/blob/master/readme.md
 -----
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
+
+<img src="https://repository-images.githubusercontent.com/501828214/eb7fe2ec-792e-415c-9eaf-365cdfc87aac"/>
+
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
 
 ## ❯ Quick
 
 ```bash
 curl -sL "https://raw.github.com/fwd/nano-docker/master/install.sh" | sh
 ```
+
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
 
 ## ❯ Custom
 
@@ -20,7 +22,7 @@ git clone https://github.com/fwd/nano-docker.git
 ```
 
 ```bash
-cd nano-docker && sudo ./setup.sh -f -t V25.1 -m -p 8080
+cd nano-docker && sudo ./setup.sh -f -t V27.1 -m -p 8080
 ```
 
 #### Flags
@@ -31,6 +33,8 @@ cd nano-docker && sudo ./setup.sh -f -t V25.1 -m -p 8080
 - **-q**: Console Output (Default: False)
 - **-s**: Print Private Key (Default: False)
 - **-v**: Alias of **-t**. Because life.
+
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
 
 ## Requirements
 
@@ -49,10 +53,14 @@ cd nano-docker && sudo ./setup.sh -f -t V25.1 -m -p 8080
 - 1TB BANDWIDTH
 - ON 24/7
 
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
+
 ## Sponsor (DigitalOcean)
 
 <a align="center" target="_blank" href="https://m.do.co/c/f139acf4ddcb"><img style="object-fit: contain;
     max-width: 100%;" src="https://github.com/fwd/fwd/raw/master/ads/digitalocean_new.png" width="970" /></a>
+
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
 
 Optional Reading: [How To Setup a Server on Digital Ocean](https://docs.digitalocean.com/products/droplets/how-to/create/)
 
@@ -141,19 +149,20 @@ nano-node - 172.XX.X.X
 - [Nano.to Docs](https://docs.nano.to)
 - [**More Packages**](https://github.com/fwd/nano-packages)
 
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
+
+## Contributing
+
+Give a ⭐️ if this project helped you!
+
+Contributions, issues and feature requests are welcome at [issues page](https://github.com/fwd/nano-docker/issues).
+
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
+
 ## Nano.to Support
 
-Bugs, Questions & Installation Support:
-
-- Github: [Source Code](https://github.com/fwd/nano-docker)
-- Issues: [Issues](https://github.com/fwd/nano-docker/issues)
-- Support: [support@nano.to](mailto:support@nano.to)
+- Email: support@nano.to
 - Twitter: [@nano2dev](https://twitter.com/nano2dev)
-- Mastodon: [Xno.Social](https://xno.social/@nano2dev)
-- @nano2dev on [Nano's Discord](https://discord.com/invite/RNAE2R9) 
+- Discord: [Nano.to Discord](https://discord.gg/HgqDCkzP) 
 
-## Donation Fund
-
-Like the work that we do? Donate Nano to our monthly fund. It helps us make more cool stuff every month.
-
-[funding]
+![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)

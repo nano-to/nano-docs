@@ -53,6 +53,7 @@ window.toggleDarkMode = function() {
 createQuickLinks()
 
 window.hljs.highlightAll();
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -62,3 +63,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 })
 
+document.querySelectorAll('h2').forEach(title => {
+    title.addEventListener('click', function (e) {
+        e.preventDefault();
+        navigator.clipboard.writeText(`${window.location.href.split('#')[0]}#${title.id}`).then(function() {
+        }, function() {
+            document.execCommand("copy");
+            history.pushState(null, null, '#' + title.id);
+        })
+    });
+})

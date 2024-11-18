@@ -1,4 +1,4 @@
-- title: Sample Video
+- title: Sell Nano Proof of Work
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
@@ -6,9 +6,9 @@
 - video: true
 -----
 
-<h1 align="center">Nano.to dPoW</h1>
+## Nano PoW
 
-> Make 0.005/NANO per PoW, by leasing your GPU compute power to Nano.to. 
+Nano currency uses mathemetical proof of works as a rate-limiter to prevent spam. You can't mine Nano, but you can sell GPU capacity to Nano.to in exchange for Nano.
 
 ## 0. Pre-requisites
 

@@ -1,7 +1,6 @@
 <html class="mac" lang="en-US" dir="ltr">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <script type="text/javascript" async="" src="https://eu-assets.i.posthog.com/static/array.js"></script><script type="text/javascript" async="" src="assets/array.js"></script><script type="module" src="assets/client"></script>
       <title>Getting Started | Nano.to - Public Nano Node</title>
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta name="description" content="An open, scalable, online streaming setup. All-in-one toolkit from ingest to adaptive video playback.">
@@ -40,10 +39,20 @@
             opacity: 0.7;
             position: relative;
          }
-         .in-this-page.active {
-            color: #209ce9;
+         a.active, 
+         a.active p {
+            color: #209ce9 !important;
             font-weight: bold;
             opacity: 1;
+         }
+         h2 {
+            cursor: pointer;
+         }
+         h2:hover:after {
+           content: "#";
+           margin-left: 10px;
+           font-weight: lighter;
+           color: #1bc2f8;
          }
       </style> 
    </head>
@@ -150,7 +159,7 @@
                            <div data-v-64d7ab74="" class="VPSidebarItem level-1 is-link">
                               <div data-v-64d7ab74="" class="item">
                                  <div data-v-64d7ab74="" class="indicator"></div>
-                                 <a data-v-64d7ab74="" class="VPLink link link" href="<%- item.url %>">
+                                 <a data-v-64d7ab74="" class="VPLink link link <%- article.slug === item.url.replace('/', '').replace('.html', '') ? 'active' : '' %>" href="<%- item.url %>">
                                     <p data-v-64d7ab74="" class="text"><%- item.title %></p>
                                  </a>
                               </div>
@@ -188,20 +197,18 @@
                      <div data-v-343c73d6="" class="content">
                         <div data-v-343c73d6="" class="content-container">
                            <main data-v-343c73d6="" class="main">
-                              <div data-v-343c73d6="" class="vp-doc _guide_getting-started" style="position: relative;">
-                                 <div>
-
-                                    <h1 id="getting-started" tabindex="-1"><%- article.title %> <a class="header-anchor" href="/guide/getting-started.html#getting-started" aria-label="<%- article.title %>"></a></h1>
+                              <div data-v-343c73d6="" id="content-body" class="vp-doc _guide_getting-started" style="position: relative;">
+                                    <h1 tabindex="-1"><%- article.title %></h1>
                                     <p><%- article.html %></p>
-
-                                 </div>
                               </div>
                            </main>
                            <footer data-v-43384334="" data-v-343c73d6="" class="VPDocFooter">
+                              <% if ( article.edit ) { %>
                               <div data-v-43384334="" class="edit-info">
-                                 <div data-v-43384334="" class="edit-link"><a data-v-43384334="" class="VPLink link vp-external-link-icon no-icon edit-link-button" href="https://github.com/nano-to/rpc/edit/main/docs/guide/getting-started.md" target="_blank" rel="noreferrer"><span data-v-43384334="" class="vpi-square-pen edit-link-icon"></span> Edit this page on GitHub</a></div>
+                                 <div data-v-43384334="" class="edit-link"><a data-v-43384334="" class="VPLink link vp-external-link-icon no-icon edit-link-button" href="<%- article.edit %>" target="_blank" rel="noreferrer"><span data-v-43384334="" class="vpi-square-pen edit-link-icon"></span> Edit this page on GitHub</a></div>
                                  <!--v-if-->
                               </div>
+                              <% } %>
                               <nav data-v-43384334="" class="prev-next" aria-labelledby="doc-footer-aria-label">
                                  <span data-v-43384334="" class="visually-hidden" id="doc-footer-aria-label">Pager</span>
                                  <div data-v-43384334="" class="pager"><a data-v-43384334="" class="VPLink link pager-link prev" href="/guide/what-is-superstreamer.html"><span data-v-43384334="" class="desc">Previous page</span><span data-v-43384334="" class="title">What is Superstreamer?</span></a></div>
@@ -224,31 +231,5 @@
    <script src="../js/highlight.min.js"></script>
    <script src="../js/search.js"></script>
    <script src="../js/script.js"></script>
-   <script>
-       function onScroll() {
-          const scrollPosition = window.scrollY;
-
-          navLinks.forEach(link => {
-              const sectionId = link.getAttribute("href").substring(1);
-              const section = document.getElementById(sectionId);
-              const sectionTop = section.offsetTop;
-              const sectionHeight = section.clientHeight;
-
-              // Add a buffer zone of 100 pixels above and below each section
-              const buffer = 100;
-
-              if (
-                  scrollPosition >= sectionTop - buffer &&
-                  scrollPosition < sectionTop + sectionHeight + buffer
-              ) {
-                  link.classList.add("active");
-              } else {
-                  link.classList.remove("active");
-              }
-          });
-      }
-
-      window.addEventListener("scroll", onScroll);
-   </script>
    </body>
 </html>

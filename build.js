@@ -72,7 +72,11 @@ fs.readdirSync(source).forEach(file => {
 	article.timestamp = date.unix()
 	article.date = date.format('LL')
 	article.fromNow = date.format('MMM DD, YYYY')
-	article.html = md.render(body)
+	const regex = /id="([^"]*?)"/g;
+	article.html = md.render(body).replace(regex, (match, p1) => {
+	    const updatedId = p1.replace(/-/g, '_'); // Replace all dashes with underscores
+	    return `id="${updatedId}"`;
+	});
 	if (article.price) article.html = 'PREMIUM-ARTICLE-A' + Buffer.from(article.html).toString('base64') + '+HRT'
 	article.url = `https://${clean}${blog_path ? '/' + blog_path : '' }/${slug}.html` // who needs fancy req objects.
 	article.preview = article.preview || article.snippet

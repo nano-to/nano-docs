@@ -19,14 +19,15 @@
 			]
 		},
 		{
-			"title": "Usernames",
+			"title": "Public API",
 			"menu": [
-				{ "title": "Lease Username", "url": "/checkout.html" },
+				{ "title": "Nano Node RPC", "url": "/nano-rpc.html" },
+				{ "title": "Nano.to Usernames", "url": "/checkout.html" },
 				{ "title": "Nano.to Checkout", "url": "/checkout.html" }
 			]
 		},
 		{
-			"title": "Developer API",
+			"title": "Languages",
 			"menu": [
 				{ "title": "JavaScript SDK", "url": "#" },
 				{ "title": "Python SDK", "url": "#" },
@@ -38,8 +39,9 @@
 		{
 			"title": "Miscellaneous",
 			"menu": [
-				{ "title": "Run Nano Node", "url": "#" },
-				{ "title": "Common RPC Errors", "url": "#" }
+				{ "title": "Run A Nano Node", "url": "/nano-docker.html" },
+				{ "title": "Sell Nano PoW", "url": "/sell-pow.html" },
+				{ "title": "Common RPC Errors", "url": "/rpc-errors.html" }
 			]
 		}
 	],
