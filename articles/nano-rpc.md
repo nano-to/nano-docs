@@ -704,7 +704,6 @@ curl -d '{
 }
 ```
 
-  
 ## market_data
 
 ```bash

@@ -3,6 +3,8 @@ window.createQuickLinks = function() {
     var nav = document.getElementById("nav")
     var items = document.querySelectorAll("h2")
 
+    if (!nav) return
+
     if (items.length <= 2) return
 
     items.forEach((el) => {
@@ -52,14 +54,13 @@ window.toggleDarkMode = function() {
 
 createQuickLinks()
 
-window.hljs.highlightAll();
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
+        history.pushState(null, null, this.getAttribute('href'));
     });
 })
 
@@ -69,7 +70,23 @@ document.querySelectorAll('h2').forEach(title => {
         navigator.clipboard.writeText(`${window.location.href.split('#')[0]}#${title.id}`).then(function() {
         }, function() {
             document.execCommand("copy");
-            history.pushState(null, null, '#' + title.id);
         })
+        history.pushState(null, null, '#' + title.id);
     });
 })
+
+// Function to handle the shortcut action
+function handleCommandKShortcut(event) {
+
+    // console.log( event.metaKey, event.key )
+    // Check if the Command (meta) key and 'K' key are pressed
+    if (event.metaKey && event.key.toLowerCase() === 'k') {
+        event.preventDefault(); // Prevent the default browser action (e.g., search bar)
+        // console.log('Command + K shortcut triggered');
+        // Add your custom logic here, e.g., open a modal or focus a search input
+        window.show_search()
+    }
+}
+
+// Add event listener for keydown events
+document.addEventListener('keydown', handleCommandKShortcut);

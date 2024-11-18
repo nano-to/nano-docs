@@ -1,7 +1,6 @@
 <html class="mac" lang="en-US" dir="ltr">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <script type="text/javascript" async="" src="https://eu-assets.i.posthog.com/static/array.js"></script><script type="text/javascript" async="" src="assets/array.js"></script><script type="module" src="assets/client"></script>
       <title>Nano.to - Public Nano Node</title>
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta name="description" content="An open, scalable, online streaming setup. All-in-one toolkit from ingest to adaptive video playback.">
@@ -67,8 +66,8 @@
 
          .orbital img:not(.VPImage) {
             position: absolute;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             display: block;
             max-width: none;
             left: 0;
@@ -96,6 +95,10 @@
          .server {
             transform: translateX(0%) rotate(360deg) translate(-175px) rotate(-360deg);
             animation: orbit-3 20s linear reverse infinite; 
+         }
+
+         .VPHomeHero .VPImage {
+            max-width: 130px;
          }
          
          .controller {
@@ -144,7 +147,7 @@
    <body>
       <div id="app" data-v-app="">
 
-         <img src="img/nano-sign-markup.png" style=" position: fixed;opacity: 0.02; transform: rotateY(-180deg);  ">
+         <img src="img/nano-sign-markup.png" style=" position: fixed;opacity: 0.05; transform: rotateY(-180deg);  ">
 
          <div onclick="hide_search()" id="search-backdrop" style="display: none;"></div>
          <div id="search" style="display: none;">
