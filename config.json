@@ -1,7 +1,7 @@
 {
 	"site_title": "Blog - Nano.to",
 	"title": "Nano.to Blog",
-	"domain": "blog.nano.to",
+	"domain": "docs2.nano.to",
 	"theme": "simple",
 	"source": "./articles",
 	"dest": "./docs",

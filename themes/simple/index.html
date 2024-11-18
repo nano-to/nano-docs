@@ -18,62 +18,132 @@
       <link rel="stylesheet" href="css/search.css">
       <link rel="stylesheet" href="css/style.css">
       <style>
+
          .orbit {
             position: absolute;
             border: 2px dashed #00000012;
             border-radius: 50%;
          }
+
          .dark .orbit {
             border-color: #FFFFFF12;
          }
+
          .orbit img {
             position: absolute;
             max-width: 80px;
          }
+
          .dark img.phone {
             filter: invert(1);
          }
+
          .orbit.one {
             width: 250px;
             height: 250px;
          }
+
          .orbit.one img {
             right: -58px;
             top: -35px;
          }
+
          .orbit.one:before {
             content: "";
          }
+
          .orbit.two {
             width: 350px;
             height: 350px;
          }
+
          .orbit.two img {
             top: 10px;
          }
+
          .orbit.three {
          }
+
          .orbit.three img {
             left: 100px;
             bottom: -150px;
          }
-         .orbit.three img.controller {
-            max-width: 65px;
-            left: -170px;
-            bottom: -140px;
-            height: 72px;
+
+         .orbital img:not(.VPImage) {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            display: block;
+            max-width: none;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: auto;
+
+            background: #25b7d4;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: none;
+            border: 0;
          }
 
-         @keyframes orbit {
+
+         .laptop {
+            transform: translateX(0%) rotate(360deg) translate(120px) rotate(-360deg);
+            animation: orbit-1 10s linear reverse infinite;
+         }
+
+         .phone {
+            transform: translateX(0%) rotate(360deg) translate(-125px) rotate(-360deg);
+            animation: orbit-2 10s linear reverse infinite; 
+         }
+
+         .server {
+            transform: translateX(0%) rotate(360deg) translate(-175px) rotate(-360deg);
+            animation: orbit-3 20s linear reverse infinite; 
+         }
+         
+         .controller {
+            transform: translateX(0%) rotate(360deg) translate(175px) rotate(-360deg);
+            animation: orbit-4 20s linear reverse infinite;
+         }
+
+         @keyframes orbit-1 {
            0% {
-             transform: translateX(-50%) rotate(0deg) translate(100px) rotate(0deg);
+             transform: translateX(0%) rotate(360deg) translate(120px) rotate(-360deg);
            }
            100% {
-             transform: translateX(-50%) rotate(360deg) translate(100px) rotate(-360deg);
+             transform: translateX(0%) rotate(0) translate(120px) rotate(0);
            }
          }
 
+         @keyframes orbit-2 {
+           0% {
+               transform: translateX(0%) rotate(360deg) translate(-120px) rotate(-360deg);
+           }
+           100% {
+               transform: translateX(0%) rotate(0) translate(-120px) rotate(0);
+           }
+         }
 
+         @keyframes orbit-3 {
+           0% {
+             transform: translateX(0%) rotate(360deg) translate(175px) rotate(-360deg);
+           }
+           100% {
+             transform: translateX(0%) rotate(0deg) translate(175px) rotate(0deg);
+           }
+         }
+
+         @keyframes orbit-4 {
+           0% {
+             transform: translateX(0%) rotate(360deg) translate(-175px) rotate(-360deg);
+           }
+           100% {
+             transform: translateX(0%) rotate(0deg) translate(-175px) rotate(0deg);
+           }
+         }
 
       </style>
    </head>
@@ -173,18 +243,17 @@
                         </div>
                         <div data-v-89d2fc22="" class="image">
                            <div data-v-89d2fc22="" class="image-container" style="position: relative;">
-                              <div class="orbit one">
-                                 <img src="/img/server.svg" alt="">
-                              </div>
-                              <div class="orbit two">
-                                 <img src="/img/laptop.svg" alt="">
-                              </div>
-                              <div class="orbit three">
-                                 <img src="/img/phone.svg" class="phone" alt="">
-                                 <img src="/img/controller.svg" class="controller" alt="">
-                              </div>
+                              <div class="orbit one"></div>
+                              <div class="orbit two"></div>
+                              <div class="orbit three"></div>
                               <div data-v-89d2fc22="" class="image-bg"></div>
-                              <img data-v-0c71c7f1="" class="VPImage image-src" src="assets/logo-mascotte.png" alt="Nano Currency">
+                              <div class="orbital" style="position: relative; width: 300px; height: 300px;">
+                                 <img src="/img/controller.svg" class="controller" alt="">
+                                 <img src="/img/phone.svg" class="phone" alt="">
+                                 <img src="/img/laptop.svg" class="laptop" alt="">
+                                 <img src="/img/server.svg" class="server" alt="">
+                                 <img data-v-0c71c7f1="" class="VPImage image-src" src="assets/logo-mascotte.png" alt="Nano Currency">
+                              </div>
                            </div>
                         </div>
                      </div>
