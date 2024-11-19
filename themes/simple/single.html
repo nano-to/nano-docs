@@ -60,6 +60,102 @@
            font-weight: lighter;
            color: #1bc2f8;
          }
+
+         .markdown-code-group {
+             margin-top: 16px
+         }
+         .markdown-code-group .markdown-group-tab {
+             position: relative;
+             display: flex;
+             margin-right: -24px;
+             margin-left: -24px;
+             padding: 0 12px;
+             background-color: var(--vp-code-tab-bg);
+             overflow-x: auto;
+             overflow-y: hidden;
+             box-shadow: inset 0 -1px var(--vp-code-tab-divider);
+            justify-content: space-between !important;
+            margin-bottom: -20px !important;
+         }
+         @media (min-width: 640px) {
+             .markdown-code-group .markdown-group-tab {
+                 margin-right: 0;
+                 margin-left: 0;
+                 border-radius: 8px 8px 0 0
+             }
+         }
+         .markdown-code-group .markdown-group-tab input {
+             position: fixed;
+             opacity: 0;
+             pointer-events: none
+         }
+         .markdown-code-group .markdown-group-tab label {
+             position: relative;
+             display: inline-block;
+             border-bottom: 1px solid transparent;
+             padding: 0 12px;
+             line-height: 48px;
+             font-size: 14px;
+             font-weight: 500;
+             color: var(--vp-code-tab-text-color);
+             white-space: nowrap;
+             cursor: pointer;
+             transition: color .25s
+         }
+         .markdown-code-group .markdown-group-tab label:after {
+             position: absolute;
+             right: 8px;
+             bottom: -1px;
+             left: 8px;
+             z-index: 1;
+             height: 2px;
+             border-radius: 2px;
+             content: "";
+             background-color: transparent;
+             transition: background-color .25s
+         }
+         .markdown-code-group label:hover {
+             color: var(--vp-code-tab-hover-text-color)
+         }
+         .markdown-code-group input:checked+label {
+             color: var(--vp-code-tab-active-text-color)
+         }
+         .markdown-code-group input:checked+label:after {
+             background-color: var(--vp-code-tab-active-bar-color)
+         }
+
+         .markdown-code-group div[class*=language-].active, 
+         .markdown-group-tab-item.active,
+         .markdown-group-tab-item:hover
+         {
+             background: #e9e9e9;
+             border-bottom: 1px solid #229de9;
+         }
+
+/*         .dark div[data-code-group="bash"],*/
+         .dark div[data-code-group="rust"]:not(.active) img,
+         .dark div[data-code-group="dart"]:not(.active) img,
+         .dark div[data-code-group="django"]:not(.active) img
+         {
+            filter: invert(1);
+         }
+
+         .markdown-group-tab-item {
+            padding: 12px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0 2px;
+            border-bottom: 1px solid transparent;
+         }
+
+         .markdown-group-tab img {
+            max-width: 45px;
+            max-height: 30px;
+            width: 100%;
+         }
+
       </style> 
    </head>
    <body>
@@ -234,21 +330,53 @@
             </footer>
          </div>
       </div>
-   <script src="../js/highlight.min.js"></script>
-   <script src="../js/search.js"></script>
-   <script src="../js/script.js"></script>
-   <script>window.hljs.highlightAll();</script>
 
-<!-- Start of LiveChat (www.livechat.com) code -->
-<script>
-    window.__lc = window.__lc || {};
-    window.__lc.license = 18886089;
-    window.__lc.integration_name = "manual_onboarding";
-    window.__lc.product_name = "livechat";
-    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<noscript><a href="https://www.livechat.com/chat-with/18886089/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-<!-- End of LiveChat code -->
+      <script src="../js/highlight.min.js"></script>
+      <script src="../js/dart.min.js"></script>
+      <script src="../js/x86asm.min.js"></script>
+      <script src="../js/django.min.js"></script>
+      <script src="../js/search.js"></script>
+      <script src="../js/script.js"></script>
+      <script>window.hljs.highlightAll();</script>
+
+      <script>
+         
+      document.addEventListener("DOMContentLoaded", () => {
+
+          // Select all div elements with the data-code-group attribute
+          const codeGroupDivs = document.querySelectorAll("div[data-code-group]");
+          
+          codeGroupDivs.forEach(div => {
+              div.addEventListener("click", event => {
+
+                  // Example: Toggle active class on the clicked div
+                  codeGroupDivs.forEach(d => d.classList.remove("active")); // Remove active class from all
+                  div.classList.add("active"); // Add active class to the clicked div
+
+                  const codeGroup = div.getAttribute("data-code-group");
+                  
+                  div.parentNode.parentNode.querySelectorAll(`*[class^='code-group-content']`).forEach((el) => {
+                     el.style.display = 'none'
+                  })
+
+                  div.parentNode.parentNode.getElementsByClassName('code-group-content-' + codeGroup)[0].style.display = 'block'
+
+              });
+          });
+      });
+
+      </script>
+
+   <!-- Start of LiveChat (www.livechat.com) code -->
+   <!-- <script>
+       window.__lc = window.__lc || {};
+       window.__lc.license = 18886089;
+       window.__lc.integration_name = "manual_onboarding";
+       window.__lc.product_name = "livechat";
+       ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+   </script>
+   <noscript><a href="https://www.livechat.com/chat-with/18886089/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript> -->
+   <!-- End of LiveChat code -->
 
    </body>
 </html>

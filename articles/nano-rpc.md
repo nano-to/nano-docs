@@ -1,12 +1,96 @@
-- title: Nano RPC
+- title: Nano Node RPC
 -----
+
 ## version
+
+::: code-group-open
 
 ```bash
 curl -d '{ "action": "version" }' \
 -H "Content-Type: application/json" \
 "https://rpc.nano.to"
 ```
+
+```rust
+use reqwest::Client;
+use serde_json::json;
+use std::collections::HashMap;
+
+async fn version(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
+
+    let mut data = HashMap::new();
+    data.insert("action", "version");
+    
+
+    let res = client
+        .post(url)
+        .json(&data)
+        .send()
+        .await?;
+
+    Ok(res)
+}
+```
+
+```ruby
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```python
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```js
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```php
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```django
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```dart
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```go
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```c
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+```x86asm
+curl -d '{ "action": "version" }' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
+```
+
+
+::: code-group-close
+
 
 ```json
 {

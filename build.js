@@ -5,7 +5,9 @@ const path = require("path")
 const ejs = require('ejs')
 const moment = require('moment')
 const Markdown = require('markdown-it'), 
-	  md = new Markdown({ html: true, linkify: true }).use(require('markdown-it-named-headings'))
+	  md = new Markdown({ html: true, linkify: true })
+	  .use(require('markdown-it-named-headings'))
+	  .use(require('./plugins/code-groups'))
 
 moment.suppressDeprecationWarnings = true;
 
