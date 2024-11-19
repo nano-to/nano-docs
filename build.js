@@ -134,74 +134,6 @@ if (rss_api) {
 	fs.writeFileSync(`${dest}/rss.xml`, ejs.render(rss_template, { footer, footer, nav, color, articles: articles.filter(a => !a.hidden), cover, favicon, title, domain, description, language }), { encoding: "utf8" } )
 }
 
-// dedicated category apges
-var tags = []
-
-articles.filter(a => !a.hidden).filter(a => a.tags).map(a => a.tags.split(',').map(b => tags.push(b.trim())))
-
-for (var tag of _.uniq(tags)) {
-
-	// tag = tag ?  tag.toLowerCase() : false
-
-	if (!tag) continue
-
-	if (!fs.existsSync(`${dest}/tag`)) fs.mkdirSync(`${dest}/tag`)
-	if (!fs.existsSync(`${dest}/tag/${tag.split(' ').join('-').toLowerCase()}`)) fs.mkdirSync(`${dest}/tag/${tag.split(' ').join('-').toLowerCase()}`)
-	
-	var tag_articles = articles.filter(a => !a.hidden && a.tags && a.tags.includes(tag))
-
-	fs.writeFileSync(`${dest}/tag/${tag.split(' ').join('-').toLowerCase()}/index.html`, ejs.render(index_html, { 
-		footer, 
-		nav,
-		color,
-		articles: tag_articles, 
-		cover, 
-		favicon, 
-		title: 'Tag: ' + tag, 
-		site_title: tag + ' - ' + title, 
-		metrics, 
-		website, 
-		twitter, 
-		iconSize, 
-		github: tag, 
-		verified: tag_articles.find(a => a.verified) }), 
-	{ encoding: "utf8" } )
-	
-	var single_html = fs.readFileSync(`./themes/${theme}/single.html`, { encoding: "utf8" })
-
-	tags = []
-
-	for (var article of tag_articles) {
-
-		var article_html = ejs.render(single_html, { 
-			footer, 
-			nav,
-			color,
-			articles : tag_articles.filter(a => a.slug !== article.slug), 
-			article, 
-			site_title, 
-			title, 
-			cover, 
-			favicon, 
-			nano_address: article.address || nano_address, 
-			domain, 
-			metrics, 
-			verified, 
-			twitter,
-			github,
-			website, 
-			iconSize
-		})
-
-		fs.writeFileSync(`${dest}/tag/${tag.split(' ').join('-').toLowerCase()}/${article.slug}.html`, article_html, { encoding: "utf8" } )
-
-		article.articles = tag_articles.filter(a => a.slug !== article.slug)
-		
-		tags.push(article)
-
-	}
-
-}
 
 // sitemap
 try {
@@ -287,44 +219,4 @@ for (var article of articles) {
 		website, 
 		iconSize })
 	fs.writeFileSync(`${dest}${blog_path ? '/' + blog_path : '' }/${article.slug}.html`, article_html, { encoding: "utf8" } )
-}
-
-// dedicated authors apges
-var authors = articles.filter(a => !a.hidden).filter(a => a.author).map(a => a.author)
-
-for (var author of authors) {
-
-	var name = author.replace('@', '')
-
-	if (!fs.existsSync(`${dest}/@${name}`)) fs.mkdirSync(`${dest}/@${name}`)
-	
-	var author_articles = articles.filter(a => !a.hidden).filter(a => a.author === author)
-
-	fs.writeFileSync(`${dest}/@${name}/index.html`, ejs.render(index_html, { footer, nav, color, articles: author_articles, cover, favicon, title: author, site_title: author + ' - ' + title, metrics, website, iconSize, twitter, github: author, verified: author_articles.find(a => a.verified) }), { encoding: "utf8" } )
-	
-	var single_html = fs.readFileSync(`./themes/${theme}/single.html`, { encoding: "utf8" })
-
-	for (var article of author_articles) {
-		var article_html = ejs.render(single_html, { 
-			footer, 
-			nav,
-			color,
-			articles : author_articles.filter(a => a.slug !== article.slug), 
-			article, 
-			site_title, 
-			title, 
-			cover, 
-			favicon, 
-			nano_address: article.address || nano_address, 
-			domain, 
-			metrics, 
-			verified, 
-			twitter,
-			github,
-			website, 
-			iconSize
-		})
-		fs.writeFileSync(`${dest}/@${name}/${article.slug}.html`, article_html, { encoding: "utf8" } )
-	}
-
 }
