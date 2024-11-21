@@ -17,6 +17,7 @@
          if (localStorage.getItem('dark-mode') || window.matchMedia('(prefers-color-scheme: dark)').matches)
            document.documentElement.classList.add('dark')
       </script>
+      <script src="https://metrics.bar/js/script.js" id="metrics" async defer></script>
       <style>
          pre code.hljs {
              display: block;
@@ -156,6 +157,17 @@
             width: 100%;
          }
 
+         .hljs-keyword {
+             color: #FF5722;
+         }
+         .hljs-attribute, .hljs-symbol {
+             color: #F44336;
+         }
+
+         .hljs-class .hljs-title, .hljs-title.class_ {
+             color: inherit;
+         }
+
       </style> 
    </head>
    <body>
@@ -187,7 +199,7 @@
                                  <div id="docsearch"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div>
                               </div>
                               <nav data-v-15d0e968="" data-v-84a11e99="" aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu">
-                                 <span data-v-15d0e968="" id="main-nav-aria-label" class="visually-hidden"> Main Navigation </span><a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink active" href="/guide/what-is-superstreamer.html" tabindex="0"><span data-v-687a61d0="">Guide</span></a><a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink" href="/reference/player.html" tabindex="0"><span data-v-687a61d0="">Reference</span></a>
+                                 <span data-v-15d0e968="" id="main-nav-aria-label" class="visually-hidden"> Main Navigation </span><a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink" href="/guide/what-is-superstreamer.html" tabindex="0"><span data-v-687a61d0="">Get API Key</span></a><a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink" href="/reference/player.html" tabindex="0"><span data-v-687a61d0="">Contact Us</span></a>
                                  <div data-v-ce7cea34="" data-v-15d0e968="" class="VPFlyout VPNavBarMenuGroup">
                                     <button data-v-ce7cea34="" type="button" class="button" aria-haspopup="true" aria-expanded="false">
                                        <span data-v-ce7cea34="" class="text">
@@ -312,9 +324,17 @@
                               </div>
                               <% } %>
                               <nav data-v-43384334="" class="prev-next" aria-labelledby="doc-footer-aria-label">
-                                 <span data-v-43384334="" class="visually-hidden" id="doc-footer-aria-label">Pager</span>
-                                 <div data-v-43384334="" class="pager"><a data-v-43384334="" class="VPLink link pager-link prev" href="/guide/what-is-superstreamer.html"><span data-v-43384334="" class="desc">Previous page</span><span data-v-43384334="" class="title">What is Superstreamer?</span></a></div>
-                                 <div data-v-43384334="" class="pager"><a data-v-43384334="" class="VPLink link pager-link next" href="/guide/packages.html"><span data-v-43384334="" class="desc">Next page</span><span data-v-43384334="" class="title">Packages</span></a></div>
+
+                                 <% if ( article.previous ) { %>
+                                 <div data-v-43384334="" class="pager"><a data-v-43384334="" class="VPLink link pager-link prev" href="<%- article.previous.split('/')[1].trim() %>"><span data-v-43384334="" class="desc">Previous page</span><span data-v-43384334="" class="title"><%- article.previous.split('/')[0].trim() %></span></a>
+                                 </div>
+                                 <% } %>
+
+                                 <% if ( article.next ) { %>
+                                 <div data-v-43384334="" class="pager"><a data-v-43384334="" class="VPLink link pager-link next" href="<%- article.next.split('/')[1].trim() %>"><span data-v-43384334="" class="desc">Next page</span><span data-v-43384334="" class="title"><%- article.next.split('/')[0].trim() %></span></a>
+                                 </div>
+                                 <% } %>
+
                               </nav>
                            </footer>
                         </div>

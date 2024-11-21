@@ -1,225 +1,320 @@
-- title: Sample Video
-- date: 04-12-2024
-- tags: Guide
-- image: images/setup-node/hero.jpeg
-- author: @nano2bot
-- video: true
+- title: Checkout API
 -----
 
-## Checkout Pages
+The Checkout API lets you build apps with the Nano blockchain easily.
 
-Personal payment pages for your Nano address. 
-
-> Looking to code your own Checkout UI? Use the [Payment Request API](/qrcode-api).
-
-### Basic Usage
-
-Just share link. Most platforms support HTML and Markdown. Down below are examples for that. 
-
-> Usernames are optional, but recommended. It makes creating links even easier. 
-
-```
-https://xno.to/NANO_ADDRESS_OR_USERNAME?title=Coffee
-```
-
-Live Demo: [https://xno.to/Esteban](https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg)
-
-***HTML***
-
-```html
-<a href="https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg">https://nano.to/Esteban</a>
-```
-
-***Markdown***
-
-```markdown
-Live Demo: [https://nano.to/Esteban](https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg)
-```
-
-### Available Options:
+::: code-group-open
 
 ```bash
-https://nano.to/Moon?title=Donate
-&price=50
-&donate=false
-&color=white
-&currency=USD
-&background=blue,red
-&image=https://media3.giphy.com/media/cnuNz0fTBIUGnx4F9T/giphy.gif
-&description=<p>HTML allowed 😎</p>
-&suggest=Basic:30,Premium:50
-&success_url=https://mywebsite.com/success
-&cancel_url=https://mywebsite.com/
+curl -d '{
+  "action": "checkout",
+  "title": "Nano Bird Feeder",
+  "notify": "steve@apple.com",
+  "webhook": "https://example/webhook/secret",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "metadata": {
+    "secret": "joe-doe"
+  }
+}' \
+-H "Content-Type: application/json" \
+"https://rpc.nano.to"
 ```
 
-> ***Note:*** When using **GET**, CSS colors with hashtags ex. #000000 are supported, but replace the **#** with a **$** symbol. This is a URL limitation. This is not an issue with POST requests. See below. 
+```js
+const axios = require('axios');
 
-***HTML***
-
-```html
-<a href="https://nano.to/ADDRESS_OR_USERNAME">Donate with Nano</a>
+axios.post('https://rpc.nano.to', {
+  "action": "checkout",
+  "title": "Nano Bird Feeder",
+  "notify": "steve@apple.com",
+  "webhook": "https://example/webhook/secret",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "metadata": {
+    "secret": "joe-doe"
+  }
+}).then((res) => {
+  console.log(res.data);
+});
 ```
 
-***Markdown***
+```python
+import requests
 
-```
-[Tip me $5](https://nano.to/Esteban?price=5)
-```
+url = 'https://rpc.nano.to'
 
-Demo: [Tip me in Nano](https://nano.to/Esteban)
+myobj = {
+  "action": "checkout",
+  "title": "Nano Bird Feeder",
+  "notify": "steve@apple.com",
+  "webhook": "https://example/webhook/secret",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "metadata": {
+    "secret": "joe-doe"
+  }
+}
 
-## Customize More
+x = requests.post(url, json = myobj)
 
-More advanced and sensitive data can be passed in the body of a POST request. 
-
-```
-POST: https://nano.to/NANO_ADDRESS_OR_USERNAME
-```
-
-```javascript
-// npm install axios
-const axios = require('axios')
-
-axios.post('https://nano.to/NANO_ADDRESS_OR_USERNAME', {
-    "title": "New Order",
-    "currency": "USD", // any valid ISO string
-    "plans": [
-        { "name": "Fries", "price": 5 },
-        { "name": "Burger", "price": 10 },
-        { "name": "Happy Meal", "price": 15 },
-        { "name": "Cookies 🍪", "price": 3 }
-    ],
-    "business": {
-        "name": "McDonalds",
-        "logo": "https://www.tailorbrands.com/wp-content/uploads/2020/07/mcdonalds-logo.jpg"
-    },
-    "image": "https://files.muzli.space/2d7af141fab097859ef66de8d7c50932.jpeg", 
-    "color": "black,white",
-    "background": "#00000,#311ac5",
-    "success_url": "https://mywebsite.com/success?id={{id}}&anotherParam=hello",
-    "cancel_url": "https://google.com",
-    "webhook_url": "https://mywebsite.com/super-secret-webhook",
-    "webhook_secret": "my-super-secret",
-    "metadata": { "userId": "joe-mama" }
-})
+print(x.text)
 ```
 
-### Example response:
+```rust
+use reqwest::Client;
+use serde_json::json;
+use std::collections::HashMap;
 
-```
-{
-    "id": "666ee7bf26a",
-    "url": "https://nano.to/checkout/666ee7bf26a",
-    "exp": "2021-09-23T01:51:23.853Z"
+async fn checkout(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
+
+    let mut data = HashMap::new();
+    data.insert("action", "checkout");
+    data.insert("title", "Nano Bird Feeder");
+    data.insert("notify", "steve@apple.com");
+    data.insert("webhook", "https://example/webhook/secret");
+    data.insert("address", "YOUR_ADDRESS");
+    data.insert("amount", "0.133");
+    data.insert("metadata", "[object Object]");
+    
+
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
+
+  Ok(res)
 }
 ```
 
-## Payments Notifications
+```ruby
+require 'net/http'
+require 'uri'
+require 'json'
 
-The recommended way to be notified of incoming payments is by passing a 'webhook_url' param in the body of a POST request. The JSON payload will look like this:
+def checkout(title)
+  uri = URI.parse('https://rpc.nano.to')
+  header = {'Content-Type': 'application/json'}
+  data = {
+  action: 'checkout',
+  title: 'Nano Bird Feeder',
+  notify: 'steve@apple.com',
+  webhook: 'https://example/webhook/secret',
+  address: 'YOUR_ADDRESS',
+  amount: '0.133',
+  metadata: {
+    secret: 'joe-doe'
+  }
+}
 
-```javascript
-{
-    id: '6e9d1f58c40',
-    status: 'complete',
-    amount: 1,
-    method: {
-        symbol: 'nano',
-        address: 'YOUR_ADDRESS',
-        name: 'Nano',
-        rate: '5.43262',
-        amount: '0.18621',
-        value: '1.01',
-        raw: false
-    },
-    plan: {
-        price: 1,
-        name: '1 Month'
-    },
-    block: {
-        type: 'pending',
-        amount: '0.18621',
-        hash: '6EE79D2BA2A8995179..',
-        source: 'THEIR_ADDRESS',
-        amount_raw: '1862100000000..'
-    },
-    metadata: {
-        id: 'joe-mama'
+  http = Net::HTTP.new(uri.host, uri.port)
+  request = Net::HTTP::Post.new(uri.request_uri, header)
+  request.body = data.to_json
+
+  response = http.request(request)
+  response.body
+end
+```
+
+```php
+<?php
+function checkout($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
+  action: 'checkout',
+  title: 'Nano Bird Feeder',
+  notify: 'steve@apple.com',
+  webhook: 'https://example/webhook/secret',
+  address: 'YOUR_ADDRESS',
+  amount: '0.133',
+  metadata: {
+    secret: 'joe-doe'
+  }
+});
+  $options = array(
+    'http' => array(
+      'header'  => "Content-Type: application/json\r\n",
+      'method'  => 'POST',
+      'content' => json_encode($data),
+    ),
+  );
+  $context  = stream_context_create($options);
+  $result = file_get_contents($url, false, $context);
+  if ($result === FALSE) { /* Handle error */ }
+
+  return $result;
+}
+```
+
+```dart
+// import 'dart:convert';
+Future<http.Response> checkout(String title) {
+  return http.post(
+  Uri.parse('https://rpc.nano.to'),
+  headers: <String, String>{
+    'Content-Type': 'application/json',
+  },
+  body: jsonEncode(<String, String>{
+  "action": "checkout",
+  "title": "Nano Bird Feeder",
+  "notify": "steve@apple.com",
+  "webhook": "https://example/webhook/secret",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "metadata": {
+    "secret": "joe-doe"
+  }
+}),
+)}
+```
+
+```go
+package main
+
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
+
+func checkout(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
+  action  "checkout",
+  title  "Nano Bird Feeder",
+  notify  "steve@apple.com",
+  webhook  "https //example/webhook/secret",
+  address  "YOUR_ADDRESS",
+  amount  "0.133",
+  metadata  {
+    secret  "joe-doe"
+  }
+}
+
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
+  }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
+```
+
+```c
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+public class ApiClient {
+    private static readonly HttpClient client = new HttpClient();
+
+    public static async Task<HttpResponseMessage> checkout(string title) {
+        var uri = new Uri("https://rpc.nano.to");
+        var data = new {
+  {
+  action = "checkout",
+  title = "Nano Bird Feeder",
+  notify = "steve@apple.com",
+  webhook = "https //example/webhook/secret",
+  address = "YOUR_ADDRESS",
+  amount = "0.133",
+  metadata = {
+    secret = "joe-doe"
+  }
+}
+        };
+
+        var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+
+        return await client.PostAsync(uri, content);
     }
 }
 ```
 
-**Your server listening for POST request, would look like this:**
+```x86asm
+section .data
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+        data db '{
+  action: checkout,
+  title: Nano Bird Feeder,
+  notify: steve@apple.com,
+  webhook: https://example/webhook/secret,
+  address: YOUR_ADDRESS,
+  amount: 0.133,
+  metadata: {
+    secret: joe-doe
+  }
+}', 0
 
-```js
-// npm install fwd/server
-const server = require('@fwd/server')
+section .bss
+  response resb 256
 
-// listen at this path, with a POST method.
-server.post('/super-secret-webhook', (req, res) => {
-    console.log(req.body) // data from example above
-    res.send("Ok")
-})
-// start server
-server.start(8080)
+section .text
+  global _start
+
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
+
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
+
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
+
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
+
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
+
+len equ $ - $$
 ```
 
-### Multiple Currency Support
+::: code-group-close
 
+```json
+{
+  "id": "CHECKOUT_ID",
+  "browser": "https://nano.to/CHECKOUT_ID",
+  "json": "https://api.nano.to/checkout/CHECKOUT_ID",
+  "check": "https://api.nano.to/confirm/CHECKOUT_ID",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "amount_raw": "133000000000000000000000000000",
+  "link": "nano:YOUR_ADDRESS?amount=133000047580000000000000000000",
+  "qrcode": "data:image/png;base64.."
+}
 ```
-https://nano.to/Esteban?currency=RUB
-```
-
-![](../assets/checkout-rub.png)
-
-### Single Panel UI
-
-When no ```plans``` are provided, there is no need for the left side of the Checkout UI. 
-
-```
-https://nano.to/Esteban?pay=100
-```
-
-> When setting the price, you can use ```pay```, ```price``` or ```amount```. They all work the same.
-
-![](../assets/checkout-single.png)
-
-## Checkout Metadata
-
-Pass a ```?json=true``` URL flag to the ```url``` in the Response to get a JSON object of the Checkout. 
-
-> In most cases you do don't need this.
-
-```
-https://nano.to/checkout/666ee7bf26a?json=true
-```
-
-### Customize Vanity Highlight
-
-With ```vanity_start``` and ```vanity_end``` params, you can control how your address is presented.
-
-```
-https://nano.to/esteban?vanity_start=10&vanity_end=4
-```
-
-![](../assets/address_highlight.png)
-
-## Wallet Deep Linking
-
-Clicking (or Tapping) the QR Code will open Natrium and automatically fill in amount and address, on most phones. 
-
-## Github Markdown Support
-
-When creating links in Markdown (or HTML), use **two** underscores (\_\_) instead of spaces, and it will read as spaces. Makes for cleaner links.
-
-[https://nano.to/Moon?title=I__Love__You](https://nano.to/Moon?title=I__Love__You)
-
-## Nano.to Support
-
-[Nano.to](https://fwd.dev/) offers free email support. Think of us like StackOverflow for Nano. 
-
-Ask Away: [support@nano.to](mailto:support@nano.to?subject=Wallet+API)
-
-## Data Deletion Policy
-
-Most of the data provided by Nano.to comes from the Nano Blockchain. Nano.to only stores Usernames leases and Checkout metadata. Checkout metadata is stored in-memory and is deleted after 24 hours. It's cheaper to NOT store your data. Who could have guessed. Our Cloud provider (AWS & DigitalOcean) probably store your IP indefinitely. We can't control that.

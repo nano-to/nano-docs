@@ -17,7 +17,7 @@ An Natrium fork, with Nano.to usernames, payment requests, and more. This projec
 - [iOS App Store](https://apps.apple.com/us/app/nautilus-nano-wallet/id1615775960)
 - [Github Source Code](https://github.com/fwd/nautilus)
 
-### Have a project you'd like to show here?**
+### Have a project you'd like to show here?
 
 - Email: support@nano.to
 - Twitter: [@nano2dev](https://twitter.com/nano2dev)

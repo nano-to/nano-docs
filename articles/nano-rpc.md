@@ -1,4 +1,6 @@
 - title: Nano Node RPC
+- previous: Get Started / get-started.html
+- next: Username API / usernames.html
 -----
 ## version
 
@@ -10,27 +12,49 @@ curl -d '{ "action": "version" }' \
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+action: "version"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = { action: "version" }
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn version(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn version(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "version");
-      
+    let mut data = HashMap::new();
+    data.insert("action", "version");
+    
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -52,33 +76,11 @@ def version(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = { action: "version" }
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-action: "version"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function version($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({ action: 'version' });
+function version($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({ action: 'version' });
   $options = array(
     'http' => array(
       'header'  => "Content-Type: application/json\r\n",
@@ -92,19 +94,6 @@ action: "version"
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def version(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {'action': 'version'}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -122,35 +111,35 @@ Future<http.Response> version(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func version(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{"action": "version"}
+func version(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{"action": "version"}
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -178,47 +167,47 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db 'action: version', 0
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db 'action: version', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -234,7 +223,7 @@ section .data
 }
 ```
 
-  
+	
 ## account_info
 
 ::: code-group-open
@@ -248,28 +237,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "account_info",
+  "account": "@development"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "account_info",
+  "account": "@development"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn account_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn account_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "account_info");
-      data.insert("account", "@development");
+    let mut data = HashMap::new();
+    data.insert("action", "account_info");
+    data.insert("account", "@development");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -294,37 +309,11 @@ def account_info(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "account_info",
-  "account": "@development"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "account_info",
-  "account": "@development"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function account_info($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function account_info($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'account_info',
   account: '@development'
 });
@@ -341,22 +330,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def account_info(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'account_info',
-  'account': '@development'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -377,38 +350,38 @@ Future<http.Response> account_info(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func account_info(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func account_info(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "account_info",
   account  "@development"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -439,50 +412,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: account_info,
   account: @development
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -502,7 +475,7 @@ section .data
 }
 ```
 
-  
+	
 ## account_history
 
 ::: code-group-open
@@ -517,29 +490,57 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "account_history",
+  "account": "@faucet",
+  "count": "1"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "account_history",
+  "account": "@faucet",
+  "count": "1"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn account_history(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn account_history(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "account_history");
-      data.insert("account", "@faucet");
+    let mut data = HashMap::new();
+    data.insert("action", "account_history");
+    data.insert("account", "@faucet");
     data.insert("count", "1");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -565,39 +566,11 @@ def account_history(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "account_history",
-  "account": "@faucet",
-  "count": "1"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "account_history",
-  "account": "@faucet",
-  "count": "1"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function account_history($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function account_history($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'account_history',
   account: '@faucet',
   count: '1'
@@ -615,23 +588,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def account_history(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'account_history',
-  'account': '@faucet',
-  'count': '1'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -653,39 +609,39 @@ Future<http.Response> account_history(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func account_history(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func account_history(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "account_history",
   account  "@faucet",
   count  "1"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -717,51 +673,51 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: account_history,
   account: @faucet,
   count: 1
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -784,7 +740,7 @@ section .data
 }
 ```
 
-  
+	
 ## receivable
 
 ::: code-group-open
@@ -799,29 +755,57 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "receivable",
+  "account": "@faucet",
+  "count": "5"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "receivable",
+  "account": "@faucet",
+  "count": "5"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn receivable(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn receivable(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "receivable");
-      data.insert("account", "@faucet");
+    let mut data = HashMap::new();
+    data.insert("action", "receivable");
+    data.insert("account", "@faucet");
     data.insert("count", "5");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -847,39 +831,11 @@ def receivable(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "receivable",
-  "account": "@faucet",
-  "count": "5"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "receivable",
-  "account": "@faucet",
-  "count": "5"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function receivable($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function receivable($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'receivable',
   account: '@faucet',
   count: '5'
@@ -897,23 +853,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def receivable(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'receivable',
-  'account': '@faucet',
-  'count': '5'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -935,39 +874,39 @@ Future<http.Response> receivable(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func receivable(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func receivable(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "receivable",
   account  "@faucet",
   count  "5"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -999,51 +938,51 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: receivable,
   account: @faucet,
   count: 5
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -1072,7 +1011,7 @@ section .data
 ]
 ```
 
-  
+	
 ## account_balance
 
 ::: code-group-open
@@ -1086,28 +1025,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "account_balance",
+  "account": "@development"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "account_balance",
+  "account": "@development"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn account_balance(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn account_balance(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "account_balance");
-      data.insert("account", "@development");
+    let mut data = HashMap::new();
+    data.insert("action", "account_balance");
+    data.insert("account", "@development");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -1132,37 +1097,11 @@ def account_balance(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "account_balance",
-  "account": "@development"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "account_balance",
-  "account": "@development"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function account_balance($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function account_balance($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'account_balance',
   account: '@development'
 });
@@ -1179,22 +1118,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def account_balance(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'account_balance',
-  'account': '@development'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -1215,38 +1138,38 @@ Future<http.Response> account_balance(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func account_balance(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func account_balance(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "account_balance",
   account  "@development"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -1277,50 +1200,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: account_balance,
   account: @development
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -1336,7 +1259,7 @@ section .data
 }
 ```
 
-  
+	
 ## accounts_balances
 
 ::: code-group-open
@@ -1354,28 +1277,62 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "accounts_balances",
+  "accounts": [
+    "@development",
+    "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7",
+    "@faucet"
+  ]
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "accounts_balances",
+  "accounts": [
+    "@development",
+    "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7",
+    "@faucet"
+  ]
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn accounts_balances(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn accounts_balances(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "accounts_balances");
-      data.insert("accounts", "@development,nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7,@faucet");
+    let mut data = HashMap::new();
+    data.insert("action", "accounts_balances");
+    data.insert("accounts", "@development,nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7,@faucet");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -1404,45 +1361,11 @@ def accounts_balances(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "accounts_balances",
-  "accounts": [
-    "@development",
-    "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7",
-    "@faucet"
-  ]
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "accounts_balances",
-  "accounts": [
-    "@development",
-    "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7",
-    "@faucet"
-  ]
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function accounts_balances($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function accounts_balances($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'accounts_balances',
   accounts: [
     '@development',
@@ -1463,26 +1386,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def accounts_balances(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'accounts_balances',
-  'accounts': [
-    '@development',
-    'nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7',
-    '@faucet'
-  ]
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -1507,15 +1410,15 @@ Future<http.Response> accounts_balances(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func accounts_balances(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func accounts_balances(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "accounts_balances",
   accounts  [
     "@development",
@@ -1524,25 +1427,25 @@ package main
   ]
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -1577,9 +1480,9 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: accounts_balances,
   accounts: [
     @development,
@@ -1588,43 +1491,43 @@ section .data
   ]
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -1661,7 +1564,7 @@ section .data
 }
 ```
 
-  
+	
 ## accounts_receivable
 
 ::: code-group-open
@@ -1678,28 +1581,60 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "accounts_receivable",
+  "accounts": [
+    "nano_1111111111111111111111111111111111111111111111111117353trpda",
+    "@development"
+  ]
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "accounts_receivable",
+  "accounts": [
+    "nano_1111111111111111111111111111111111111111111111111117353trpda",
+    "@development"
+  ]
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn accounts_receivable(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn accounts_receivable(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "accounts_receivable");
-      data.insert("accounts", "nano_1111111111111111111111111111111111111111111111111117353trpda,@development");
+    let mut data = HashMap::new();
+    data.insert("action", "accounts_receivable");
+    data.insert("accounts", "nano_1111111111111111111111111111111111111111111111111117353trpda,@development");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -1727,43 +1662,11 @@ def accounts_receivable(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "accounts_receivable",
-  "accounts": [
-    "nano_1111111111111111111111111111111111111111111111111117353trpda",
-    "@development"
-  ]
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "accounts_receivable",
-  "accounts": [
-    "nano_1111111111111111111111111111111111111111111111111117353trpda",
-    "@development"
-  ]
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function accounts_receivable($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function accounts_receivable($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'accounts_receivable',
   accounts: [
     'nano_1111111111111111111111111111111111111111111111111117353trpda',
@@ -1783,25 +1686,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def accounts_receivable(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'accounts_receivable',
-  'accounts': [
-    'nano_1111111111111111111111111111111111111111111111111117353trpda',
-    '@development'
-  ]
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -1825,15 +1709,15 @@ Future<http.Response> accounts_receivable(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func accounts_receivable(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func accounts_receivable(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "accounts_receivable",
   accounts  [
     "nano_1111111111111111111111111111111111111111111111111117353trpda",
@@ -1841,25 +1725,25 @@ package main
   ]
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -1893,9 +1777,9 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: accounts_receivable,
   accounts: [
     nano_1111111111111111111111111111111111111111111111111117353trpda,
@@ -1903,43 +1787,43 @@ section .data
   ]
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -1963,7 +1847,7 @@ section .data
 }
 ```
 
-  
+	
 ## block_info
 
 ::: code-group-open
@@ -1977,28 +1861,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "block_info",
+  "hash": "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "block_info",
+  "hash": "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn block_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn block_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "block_info");
-      data.insert("hash", "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A");
+    let mut data = HashMap::new();
+    data.insert("action", "block_info");
+    data.insert("hash", "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -2023,37 +1933,11 @@ def block_info(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "block_info",
-  "hash": "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "block_info",
-  "hash": "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function block_info($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function block_info($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'block_info',
   hash: 'B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A'
 });
@@ -2070,22 +1954,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def block_info(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'block_info',
-  'hash': 'B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -2106,38 +1974,38 @@ Future<http.Response> block_info(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func block_info(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func block_info(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "block_info",
   hash  "B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -2168,50 +2036,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: block_info,
   hash: B5E0BE6DAB75740A...06CC4EC7A548F4AFD37A
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -2243,7 +2111,7 @@ section .data
 }
 ```
 
-  
+	
 ## blocks_info
 
 ::: code-group-open
@@ -2262,30 +2130,66 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "blocks_info",
+  "source": "true",
+  "receive_hash": "true",
+  "hashes": [
+    "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3",
+    "67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D"
+  ]
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "blocks_info",
+  "source": "true",
+  "receive_hash": "true",
+  "hashes": [
+    "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3",
+    "67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D"
+  ]
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn blocks_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn blocks_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "blocks_info");
-      data.insert("source", "true");
+    let mut data = HashMap::new();
+    data.insert("action", "blocks_info");
+    data.insert("source", "true");
     data.insert("receive_hash", "true");
     data.insert("hashes", "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3,67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -2315,47 +2219,11 @@ def blocks_info(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "blocks_info",
-  "source": "true",
-  "receive_hash": "true",
-  "hashes": [
-    "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3",
-    "67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D"
-  ]
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "blocks_info",
-  "source": "true",
-  "receive_hash": "true",
-  "hashes": [
-    "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3",
-    "67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D"
-  ]
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function blocks_info($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function blocks_info($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'blocks_info',
   source: 'true',
   receive_hash: 'true',
@@ -2377,27 +2245,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def blocks_info(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'blocks_info',
-  'source': 'true',
-  'receive_hash': 'true',
-  'hashes': [
-    'E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3',
-    '67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D'
-  ]
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -2423,15 +2270,15 @@ Future<http.Response> blocks_info(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func blocks_info(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func blocks_info(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "blocks_info",
   source  "true",
   receive_hash  "true",
@@ -2441,25 +2288,25 @@ package main
   ]
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -2495,9 +2342,9 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: blocks_info,
   source: true,
   receive_hash: true,
@@ -2507,43 +2354,43 @@ section .data
   ]
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -2607,7 +2454,7 @@ section .data
 }
 ```
 
-  
+	
 ## find_block
 
 ::: code-group-open
@@ -2622,29 +2469,57 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "find_block",
+  "address": "@bank",
+  "amount": "0.00755"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "find_block",
+  "address": "@bank",
+  "amount": "0.00755"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn find_block(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn find_block(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "find_block");
-      data.insert("address", "@bank");
+    let mut data = HashMap::new();
+    data.insert("action", "find_block");
+    data.insert("address", "@bank");
     data.insert("amount", "0.00755");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -2670,39 +2545,11 @@ def find_block(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "find_block",
-  "address": "@bank",
-  "amount": "0.00755"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "find_block",
-  "address": "@bank",
-  "amount": "0.00755"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function find_block($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function find_block($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'find_block',
   address: '@bank',
   amount: '0.00755'
@@ -2720,23 +2567,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def find_block(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'find_block',
-  'address': '@bank',
-  'amount': '0.00755'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -2758,39 +2588,39 @@ Future<http.Response> find_block(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func find_block(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func find_block(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "find_block",
   address  "@bank",
   amount  "0.00755"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -2822,51 +2652,51 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: find_block,
   address: @bank,
   amount: 0.00755
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -2888,7 +2718,7 @@ section .data
 }
 ```
 
-  
+	
 ## block_sign
 
 ::: code-group-open
@@ -2899,27 +2729,49 @@ curl -d '{ "action": "block_sign" }' \
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+action: "block_sign"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = { action: "block_sign" }
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn block_sign(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn block_sign(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "block_sign");
-      
+    let mut data = HashMap::new();
+    data.insert("action", "block_sign");
+    
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -2941,33 +2793,11 @@ def block_sign(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = { action: "block_sign" }
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-action: "block_sign"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function block_sign($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({ action: 'block_sign' });
+function block_sign($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({ action: 'block_sign' });
   $options = array(
     'http' => array(
       'header'  => "Content-Type: application/json\r\n",
@@ -2981,19 +2811,6 @@ action: "block_sign"
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def block_sign(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {'action': 'block_sign'}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -3011,35 +2828,35 @@ Future<http.Response> block_sign(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func block_sign(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{"action": "block_sign"}
+func block_sign(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{"action": "block_sign"}
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -3067,47 +2884,47 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db 'action: block_sign', 0
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db 'action: block_sign', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -3116,7 +2933,7 @@ section .data
 undefined
 ```
 
-  
+	
 ## process
 
 ::: code-group-open
@@ -3142,31 +2959,81 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "process",
+  "json_block": "true",
+  "subtype": "send",
+  "block": {
+    "type": "state",
+    "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+    "previous": "6CDDA48608C7843A...EAC23E7F33F2E6A6766",
+    "representative": "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh",
+    "balance": "40200000001000000000000000000000000",
+    "link": "87434F8041869A0...7D7A3FD0CCC2358FD6F9",
+    "link_as_account": "nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd",
+    "signature": "A5DB164F6B81648533900C3...ED4DCBF8EF2539EB2467F07",
+    "work": "000bc55b014e807d"
+  }
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "process",
+  "json_block": "true",
+  "subtype": "send",
+  "block": {
+    "type": "state",
+    "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+    "previous": "6CDDA48608C7843A...EAC23E7F33F2E6A6766",
+    "representative": "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh",
+    "balance": "40200000001000000000000000000000000",
+    "link": "87434F8041869A0...7D7A3FD0CCC2358FD6F9",
+    "link_as_account": "nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd",
+    "signature": "A5DB164F6B81648533900C3...ED4DCBF8EF2539EB2467F07",
+    "work": "000bc55b014e807d"
+  }
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn process(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn process(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "process");
-      data.insert("action", "process");
+    let mut data = HashMap::new();
+    data.insert("action", "process");
+    data.insert("action", "process");
     data.insert("json_block", "true");
     data.insert("subtype", "send");
     data.insert("block", "[object Object]");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -3203,61 +3070,11 @@ def process(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "process",
-  "json_block": "true",
-  "subtype": "send",
-  "block": {
-    "type": "state",
-    "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
-    "previous": "6CDDA48608C7843A...EAC23E7F33F2E6A6766",
-    "representative": "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh",
-    "balance": "40200000001000000000000000000000000",
-    "link": "87434F8041869A0...7D7A3FD0CCC2358FD6F9",
-    "link_as_account": "nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd",
-    "signature": "A5DB164F6B81648533900C3...ED4DCBF8EF2539EB2467F07",
-    "work": "000bc55b014e807d"
-  }
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "process",
-  "json_block": "true",
-  "subtype": "send",
-  "block": {
-    "type": "state",
-    "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
-    "previous": "6CDDA48608C7843A...EAC23E7F33F2E6A6766",
-    "representative": "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh",
-    "balance": "40200000001000000000000000000000000",
-    "link": "87434F8041869A0...7D7A3FD0CCC2358FD6F9",
-    "link_as_account": "nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd",
-    "signature": "A5DB164F6B81648533900C3...ED4DCBF8EF2539EB2467F07",
-    "work": "000bc55b014e807d"
-  }
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function process($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function process($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'process',
   json_block: 'true',
   subtype: 'send',
@@ -3286,34 +3103,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def process(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'process',
-  'json_block': 'true',
-  'subtype': 'send',
-  'block': {
-    'type': 'state',
-    'account': 'nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z',
-    'previous': '6CDDA48608C7843A...EAC23E7F33F2E6A6766',
-    'representative': 'nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh',
-    'balance': '40200000001000000000000000000000000',
-    'link': '87434F8041869A0...7D7A3FD0CCC2358FD6F9',
-    'link_as_account': 'nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd',
-    'signature': 'A5DB164F6B81648533900C3...ED4DCBF8EF2539EB2467F07',
-    'work': '000bc55b014e807d'
-  }
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -3346,15 +3135,15 @@ Future<http.Response> process(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func process(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func process(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "process",
   json_block  "true",
   subtype  "send",
@@ -3371,25 +3160,25 @@ package main
   }
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -3432,9 +3221,9 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: process,
   json_block: true,
   subtype: send,
@@ -3451,43 +3240,43 @@ section .data
   }
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -3498,7 +3287,7 @@ section .data
 }
 ```
 
-  
+	
 ## work_generate
 
 ::: code-group-open
@@ -3513,29 +3302,57 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "work_generate",
+  "hash": ":FRONTIER",
+  "key": "RPC-API-KEY"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "work_generate",
+  "hash": ":FRONTIER",
+  "key": "RPC-API-KEY"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn work_generate(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn work_generate(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "work_generate");
-      data.insert("hash", ":FRONTIER");
+    let mut data = HashMap::new();
+    data.insert("action", "work_generate");
+    data.insert("hash", ":FRONTIER");
     data.insert("key", "RPC-API-KEY");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -3561,39 +3378,11 @@ def work_generate(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "work_generate",
-  "hash": ":FRONTIER",
-  "key": "RPC-API-KEY"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "work_generate",
-  "hash": ":FRONTIER",
-  "key": "RPC-API-KEY"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function work_generate($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function work_generate($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'work_generate',
   hash: ':FRONTIER',
   key: 'RPC-API-KEY'
@@ -3611,23 +3400,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def work_generate(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'work_generate',
-  'hash': ':FRONTIER',
-  'key': 'RPC-API-KEY'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -3649,39 +3421,39 @@ Future<http.Response> work_generate(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func work_generate(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func work_generate(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "work_generate",
   hash  " FRONTIER",
   key  "RPC-API-KEY"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -3713,51 +3485,51 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: work_generate,
   hash: :FRONTIER,
   key: RPC-API-KEY
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -3774,7 +3546,7 @@ section .data
 }
 ```
 
-  
+	
 ## block_count
 
 ::: code-group-open
@@ -3785,27 +3557,49 @@ curl -d '{ "action": "block_count" }' \
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+action: "block_count"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = { action: "block_count" }
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn block_count(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn block_count(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "block_count");
-      
+    let mut data = HashMap::new();
+    data.insert("action", "block_count");
+    
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -3827,33 +3621,11 @@ def block_count(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = { action: "block_count" }
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-action: "block_count"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function block_count($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({ action: 'block_count' });
+function block_count($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({ action: 'block_count' });
   $options = array(
     'http' => array(
       'header'  => "Content-Type: application/json\r\n",
@@ -3867,19 +3639,6 @@ action: "block_count"
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def block_count(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {'action': 'block_count'}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -3897,35 +3656,35 @@ Future<http.Response> block_count(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func block_count(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{"action": "block_count"}
+func block_count(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{"action": "block_count"}
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -3953,47 +3712,47 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db 'action: block_count', 0
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db 'action: block_count', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -4006,7 +3765,7 @@ section .data
 }
 ```
 
-  
+	
 ## account_key
 
 ::: code-group-open
@@ -4020,28 +3779,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "account_key",
+  "account": "@faucet"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "account_key",
+  "account": "@faucet"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn account_key(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn account_key(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "account_key");
-      data.insert("account", "@faucet");
+    let mut data = HashMap::new();
+    data.insert("action", "account_key");
+    data.insert("account", "@faucet");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -4066,37 +3851,11 @@ def account_key(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "account_key",
-  "account": "@faucet"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "account_key",
-  "account": "@faucet"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function account_key($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function account_key($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'account_key',
   account: '@faucet'
 });
@@ -4113,22 +3872,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def account_key(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'account_key',
-  'account': '@faucet'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -4149,38 +3892,38 @@ Future<http.Response> account_key(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func account_key(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func account_key(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "account_key",
   account  "@faucet"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -4211,50 +3954,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: account_key,
   account: @faucet
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -4265,7 +4008,7 @@ section .data
 }
 ```
 
-  
+	
 ## price
 
 ::: code-group-open
@@ -4279,28 +4022,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "price",
+  "currency": "EUR"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "price",
+  "currency": "EUR"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn price(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn price(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "price");
-      data.insert("currency", "EUR");
+    let mut data = HashMap::new();
+    data.insert("action", "price");
+    data.insert("currency", "EUR");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -4325,37 +4094,11 @@ def price(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "price",
-  "currency": "EUR"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "price",
-  "currency": "EUR"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function price($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function price($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'price',
   currency: 'EUR'
 });
@@ -4372,22 +4115,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def price(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'price',
-  'currency': 'EUR'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -4408,38 +4135,38 @@ Future<http.Response> price(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func price(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func price(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "price",
   currency  "EUR"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -4470,50 +4197,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: price,
   currency: EUR
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -4529,7 +4256,7 @@ section .data
 }
 ```
 
-  
+	
 ## reps
 
 ::: code-group-open
@@ -4540,27 +4267,49 @@ curl -d '{ "action": "reps" }' \
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+action: "reps"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = { action: "reps" }
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn reps(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn reps(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "reps");
-      
+    let mut data = HashMap::new();
+    data.insert("action", "reps");
+    
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -4582,33 +4331,11 @@ def reps(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = { action: "reps" }
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-action: "reps"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function reps($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({ action: 'reps' });
+function reps($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({ action: 'reps' });
   $options = array(
     'http' => array(
       'header'  => "Content-Type: application/json\r\n",
@@ -4622,19 +4349,6 @@ action: "reps"
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def reps(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {'action': 'reps'}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -4652,35 +4366,35 @@ Future<http.Response> reps(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func reps(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{"action": "reps"}
+func reps(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{"action": "reps"}
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -4708,47 +4422,47 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db 'action: reps', 0
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db 'action: reps', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -4775,7 +4489,7 @@ section .data
 ]
 ```
 
-  
+	
 ## rep_info
 
 ::: code-group-open
@@ -4789,28 +4503,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "rep_info",
+  "account": "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "rep_info",
+  "account": "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn rep_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn rep_info(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "rep_info");
-      data.insert("account", "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o");
+    let mut data = HashMap::new();
+    data.insert("action", "rep_info");
+    data.insert("account", "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -4835,37 +4575,11 @@ def rep_info(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "rep_info",
-  "account": "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "rep_info",
-  "account": "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function rep_info($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function rep_info($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'rep_info',
   account: 'nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o'
 });
@@ -4882,22 +4596,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def rep_info(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'rep_info',
-  'account': 'nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -4918,38 +4616,38 @@ Future<http.Response> rep_info(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func rep_info(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func rep_info(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "rep_info",
   account  "nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -4980,50 +4678,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: rep_info,
   account: nano_1jtx5p8141zjtukz4msp1x93st7nh475f74odj8673qqm96xczmtcnanos1o
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -5047,7 +4745,7 @@ section .data
 }
 ```
 
-  
+	
 ## nano_to_raw
 
 ::: code-group-open
@@ -5061,28 +4759,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "nano_to_raw",
+  "amount": "420.69"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "nano_to_raw",
+  "amount": "420.69"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn nano_to_raw(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn nano_to_raw(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "nano_to_raw");
-      data.insert("amount", "420.69");
+    let mut data = HashMap::new();
+    data.insert("action", "nano_to_raw");
+    data.insert("amount", "420.69");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -5107,37 +4831,11 @@ def nano_to_raw(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "nano_to_raw",
-  "amount": "420.69"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "nano_to_raw",
-  "amount": "420.69"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function nano_to_raw($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function nano_to_raw($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'nano_to_raw',
   amount: '420.69'
 });
@@ -5154,22 +4852,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def nano_to_raw(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'nano_to_raw',
-  'amount': '420.69'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -5190,38 +4872,38 @@ Future<http.Response> nano_to_raw(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func nano_to_raw(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func nano_to_raw(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "nano_to_raw",
   amount  "420.69"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -5252,50 +4934,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: nano_to_raw,
   amount: 420.69
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -5306,7 +4988,7 @@ section .data
 }
 ```
 
-  
+	
 ## raw_to_nano
 
 ::: code-group-open
@@ -5320,28 +5002,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "raw_to_nano",
+  "amount": "420690000000000000000000000000000"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "raw_to_nano",
+  "amount": "420690000000000000000000000000000"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn raw_to_nano(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn raw_to_nano(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "raw_to_nano");
-      data.insert("amount", "420690000000000000000000000000000");
+    let mut data = HashMap::new();
+    data.insert("action", "raw_to_nano");
+    data.insert("amount", "420690000000000000000000000000000");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -5366,37 +5074,11 @@ def raw_to_nano(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "raw_to_nano",
-  "amount": "420690000000000000000000000000000"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "raw_to_nano",
-  "amount": "420690000000000000000000000000000"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function raw_to_nano($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function raw_to_nano($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'raw_to_nano',
   amount: '420690000000000000000000000000000'
 });
@@ -5413,22 +5095,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def raw_to_nano(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'raw_to_nano',
-  'amount': '420690000000000000000000000000000'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -5449,38 +5115,38 @@ Future<http.Response> raw_to_nano(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func raw_to_nano(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func raw_to_nano(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "raw_to_nano",
   amount  "420690000000000000000000000000000"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -5511,50 +5177,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: raw_to_nano,
   amount: 420690000000000000000000000000000
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -5565,7 +5231,7 @@ section .data
 }
 ```
 
-  
+	
 ## known
 
 ::: code-group-open
@@ -5578,27 +5244,51 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "known"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "known"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn known(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn known(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "known");
-      
+    let mut data = HashMap::new();
+    data.insert("action", "known");
+    
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -5622,35 +5312,11 @@ def known(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "known"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "known"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function known($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function known($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'known'
 });
   $options = array(
@@ -5666,21 +5332,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def known(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'known'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -5700,37 +5351,37 @@ Future<http.Response> known(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func known(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func known(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "known"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -5760,49 +5411,49 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: known
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -5829,7 +5480,7 @@ section .data
 ]
 ```
 
-  
+	
 ## get_name
 
 ::: code-group-open
@@ -5843,28 +5494,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "get_name",
+  "name": "NanoBull"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "get_name",
+  "name": "NanoBull"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn get_name(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn get_name(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "get_name");
-      data.insert("name", "NanoBull");
+    let mut data = HashMap::new();
+    data.insert("action", "get_name");
+    data.insert("name", "NanoBull");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -5889,37 +5566,11 @@ def get_name(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "get_name",
-  "name": "NanoBull"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "get_name",
-  "name": "NanoBull"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function get_name($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function get_name($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'get_name',
   name: 'NanoBull'
 });
@@ -5936,22 +5587,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def get_name(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'get_name',
-  'name': 'NanoBull'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -5972,38 +5607,38 @@ Future<http.Response> get_name(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func get_name(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func get_name(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "get_name",
   name  "NanoBull"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -6034,50 +5669,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: get_name,
   name: NanoBull
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -6116,7 +5751,7 @@ section .data
 }
 ```
 
-  
+	
 ## update_name
 
 ::: code-group-open
@@ -6130,28 +5765,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "update_name",
+  "name": "NanoBull"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "update_name",
+  "name": "NanoBull"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn update_name(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn update_name(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "update_name");
-      data.insert("name", "NanoBull");
+    let mut data = HashMap::new();
+    data.insert("action", "update_name");
+    data.insert("name", "NanoBull");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -6176,37 +5837,11 @@ def update_name(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "update_name",
-  "name": "NanoBull"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "update_name",
-  "name": "NanoBull"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function update_name($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function update_name($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'update_name',
   name: 'NanoBull'
 });
@@ -6223,22 +5858,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def update_name(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'update_name',
-  'name': 'NanoBull'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -6259,38 +5878,38 @@ Future<http.Response> update_name(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func update_name(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func update_name(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "update_name",
   name  "NanoBull"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -6321,50 +5940,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: update_name,
   name: NanoBull
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -6379,7 +5998,7 @@ section .data
 }
 ```
 
-  
+	
 ## checkout
 
 ::: code-group-open
@@ -6400,18 +6019,58 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "checkout",
+  "title": "Nano Bird Feeder",
+  "notify": "steve@apple.com",
+  "webhook": "https://example/webhook/secret",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "metadata": {
+    "secret": "joe-doe"
+  }
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "checkout",
+  "title": "Nano Bird Feeder",
+  "notify": "steve@apple.com",
+  "webhook": "https://example/webhook/secret",
+  "address": "YOUR_ADDRESS",
+  "amount": "0.133",
+  "metadata": {
+    "secret": "joe-doe"
+  }
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn checkout(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn checkout(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "checkout");
-      data.insert("title", "Nano Bird Feeder");
+    let mut data = HashMap::new();
+    data.insert("action", "checkout");
+    data.insert("title", "Nano Bird Feeder");
     data.insert("notify", "steve@apple.com");
     data.insert("webhook", "https://example/webhook/secret");
     data.insert("address", "YOUR_ADDRESS");
@@ -6419,14 +6078,14 @@ use reqwest::Client;
     data.insert("metadata", "[object Object]");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -6458,51 +6117,11 @@ def checkout(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "checkout",
-  "title": "Nano Bird Feeder",
-  "notify": "steve@apple.com",
-  "webhook": "https://example/webhook/secret",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "metadata": {
-    "secret": "joe-doe"
-  }
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "checkout",
-  "title": "Nano Bird Feeder",
-  "notify": "steve@apple.com",
-  "webhook": "https://example/webhook/secret",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "metadata": {
-    "secret": "joe-doe"
-  }
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function checkout($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function checkout($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'checkout',
   title: 'Nano Bird Feeder',
   notify: 'steve@apple.com',
@@ -6526,29 +6145,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def checkout(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'checkout',
-  'title': 'Nano Bird Feeder',
-  'notify': 'steve@apple.com',
-  'webhook': 'https://example/webhook/secret',
-  'address': 'YOUR_ADDRESS',
-  'amount': '0.133',
-  'metadata': {
-    'secret': 'joe-doe'
-  }
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -6576,15 +6172,15 @@ Future<http.Response> checkout(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func checkout(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func checkout(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "checkout",
   title  "Nano Bird Feeder",
   notify  "steve@apple.com",
@@ -6596,25 +6192,25 @@ package main
   }
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -6652,9 +6248,9 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: checkout,
   title: Nano Bird Feeder,
   notify: steve@apple.com,
@@ -6666,43 +6262,43 @@ section .data
   }
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -6721,7 +6317,7 @@ section .data
 }
 ```
 
-  
+	
 ## market_data
 
 ::: code-group-open
@@ -6732,27 +6328,49 @@ curl -d '{ "action": "market_data" }' \
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+action: "market_data"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = { action: "market_data" }
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn market_data(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn market_data(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "market_data");
-      
+    let mut data = HashMap::new();
+    data.insert("action", "market_data");
+    
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -6774,33 +6392,11 @@ def market_data(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = { action: "market_data" }
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-action: "market_data"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function market_data($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({ action: 'market_data' });
+function market_data($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({ action: 'market_data' });
   $options = array(
     'http' => array(
       'header'  => "Content-Type: application/json\r\n",
@@ -6814,19 +6410,6 @@ action: "market_data"
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def market_data(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {'action': 'market_data'}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -6844,35 +6427,35 @@ Future<http.Response> market_data(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func market_data(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{"action": "market_data"}
+func market_data(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{"action": "market_data"}
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -6900,47 +6483,47 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db 'action: market_data', 0
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db 'action: market_data', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -7220,7 +6803,7 @@ https://medium.com/nanocurrency/nano-is-now-available-on-airtm-p2p-marketplace-2
 }
 ```
 
-  
+	
 ## buy_rpc
 
 ::: code-group-open
@@ -7235,29 +6818,57 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "buy_rpc",
+  "email": "your_account_email",
+  "key": "RPC-API-KEY"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "buy_rpc",
+  "email": "your_account_email",
+  "key": "RPC-API-KEY"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn buy_rpc(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn buy_rpc(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "buy_rpc");
-      data.insert("email", "your_account_email");
+    let mut data = HashMap::new();
+    data.insert("action", "buy_rpc");
+    data.insert("email", "your_account_email");
     data.insert("key", "RPC-API-KEY");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -7283,39 +6894,11 @@ def buy_rpc(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "buy_rpc",
-  "email": "your_account_email",
-  "key": "RPC-API-KEY"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "buy_rpc",
-  "email": "your_account_email",
-  "key": "RPC-API-KEY"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function buy_rpc($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function buy_rpc($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'buy_rpc',
   email: 'your_account_email',
   key: 'RPC-API-KEY'
@@ -7333,23 +6916,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def buy_rpc(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'buy_rpc',
-  'email': 'your_account_email',
-  'key': 'RPC-API-KEY'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -7371,39 +6937,39 @@ Future<http.Response> buy_rpc(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func buy_rpc(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func buy_rpc(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "buy_rpc",
   email  "your_account_email",
   key  "RPC-API-KEY"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -7435,51 +7001,51 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: buy_rpc,
   email: your_account_email,
   key: RPC-API-KEY
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -7514,7 +7080,7 @@ section .data
 }
 ```
 
-  
+	
 ## rpc_credits
 
 ::: code-group-open
@@ -7528,28 +7094,54 @@ curl -d '{
 "https://rpc.nano.to"
 ```
 
+```js
+const axios = require('axios');
+
+axios.post('https://rpc.nano.to', {
+  "action": "rpc_credits",
+  "key": "RPC-API-KEY"
+}).then((res) => {
+  console.log(res.data);
+});
+```
+
+```python
+import requests
+
+url = 'https://rpc.nano.to'
+
+myobj = {
+  "action": "rpc_credits",
+  "key": "RPC-API-KEY"
+}
+
+x = requests.post(url, json = myobj)
+
+print(x.text)
+```
+
 ```rust
 use reqwest::Client;
-  use serde_json::json;
-  use std::collections::HashMap;
+use serde_json::json;
+use std::collections::HashMap;
 
-  async fn rpc_credits(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-      let client = Client::new();
-      let url = "https://rpc.nano.to"
+async fn rpc_credits(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+    let client = Client::new();
+    let url = "https://rpc.nano.to"
 
-      let mut data = HashMap::new();
-      data.insert("action", "rpc_credits");
-      data.insert("key", "RPC-API-KEY");
+    let mut data = HashMap::new();
+    data.insert("action", "rpc_credits");
+    data.insert("key", "RPC-API-KEY");
     
 
-      let res = client
-          .post(url)
-          .json(&data)
-          .send()
-          .await?;
+  let res = client
+    .post(url)
+    .json(&data)
+    .send()
+    .await?;
 
-      Ok(res)
-  }
+  Ok(res)
+}
 ```
 
 ```ruby
@@ -7574,37 +7166,11 @@ def rpc_credits(title)
 end
 ```
 
-```python
-import requests
-
-url = 'https://rpc.nano.to'
-
-myobj = {
-  "action": "rpc_credits",
-  "key": "RPC-API-KEY"
-}
-
-x = requests.post(url, json = myobj)
-
-print(x.text)
-```
-
-```js
-const axios = require('axios');
-
-axios.post('https://rpc.nano.to', {
-  "action": "rpc_credits",
-  "key": "RPC-API-KEY"
-}).then((res) => {
-  console.log(res.data);
-});
-```
-
 ```php
 <?php
-  function rpc_credits($title) {
-    $url = 'https://rpc.nano.to';
-    $data = array({
+function rpc_credits($title) {
+  $url = 'https://rpc.nano.to';
+  $data = array({
   action: 'rpc_credits',
   key: 'RPC-API-KEY'
 });
@@ -7621,22 +7187,6 @@ axios.post('https://rpc.nano.to', {
 
   return $result;
 }
-```
-
-```django
-import requests
-import json
-
-def rpc_credits(title):
-    url = 'https://rpc.nano.to'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-  'action': 'rpc_credits',
-  'key': 'RPC-API-KEY'
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(data))
-return response.json()
 ```
 
 ```dart
@@ -7657,38 +7207,38 @@ Future<http.Response> rpc_credits(String title) {
 ```go
 package main
 
-  import (
-      "bytes"
-      "encoding/json"
-      "net/http"
-  )
+import (
+  "bytes"
+  "encoding/json"
+  "net/http"
+)
 
-  func rpc_credits(title string) (*http.Response, error) {
-      url := "https://rpc.nano.to"
-      data := map[string]interface{}{
+func rpc_credits(title string) (*http.Response, error) {
+  url := "https://rpc.nano.to"
+  data := map[string]interface{}{
   action  "rpc_credits",
   key  "RPC-API-KEY"
 }
 
-      jsonData, err := json.Marshal(data)
-      if err != nil {
-          return nil, err
-      }
-
-      req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-      if err != nil {
-          return nil, err
-      }
-      req.Header.Set("Content-Type", "application/json")
-
-      client := &http.Client{}
-      resp, err := client.Do(req)
-      if err != nil {
-          return nil, err
-      }
-
-      return resp, nil
+  jsonData, err := json.Marshal(data)
+  if err != nil {
+      return nil, err
   }
+
+  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+  if err != nil {
+      return nil, err
+  }
+  req.Header.Set("Content-Type", "application/json")
+
+  client := &http.Client{}
+  resp, err := client.Do(req)
+  if err != nil {
+      return nil, err
+  }
+
+  return resp, nil
+}
 ```
 
 ```c
@@ -7719,50 +7269,50 @@ public class ApiClient {
 
 ```x86asm
 section .data
-      url db 'https://rpc.nano.to', 0
-      header db 'Content-Type: application/json', 0
-      data db '{
+  url db 'https://rpc.nano.to', 0
+  header db 'Content-Type: application/json', 0
+	    data db '{
   action: rpc_credits,
   key: RPC-API-KEY
 }', 0
 
-  section .bss
-      response resb 256
+section .bss
+  response resb 256
 
-  section .text
-      global _start
+section .text
+  global _start
 
-  _start:
-      ; Normally here you would set up a socket and perform the HTTP request
-      ; For simplicity, print the URL, headers, and data
+_start:
+  ; Normally here you would set up a socket and perform the HTTP request
+  ; For simplicity, print the URL, headers, and data
 
-      ; Print URL
-      mov edx, len url
-      mov ecx, url
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print URL
+  mov edx, len url
+  mov ecx, url
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Header
-      mov edx, len header
-      mov ecx, header
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Header
+  mov edx, len header
+  mov ecx, header
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Print Data
-      mov edx, len data
-      mov ecx, data
-      mov ebx, 1
-      mov eax, 4
-      int 0x80
+  ; Print Data
+  mov edx, len data
+  mov ecx, data
+  mov ebx, 1
+  mov eax, 4
+  int 0x80
 
-      ; Exit
-      mov eax, 1
-      xor ebx, ebx
-      int 0x80
+  ; Exit
+  mov eax, 1
+  xor ebx, ebx
+  int 0x80
 
-  len equ $ - $$
+len equ $ - $$
 ```
 
 ::: code-group-close
@@ -7783,4 +7333,4 @@ section .data
 }
 ```
 
-  
+	

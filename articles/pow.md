@@ -1,54 +1,32 @@
-- title: Sample Video
+- title: Nano.to PoW API
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
 -----
-## Nano.to PoW API
 
 Standalone proof of work API. For scaling your Nano apps, easily. 
 
-> **Free 5 PoW, per minute for testing**. Need more? Get a [prepaid API key](https://nano.to?register). 
+> **Free 30 PoW, per 30 minute for testing**. Need more? Get a [prepaid API key](https://nano.to?register). 
 
 ## Usage
 
 You can use any of the following URL types:
 
-**Nano.to Username**
+**Username**
 ```
 https://nano.to/@esteban/pow
 ```
 
-**Nano Address**
+**Address**
 ```
 https://nano.to/nano_37y6iq8m1z../pow
 ```
 
-**Frontier Hash**
+**Frontier**
 ```
 https://nano.to/7FA158DADE3082.../pow
-```
-
-## Curl Example
-
-```
-curl https://nano.to/@esteban/pow?key=API_KEY
-```
-
-> Keep your API key secret. Never use it in 'front-end' code. 
-
-## App Example
-
-```js
-// npm install axios
-
-const axios = require('axios')
-
-axios.get('https://nano.to/@esteban/pow?key=API_KEY').then((res) => {
-    console.log(res.data)
-})
-
 ```
 
 > You can also pass key via ```header``` ```Authorization: API_KEY``` .
@@ -102,7 +80,3 @@ Rarely, but it's important to be ready for them. We recommend you **precache** w
 - Email: support@nano.to
 - Twitter: [@nano2dev](https://twitter.com/nano2dev)
 - @nano2dev on [Nano Discord](https://discord.com/invite/RNAE2R9) 
-
-## Data Deletion Policy
-
-Most of the data provided by Nano.to comes from the Nano Blockchain. Nano.to only stores Usernames leases and Checkout metadata. Checkout metadata is stored in-memory and is deleted after 24 hours. It's cheaper to NOT store your data. Who could have guessed. Our Cloud provider (AWS & DigitalOcean) probably store your IP indefinitely. We can't control that. 

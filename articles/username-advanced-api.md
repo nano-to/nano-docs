@@ -1,12 +1,10 @@
-- title: Sample Video
+- title: Username Integration
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
 -----
-
-# Username Integration
 
 Nano.to Usernames can be registered in-app from other applications. This makes it easy to integrate into other projects. Common use case are offering a crypto 'search and pay' feature in websites, and even in-game currency with Nano.
 

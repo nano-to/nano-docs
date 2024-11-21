@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@fwd/server": "^1.1.8"
+  }
+}
