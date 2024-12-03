@@ -5,7 +5,7 @@ Send Nano to any Email address on the internet.
 
 ## Online UI
 
-Visit https://email.nano.to
+https://email.nano.to
 
 ## Send via API
 
