@@ -6,11 +6,14 @@
 - video: true
 -----
 
-Standalone proof of work API. For scaling your Nano apps, easily. 
+Standalone GPU powered Proof of Work API. Scale Nano apps, easily. 
 
 > **Free 30 PoW, per 30 minute for testing**. Need more? Get a [prepaid API key](https://nano.to?register). 
 
-## Usage
+## Add API To Your Node
+
+
+## Manual Usage
 
 You can use any of the following URL types:
 
