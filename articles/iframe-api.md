@@ -1,9 +1,10 @@
-- title: Sample Video
+- title: Iframe API
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
+- hidden: true
 -----
 
 ## Streaming iFrame

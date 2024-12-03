@@ -1,12 +1,10 @@
-- title: Sample Video
+- title: Common RPC Errors
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
 -----
-
-## Common RPC Errors
 
 **'Gap source block'**
 

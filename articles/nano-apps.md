@@ -1,12 +1,10 @@
-- title: Sample Video
+- title: Third-Party Apps
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
------
-
-## Third-Party Apps
+----- 
 
 Here you will find a list of services and projects that use Nano.to Usernames, and support searching your Nano address by Username. 
 

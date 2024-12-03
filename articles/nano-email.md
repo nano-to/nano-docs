@@ -1,39 +1,49 @@
-- title: Checkout API
+- title: Nano Email
 -----
 
-The Checkout API lets you build apps with the Nano blockchain easily.
+Send a Nano to any email address on the internet.
+
+## Online UI
+
+To use UI you can visit https://email.nano.to
+
+## Send via RPC
 
 ::: code-group-open
 
 ```bash
 curl -d '{
-  "action": "checkout",
-  "title": "Nano Bird Feeder",
-  "notify": "steve@apple.com",
-  "webhook": "https://example/webhook/secret",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "metadata": {
-    "secret": "joe-doe"
-  }
+  "action": "nano_email",
+  "refund_address": "@bank",
+  "amount": "5",
+  "from": "",
+  "message": "",
+  "email_receipt": "",
+  "expiration": "7 Days",
+  "emails": [
+    "steve@apple.com"
+  ]
 }' \
 -H "Content-Type: application/json" \
 "https://rpc.nano.to"
 ```
 
+## Response
+
 ```js
 const axios = require('axios');
 
 axios.post('https://rpc.nano.to', {
-  "action": "checkout",
-  "title": "Nano Bird Feeder",
-  "notify": "steve@apple.com",
-  "webhook": "https://example/webhook/secret",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "metadata": {
-    "secret": "joe-doe"
-  }
+  "action": "nano_email",
+  "refund_address": "@bank",
+  "amount": "5",
+  "from": "",
+  "message": "",
+  "email_receipt": "",
+  "expiration": "7 Days",
+  "emails": [
+    "steve@apple.com"
+  ]
 }).then((res) => {
   console.log(res.data);
 });
@@ -45,15 +55,16 @@ import requests
 url = 'https://rpc.nano.to'
 
 myobj = {
-  "action": "checkout",
-  "title": "Nano Bird Feeder",
-  "notify": "steve@apple.com",
-  "webhook": "https://example/webhook/secret",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "metadata": {
-    "secret": "joe-doe"
-  }
+  "action": "nano_email",
+  "refund_address": "@bank",
+  "amount": "5",
+  "from": "",
+  "message": "",
+  "email_receipt": "",
+  "expiration": "7 Days",
+  "emails": [
+    "steve@apple.com"
+  ]
 }
 
 x = requests.post(url, json = myobj)
@@ -66,18 +77,19 @@ use reqwest::Client;
 use serde_json::json;
 use std::collections::HashMap;
 
-async fn checkout(title: &str) -> Result<reqwest::Response, reqwest::Error> {
+async fn nano_email(title: &str) -> Result<reqwest::Response, reqwest::Error> {
     let client = Client::new();
     let url = "https://rpc.nano.to"
 
     let mut data = HashMap::new();
-    data.insert("action", "checkout");
-    data.insert("title", "Nano Bird Feeder");
-    data.insert("notify", "steve@apple.com");
-    data.insert("webhook", "https://example/webhook/secret");
-    data.insert("address", "YOUR_ADDRESS");
-    data.insert("amount", "0.133");
-    data.insert("metadata", "[object Object]");
+    data.insert("action", "nano_email");
+    data.insert("refund_address", "@bank");
+    data.insert("amount", "5");
+    data.insert("from", "");
+    data.insert("message", "");
+    data.insert("email_receipt", "");
+    data.insert("expiration", "7 Days");
+    data.insert("emails", "steve@apple.com");
     
 
   let res = client
@@ -95,19 +107,20 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-def checkout(title)
+def nano_email(title)
   uri = URI.parse('https://rpc.nano.to')
   header = {'Content-Type': 'application/json'}
   data = {
-  action: 'checkout',
-  title: 'Nano Bird Feeder',
-  notify: 'steve@apple.com',
-  webhook: 'https://example/webhook/secret',
-  address: 'YOUR_ADDRESS',
-  amount: '0.133',
-  metadata: {
-    secret: 'joe-doe'
-  }
+  action: 'nano_email',
+  refund_address: '@bank',
+  amount: '5',
+  from: '',
+  message: '',
+  email_receipt: '',
+  expiration: '7 Days',
+  emails: [
+    'steve@apple.com'
+  ]
 }
 
   http = Net::HTTP.new(uri.host, uri.port)
@@ -121,18 +134,19 @@ end
 
 ```php
 <?php
-function checkout($title) {
+function nano_email($title) {
   $url = 'https://rpc.nano.to';
   $data = array({
-  action: 'checkout',
-  title: 'Nano Bird Feeder',
-  notify: 'steve@apple.com',
-  webhook: 'https://example/webhook/secret',
-  address: 'YOUR_ADDRESS',
-  amount: '0.133',
-  metadata: {
-    secret: 'joe-doe'
-  }
+  action: 'nano_email',
+  refund_address: '@bank',
+  amount: '5',
+  from: '',
+  message: '',
+  email_receipt: '',
+  expiration: '7 Days',
+  emails: [
+    'steve@apple.com'
+  ]
 });
   $options = array(
     'http' => array(
@@ -151,22 +165,23 @@ function checkout($title) {
 
 ```dart
 // import 'dart:convert';
-Future<http.Response> checkout(String title) {
+Future<http.Response> nano_email(String title) {
   return http.post(
   Uri.parse('https://rpc.nano.to'),
   headers: <String, String>{
     'Content-Type': 'application/json',
   },
   body: jsonEncode(<String, String>{
-  "action": "checkout",
-  "title": "Nano Bird Feeder",
-  "notify": "steve@apple.com",
-  "webhook": "https://example/webhook/secret",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "metadata": {
-    "secret": "joe-doe"
-  }
+  "action": "nano_email",
+  "refund_address": "@bank",
+  "amount": "5",
+  "from": "",
+  "message": "",
+  "email_receipt": "",
+  "expiration": "7 Days",
+  "emails": [
+    "steve@apple.com"
+  ]
 }),
 )}
 ```
@@ -180,18 +195,19 @@ import (
   "net/http"
 )
 
-func checkout(title string) (*http.Response, error) {
+func nano_email(title string) (*http.Response, error) {
   url := "https://rpc.nano.to"
   data := map[string]interface{}{
-  action  "checkout",
-  title  "Nano Bird Feeder",
-  notify  "steve@apple.com",
-  webhook  "https //example/webhook/secret",
-  address  "YOUR_ADDRESS",
-  amount  "0.133",
-  metadata  {
-    secret  "joe-doe"
-  }
+  action  "nano_email",
+  refund_address  "@bank",
+  amount  "5",
+  from  "",
+  message  "",
+  email_receipt  "",
+  expiration  "7 Days",
+  emails  [
+    "steve@apple.com"
+  ]
 }
 
   jsonData, err := json.Marshal(data)
@@ -225,19 +241,20 @@ using Newtonsoft.Json;
 public class ApiClient {
     private static readonly HttpClient client = new HttpClient();
 
-    public static async Task<HttpResponseMessage> checkout(string title) {
+    public static async Task<HttpResponseMessage> nano_email(string title) {
         var uri = new Uri("https://rpc.nano.to");
         var data = new {
   {
-  action = "checkout",
-  title = "Nano Bird Feeder",
-  notify = "steve@apple.com",
-  webhook = "https //example/webhook/secret",
-  address = "YOUR_ADDRESS",
-  amount = "0.133",
-  metadata = {
-    secret = "joe-doe"
-  }
+  action = "nano_email",
+  refund_address = "@bank",
+  amount = "5",
+  from = "",
+  message = "",
+  email_receipt = "",
+  expiration = "7 Days",
+  emails = [
+    "steve@apple.com"
+  ]
 }
         };
 
@@ -253,15 +270,16 @@ section .data
   url db 'https://rpc.nano.to', 0
   header db 'Content-Type: application/json', 0
         data db '{
-  action: checkout,
-  title: Nano Bird Feeder,
-  notify: steve@apple.com,
-  webhook: https://example/webhook/secret,
-  address: YOUR_ADDRESS,
-  amount: 0.133,
-  metadata: {
-    secret: joe-doe
-  }
+  action: nano_email,
+  refund_address: @bank,
+  amount: 5,
+  from: ,
+  message: ,
+  email_receipt: ,
+  expiration: 7 Days,
+  emails: [
+    steve@apple.com
+  ]
 }', 0
 
 section .bss
@@ -307,14 +325,23 @@ len equ $ - $$
 
 ```json
 {
-  "id": "CHECKOUT_ID",
-  "browser": "https://nano.to/CHECKOUT_ID",
-  "json": "https://api.nano.to/checkout/CHECKOUT_ID",
-  "check": "https://api.nano.to/confirm/CHECKOUT_ID",
-  "address": "YOUR_ADDRESS",
-  "amount": "0.133",
-  "amount_raw": "133000000000000000000000000000",
-  "link": "nano:YOUR_ADDRESS?amount=133000047580000000000000000000",
-  "qrcode": "data:image/png;base64.."
+    "id": "a220db13",
+    "address": "nano_1oc6cs3meem81q5zj....q7q57momqtpt7mfne8xnf95",
+    "browser": "http://nano.to/id_a220db13",
+    "check": "https://api.nano.to/confirm/a220db13",
+    "subtotal": 5,
+    "service_fee": 0,
+    "amount": 5,
+    "amount_raw": "5000000000000000000000000000000",
+    "special_message": "",
+    "qrcode": "data:image/png;base64,iVBORw0KGgoAAAAN...",
+    "emails": [
+        {
+            "email": "esteban@gmail.com",
+            "amount": 5
+        }
+    ],
+    "expiration": "in a month",
+    "created_at": 1733246689028
 }
 ```

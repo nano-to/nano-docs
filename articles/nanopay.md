@@ -3,7 +3,7 @@
 
 ## Live Demo
 
-[https://pay.nano.to](https://pay.nano.to)
+[https://pay.nano.to](https://email.nano.to)
 
 ## Edit on CodePen
 
@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Inspired by Apple Pay ™, NanoPay is a [open source](https://github.com/fwd/nano-pay), non-custodial javascript library for the Nano blockchain. 
+Inspired by Apple Pay, NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. 
 
 Easily accept crypto payments on your website(s) with this package. 
 
@@ -21,7 +21,7 @@ First, add NanoPay to your project's *index.html*.
 
 **CDN:**
 ```html
-<script src="https://pay.nano.to/latest.js"></script>
+<script src="https://cdn.nano.to/pay.js"></script>
 ```
 
 **Local:**
@@ -38,10 +38,10 @@ Simple payments can be achieved with basic HTML. No javascript required.
 ```html
 <a 
 data-title="Tip @Nano2Dev" 
-data-amount="0.133" 
+data-amount="0.133"  
 data-address="@development" 
 data-button="Open Natrium" 
-data-position="bottom">
+data-position="top">
 Tip 0.133 NANO</a>
 ```
 
@@ -49,7 +49,7 @@ Tip 0.133 NANO</a>
 
 Configure and open popup programmatically with *NanoPay.open()* method.
 
-```javascript
+```js
 NanoPay.open({ 
   title: "Demo",
   address: '@development', // Username or Nano Address
@@ -121,7 +121,7 @@ NanoPay.open({
 
 ![Email Notification](../../images/nano-pay/email.png)
 
-## Login with Nano
+## Nano Login
 
 NanoPay makes Login with Nano easy. 
 
@@ -142,7 +142,7 @@ NanoPay.open({
 })
 ```
 
-## HTML Content Paywall
+## HTML Paywall
 
 ![](../images/nano-blog/hero-small.jpg)
 
@@ -174,23 +174,3 @@ NanoPay.wall({
     }
 })
 ```
-
-## eCommerce Intergration
-
-- **Shopify: In Development**
-- **Wordpress: TBD**
-
-**I work on Nano part-time. Please consider helping fund this kind of work. Anything helps.**
-
-[funding]
-
-## Nano.to Support
-
-Bugs, Questions & Installation Support:
-
-- Github: [Source Code](https://github.com/fwd/nano-pay)
-- Issues: [Issues](https://github.com/fwd/nano-pay/issues)
-- Support: [support@nano.to](mailto:support@nano.to)
-- Twitter: [@nano2dev](https://twitter.com/nano2dev)
-- Mastodon: [Xno.Social](https://xno.social/@nano2dev)
-- @nano2dev on [Nano's Discord](https://discord.com/invite/RNAE2R9) 

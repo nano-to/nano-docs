@@ -1,12 +1,10 @@
-- title: Sample Video
+- title: Nano.to Faucet
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
 -----
-
-## Nano.to Faucet
 
 If you lease a Nano.to Username, you will portion of daily Nano.to revenue. Automatically, every 24 hours. For the duration of the username lease.
 

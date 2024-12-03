@@ -1,13 +1,7 @@
-- title: Run Your Own Nano Node
+- title: Setup Nano Node
 - edit: //github.com/fwd/nano-docker/blob/master/readme.md
 -----
-![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
-
-<img src="https://repository-images.githubusercontent.com/501828214/eb7fe2ec-792e-415c-9eaf-365cdfc87aac"/>
-
-![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
-
-## ❯ Quick
+## ❯ Quick Install
 
 ```bash
 curl -sL "https://raw.github.com/fwd/nano-docker/master/install.sh" | sh
@@ -15,7 +9,7 @@ curl -sL "https://raw.github.com/fwd/nano-docker/master/install.sh" | sh
 
 ![line](https://github.com/nano-currency/nano-node-cli/raw/main/.github/line.png)
 
-## ❯ Custom
+## ❯ Custom Install
 
 ```bash
 git clone https://github.com/fwd/nano-docker.git

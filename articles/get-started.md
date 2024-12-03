@@ -10,7 +10,7 @@ We're on a mission to accelerate the use of Nano around the world.
 
 ## **Quick Links**
 
-- [Username API](/username.html)
+- [Username API](/usernames.html)
 - [Checkout API](/checkout.html)
 - [Nano.to Faucet](/faucet.html)
 - [Setup Nano Node](/setup-node.html)

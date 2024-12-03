@@ -1,12 +1,11 @@
-- title: Sample Video
+- title: Nano.to Cloud
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
+- hidden: true
 -----
-
-## First Nano Bank
 
 Use Nano at scale. One simple API.
 

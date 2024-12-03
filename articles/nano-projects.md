@@ -1,12 +1,10 @@
-- title: Sample Video
+- title: All Nano Links
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
 - video: true
 -----
-
-## Information & Education
 
 Learn everything there is to know about Nano!
 

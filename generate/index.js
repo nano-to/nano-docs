@@ -1047,23 +1047,40 @@ var json = [
 // }`
 //         },
 
-  //           {
-  //             action: "nano_email",
+            {
+              action: "nano_email",
 
-  //             note: `<div style=" font-size: 24px; margin-bottom: 10px">Send Nano To Any Email</div> If not claimed within 90 days, funds are sent to refund_address.`,
-  //             body: { 
-  //               amount: '10',
-  //               email_address: 'steve@apple.com',
-  //               refund_address: '@bank',
-  //               claimed_webhook: 'https://your.app/success',
-  //               refunded_webhook: 'https://your.app/refunded',
-  //             },
-  //             response: `{
-  //     "id": "4c89c2c5",
-  //     "address": "nano_3x1w77...3tinpajz",
-  //     "qrcode": "",
-  // }`
-  //           },
+              note: `<div style=" font-size: 24px; margin-bottom: 10px">Send Nano To Any Email</div> If not claimed within 90 days, funds are sent to refund_address.`,
+              body: {
+                "refund_address": "@bank",
+                "amount": "5",
+                "from": "",
+                "message": "",
+                "email_receipt": "",
+                "expiration": "7 Days",
+                "emails": ["steve@apple.com"]
+              },
+              response: `{
+    "id": "a220db13",
+    "address": "nano_1oc6cs3meem81q5zj....q7q57momqtpt7mfne8xnf95",
+    "browser": "http://nano.to/id_a220db13",
+    "check": "https://api.nano.to/confirm/a220db13",
+    "subtotal": 5,
+    "service_fee": 0,
+    "amount": 5,
+    "amount_raw": "5000000000000000000000000000000",
+    "special_message": "",
+    "qrcode": "data:image/png;base64,iVBORw0KGgoAAAAN...",
+    "emails": [
+        {
+            "email": "esteban@gmail.com",
+            "amount": 5
+        }
+    ],
+    "expiration": "in a month",
+    "created_at": 1733246689028
+}`
+            },
 
         {
           layer: 2,

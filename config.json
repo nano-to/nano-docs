@@ -21,23 +21,25 @@
 		{
 			"title": "Public API",
 			"menu": [
-				{ "title": "Public Nano Node", "url": "/nano-rpc.html" },
-				{ "title": "Username API", "url": "/usernames.html" },
-				{ "title": "Checkout API", "url": "/checkout.html" }
+				{ "title": "Public Node API", "url": "/nano-rpc.html" },
+				{ "title": "Nano Alias API", "url": "/usernames.html" },
+				{ "title": "Checkout UI", "url": "/checkout.html" }
 			]
 		},
 		{
 			"title": "Developer",
 			"menu": [
-				{ "title": "Nano Wallet SDK", "url": "/wallet.html" }
+				{ "title": "Wallets SDK", "url": "/wallet.html" },
+				{ "title": "Nano Email API", "url": "/nano-email.html" },
+				{ "title": "NanoPay.js", "url": "/nanopay.html" }
 			]
 		},
 		{
-			"title": "Miscellaneous",
+			"title": "Nano Guides",
 			"menu": [
-				{ "title": "Run A Nano Node", "url": "/nano-docker.html" },
+				{ "title": "Run Nano Node", "url": "/nano-docker.html" },
 				{ "title": "Sell Nano PoW", "url": "/sell-pow.html" },
-				{ "title": "Common RPC Errors", "url": "/rpc-errors.html" },
+				{ "title": "Nano RPC Errors", "url": "/rpc-errors.html" },
 				{ "title": "All Nano Links", "url": "/nano-projects.html" }
 			]
 		}

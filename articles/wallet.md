@@ -1,40 +1,40 @@
-- title: Wallet SDK
+- title: Nano Wallet SDK
 - date: 02-17-2024
 - tags: Release
 - image: images/nano-cloud/hero.png
 - author: @nano2dev
 -----
 
-## Install Wallet
+## Install
 
 ::: js-group-open
 
 ```js
-npm install @nano/js
+JavaScript SDK Coming Soon
 ```
 
 ```python
-SDK Coming Soon
+Python SDK Coming Soon
 ```
 
 ```rust
-SDK Coming Soon
+Rust SDK Coming Soon
 ```
 
 ```ruby
-SDK Coming Soon
+Ruby SDK Coming Soon
 ```
 
 ```php
-SDK Coming Soon
+PHP SDK Coming Soon
 ```
 
 ```dart
-SDK Coming Soon
+Dart Coming Soon
 ```
 
 ```go
-SDK Coming Soon
+Go Coming Soon
 ```
 
 ::: js-group-close
