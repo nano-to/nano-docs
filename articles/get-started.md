@@ -10,11 +10,12 @@ We're on a mission to accelerate the use of Nano around the world.
 
 ## **Quick Links**
 
-- [Username API](/usernames.html)
+- [Public Nano Node](/nano-rpc.html)
+- [PoW as a Service](/pow.html)
 - [Checkout API](/checkout.html)
+- [Username API](/usernames.html)
 - [Nano.to Faucet](/faucet.html)
 - [Setup Nano Node](/setup-node.html)
-- [Free Proof of Work](/pow.html)
 - [Nano.to Support](#nanoto-support)
 
 ## Nano Wallets

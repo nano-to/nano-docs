@@ -1,13 +1,13 @@
 - title: Nano Email
 -----
 
-Send a Nano to any email address on the internet.
+Send Nano to any Email address on the internet.
 
 ## Online UI
 
-To use UI you can visit https://email.nano.to
+Visit https://email.nano.to
 
-## Send via RPC
+## Send via API
 
 ::: code-group-open
 
