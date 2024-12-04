@@ -220,7 +220,9 @@
                                     </div>
                                  </div>
                               </div>
-                              <button data-v-701a5bf8="" data-v-84a11e99="" type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen"><span data-v-701a5bf8="" class="container"><span data-v-701a5bf8="" class="top"></span><span data-v-701a5bf8="" class="middle"></span><span data-v-701a5bf8="" class="bottom"></span></span></button>
+                              
+                              <button onclick="toggleMobileNavSingle(this)" data-v-701a5bf8="" data-v-84a11e99="" type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen"><span data-v-701a5bf8="" class="container"><span data-v-701a5bf8="" class="top"></span><span data-v-701a5bf8="" class="middle"></span><span data-v-701a5bf8="" class="bottom"></span></span></button>
+
                            </div>
                         </div>
                      </div>
@@ -231,6 +233,135 @@
                </div>
                <!--v-if-->
             </header>
+
+            <div class="VPNavScreen" data-v-1e3d9e14="" data-v-a3bfa20d="" id="VPNavScreen">
+                <div class="container" data-v-1e3d9e14="">
+                    <nav class="VPNavScreenMenu menu" data-v-1e3d9e14="">
+                        <a class="VPLink link VPNavScreenMenuLink" data-v-5e10110c="" href="/guide/what-is-vitepress">
+                            <span data-v-5e10110c="">
+                                Guide
+                            </span>
+                        </a>
+                        <a class="VPLink link VPNavScreenMenuLink" data-v-5e10110c="" href="/reference/site-config">
+                            <span data-v-5e10110c="">
+                                Reference
+                            </span>
+                        </a>
+                        <div class="VPNavScreenMenuGroup" data-v-1dabfab8="">
+                            <button aria-controls="NavScreenGroup-1.5.0" aria-expanded="false" class="button" data-v-1dabfab8="">
+                                <span class="button-text" data-v-1dabfab8="">
+                                    1.5.0
+                                </span>
+                                <span class="vpi-plus button-icon" data-v-1dabfab8="">
+                                </span>
+                            </button>
+                            <div class="items" data-v-1dabfab8="" id="NavScreenGroup-1.5.0">
+                                <div class="item" data-v-1dabfab8="">
+                                    <a class="VPLink link vp-external-link-icon VPNavScreenMenuGroupLink" data-v-1dabfab8="" data-v-c2543e07="" href="https://github.com/vuejs/vitepress/blob/main/CHANGELOG.md" rel="noreferrer" target="_blank">
+                                        <span data-v-c2543e07="">
+                                            Changelog
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="item" data-v-1dabfab8="">
+                                    <a class="VPLink link vp-external-link-icon VPNavScreenMenuGroupLink" data-v-1dabfab8="" data-v-c2543e07="" href="https://github.com/vuejs/vitepress/blob/main/.github/contributing.md" rel="noreferrer" target="_blank">
+                                        <span data-v-c2543e07="">
+                                            Contributing
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="VPNavScreenTranslations translations" data-v-1e3d9e14="" data-v-9984abf6="">
+                        <button class="title" data-v-9984abf6="">
+                            <span class="vpi-languages icon lang" data-v-9984abf6="">
+                            </span>
+                            English
+                            <span class="vpi-chevron-down icon chevron" data-v-9984abf6="">
+                            </span>
+                        </button>
+                        <ul class="list" data-v-9984abf6="">
+                            <li class="item" data-v-9984abf6="">
+                                <a class="VPLink link link" data-v-9984abf6="" href="/zh/guide/extending-default-theme">
+                                    简体中文
+                                </a>
+                            </li>
+                            <li class="item" data-v-9984abf6="">
+                                <a class="VPLink link link" data-v-9984abf6="" href="/pt/guide/extending-default-theme">
+                                    Português
+                                </a>
+                            </li>
+                            <li class="item" data-v-9984abf6="">
+                                <a class="VPLink link link" data-v-9984abf6="" href="/ru/guide/extending-default-theme">
+                                    Русский
+                                </a>
+                            </li>
+                            <li class="item" data-v-9984abf6="">
+                                <a class="VPLink link link" data-v-9984abf6="" href="/es/guide/extending-default-theme">
+                                    Español
+                                </a>
+                            </li>
+                            <li class="item" data-v-9984abf6="">
+                                <a class="VPLink link link" data-v-9984abf6="" href="/ko/guide/extending-default-theme">
+                                    한국어
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="VPNavScreenAppearance appearance" data-v-0a6f6206="" data-v-1e3d9e14="">
+                        <p class="text" data-v-0a6f6206="">
+                            Appearance
+                        </p>
+                        <button aria-checked="false" class="VPSwitch VPSwitchAppearance" data-v-0a6f6206="" data-v-b2703078="" data-v-f3ad3c44="" role="switch" title="Switch to dark theme" type="button">
+                            <span class="check" data-v-f3ad3c44="">
+                                <span class="icon" data-v-f3ad3c44="">
+                                    <span class="vpi-sun sun" data-v-b2703078="">
+                                    </span>
+                                    <span class="vpi-moon moon" data-v-b2703078="">
+                                    </span>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="VPSocialLinks VPNavScreenSocialLinks social-links" data-v-1e3d9e14="" data-v-c0ed24e6="">
+                        <a aria-label="github" class="VPSocialLink no-icon" data-v-0ec81c6a="" data-v-c0ed24e6="" href="https://github.com/vuejs/vitepress" rel="noopener" target="_blank">
+                            <span class="vpi-social-github">
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <aside data-v-8f603b0e="" data-v-702a693e="" id="VPSidebar" class="VPSidebar">
+               <div data-v-8f603b0e="" class="curtain"></div>
+               <nav data-v-8f603b0e="" class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1">
+                  <span data-v-8f603b0e="" class="visually-hidden" id="sidebar-aria-label"> Sidebar Navigation </span>
+                  <% nav.map(section => { %>
+                  <div data-v-76ae14df="" class="group">
+                     <section data-v-64d7ab74="" data-v-76ae14df="" class="VPSidebarItem level-0">
+                        <div data-v-64d7ab74="" class="item" role="button" tabindex="0">
+                           <div data-v-64d7ab74="" class="indicator"></div>
+                           <h2 data-v-64d7ab74="" class="text"><%- section.title %></h2>
+                        </div>
+                        <div data-v-64d7ab74="" class="items">
+                           <% section.menu.map(item => { %>
+                           <div data-v-64d7ab74="" class="VPSidebarItem level-1 is-link">
+                              <div data-v-64d7ab74="" class="item">
+                                 <div data-v-64d7ab74="" class="indicator"></div>
+                                 <a data-v-64d7ab74="" class="VPLink link link" href="<%- item.url %>">
+                                    <p data-v-64d7ab74="" class="text"><%- item.title %></p>
+                                 </a>
+                              </div>
+                              <% }) %>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+                  <% }) %>
+               </nav>
+            </aside>
+
             <!--v-if-->
             <div data-v-52f1cd35="" data-v-702a693e="" class="VPContent is-home" id="VPContent">
                <div data-v-441e4bfa="" data-v-52f1cd35="" class="VPHome">
@@ -283,7 +414,6 @@
                                     <img data-v-0c71c7f1="" class="VPImage" src="assets/lock.svg" width="46" height="48" alt="">
                                     <h2 data-v-e8895942="" class="title">Non-Custodial SDK</h2>
                                     <p data-v-e8895942="" class="details">Maintain full ownership and control over your assets.</p>
-                                    <!--v-if-->
                                  </article>
                                  </a>
                               </div>

@@ -4807,3 +4807,25 @@ svg.DocSearch-Hit-Select-Icon {
     background-color: transparent;
     padding: 0;
 }
+
+
+
+
+
+
+
+.VPBackdrop[data-v-7af5e97f] {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--vp-z-index-backdrop);
+    background: var(--vp-backdrop-bg-color);
+    transition: opacity .5s;
+    display: none;
+}
+
+.VPBackdrop[data-v-7af5e97f].active {
+    display: block;
+}

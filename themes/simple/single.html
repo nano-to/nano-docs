@@ -190,6 +190,9 @@
          </div>
 
          <div data-v-702a693e="" class="Layout">
+            
+            <div data-v-7af5e97f data-v-24d6a1ec="" onclick="toggleMobileNavSingle()" id="VPBackdrop" class="VPBackdrop backdrop"></div>
+
             <header data-v-14f22a90="" data-v-702a693e="" class="VPNav">
                <div data-v-84a11e99="" data-v-14f22a90="" class="VPNavBar has-sidebar top">
                   <div data-v-84a11e99="" class="wrapper">
@@ -244,7 +247,7 @@
                                     </div>
                                  </div>
                               </div>
-                              <button data-v-701a5bf8="" data-v-84a11e99="" type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen"><span data-v-701a5bf8="" class="container"><span data-v-701a5bf8="" class="top"></span><span data-v-701a5bf8="" class="middle"></span><span data-v-701a5bf8="" class="bottom"></span></span></button>
+                              <button onclick="toggleMobileNavSingle(this)" id="VPNavBarHamburger" data-v-701a5bf8="" data-v-84a11e99="" type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen"><span data-v-701a5bf8="" class="container"><span data-v-701a5bf8="" class="top"></span><span data-v-701a5bf8="" class="middle"></span><span data-v-701a5bf8="" class="bottom"></span></span></button>
                            </div>
                         </div>
                      </div>
@@ -263,7 +266,7 @@
                   </div>
                </div>
             </div>
-            <aside data-v-8f603b0e="" data-v-702a693e="" class="VPSidebar">
+            <aside data-v-8f603b0e="" data-v-702a693e="" id="VPSidebar" class="VPSidebar">
                <div data-v-8f603b0e="" class="curtain"></div>
                <nav data-v-8f603b0e="" class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1">
                   <span data-v-8f603b0e="" class="visually-hidden" id="sidebar-aria-label"> Sidebar Navigation </span>
@@ -355,6 +358,7 @@
                </div>
             </footer>
          </div>
+
       </div>
 
       <script src="../js/highlight.min.js"></script>

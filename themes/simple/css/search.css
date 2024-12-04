@@ -2,6 +2,7 @@
      position: fixed;
      background: #FFF;
      max-width: 700px;
+     width: 90%;
      margin: 0 auto;
      left: 0;
      right: 0;
@@ -102,4 +103,10 @@
 
  .dark #search {
     background: #202127;
+ }
+
+ @media (max-width: 768px) {
+    .VPLocalNav {
+        display: none;
+    }
  }

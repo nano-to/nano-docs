@@ -1,4 +1,4 @@
-- title: Nano Cloud Wallets - Secure Programmatic Nano Wallets
+- title: Nano.to Cloud Wallets
 - date: 02-17-2024
 - tags: Release
 - image: images/nano-cloud/hero.png

@@ -1,3 +1,18 @@
+window.toggleMobileNav = function(e) {
+    e.classList.toggle('active')
+    document.getElementById('VPNavScreen').classList.toggle('active')
+}
+
+window.toggleMobileNavSingle = function(e) {
+    if (e) {
+        e.classList.toggle('active')
+    } else {
+        document.getElementById('VPNavBarHamburger').classList.toggle('active')
+    }
+    document.getElementById('VPSidebar').classList.toggle('open')
+    document.getElementById('VPBackdrop').classList.toggle('active')
+}
+
 window.createQuickLinks = function() {
 
     var nav = document.getElementById("nav")
