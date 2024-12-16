@@ -1,6 +1,10 @@
 - title: NanoPay.js
 -----
 
+Inspired by Apple Pay, NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. 
+
+Easily accept crypto payments on your website(s) with this package. 
+
 ![NanoPay.js](https://camo.githubusercontent.com/3f1e8133d0cd930cf87f9e1767801a0ffe1e1e783b4755ee85aeeb1e7db2ffe4/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f465f344b366636586f4141597450453f666f726d61743d6a7067266e616d653d6d656469756d)
 
 ## Live Demo
@@ -11,19 +15,13 @@
 
 [https://codepen.io/nano2dev/pen/VwRQypE](https://codepen.io/nano2dev/pen/VwRQypE)
 
-## Introduction
-
-Inspired by Apple Pay, NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. 
-
-Easily accept crypto payments on your website(s) with this package. 
-
-## Installation
+## Install
 
 First, add NanoPay to your project's *index.html*.
 
 **CDN:**
 ```html
-<script src="https://cdn.nano.to/pay.js"></script>
+<script src="https://pay.nano.to/latest.js"></script>
 ```
 
 **Local:**
@@ -33,7 +31,7 @@ First, add NanoPay to your project's *index.html*.
 
 Download [latest](https://pay.nano.to/latest.js) version.
 
-## Simple Usage
+## HTML Usage
 
 Simple payments can be achieved with basic HTML. No javascript required. 
 
@@ -47,7 +45,20 @@ data-position="top">
 Tip 0.133 NANO</a>
 ```
 
-## Javascript API
+## Simple Usage
+
+```js
+NanoPay.open({ 
+    title: "Donate",
+    address: 'nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o', 
+    amount: 0.133,
+    success: (block) => {
+        window.alert("Thanks!")
+    }
+});
+```
+
+## Advanced Usage
 
 Configure and open popup programmatically with *NanoPay.open()* method.
 
@@ -121,8 +132,6 @@ NanoPay.open({
 })
 ```
 
-![Email Notification](../../images/nano-pay/email.png)
-
 ## Nano Login
 
 NanoPay makes Login with Nano easy. 
@@ -145,8 +154,6 @@ NanoPay.open({
 ```
 
 ## HTML Paywall
-
-![](../images/nano-blog/hero-small.jpg)
 
 NanoPay includes an easy way to monetize any website client-side. 
 
