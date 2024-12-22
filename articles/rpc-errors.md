@@ -6,16 +6,16 @@
 - video: true
 -----
 
-**'Gap source block'**
+## Gap source block
 
 <p>When trying to make a "receive" type state block, the corresponding send-block hash was not found on this node. This can also happen due to the ambiguity of the "link" field: 
 when you try to send funds but you made a mistake while calulating the balance, the node thinks that you want to receive from a nonexistent block.<br>If the block is supposed to exist, try restarting the node to get it back in sync. </p>  
 
-**'Gap previous'**
+## Gap previous
 
 <p>The node does not find the block hash you set in the "previous" field. Make sure that you put the current "frontier" in there. Query <code>account_info</code> to get the current frontier.</p>  
 
-**'Error generating block'**
+## Error generating block
 
 <code>"error": "error generating block"</code> is a rather generic error and therefore has multiple potential meanings. It can occur on these three commands: 
 <code>account_representative_set</code> 
@@ -25,15 +25,15 @@ when you try to send funds but you made a mistake while calulating the balance, 
 <p></p>
 
 
-**'Account not found in wallet'**   
+## Account not found in wallet   
 <p> <!-- normally means that the account is not found in the local wallet. Probably a typo in the wallet ID. --> Use <code> ./rai_node --wallet_list</code> to see which wallet IDs your node knows, and RPC <code>account_list</code> to see the accounts of the specified wallet. </p>
 
 
-**'Private key or local wallet and account required'**
+## Private key or local wallet and account required
 <p>will occur while using "block_create" when anything is wrong with your accounts in the "representative" or "account" parameter, for example a typo. Will also occur if the wallet ID does not exist or when the account is not in this wallet. Alternatively to using a wallet ID and account, you can also specify the "key" parameter which takes a private key (not a seed).</p>
 
 
-**'Account not found'**
+## Account not found
 <p>When using <code>account_info</code> or <code>send</code>: Most likely means that the ledger doesn't have an entry for that account since it never broadcasted a block, i.e. it means that the account has either no funds at all, or pending funds only. 
 Interestingly enough, <code>account_balance</code> will not give this error but show 0 balances instead, if the account hasn't ever received anything at all, and will also show pending balance in case the account has pending incoming blocks. 
 <br>
@@ -44,48 +44,48 @@ In earlier versions, this error was also thrown when the wallet was locked, for 
  
  
  
-**'Unable to parse json'**
+## Unable to parse json
 <p><code>"error": "Unable to parse JSON"</code> probably means that the syntax is not correct, for example missing a mandatory argument or using wrong quote characters (e.g. " instead of "). When using the <code>process</code> command, make sure that the actual block data is contained within a single line.</p> 
  
 	
-**'Connection refused'**
+## Connection refused
 <p><code>"curl: (7) Failed to connect to ::1 port 7072: Connection refused"</code> means that the port is not accessible. For example, if the daemon is not running, or the remote host is not whitelisted in config.json</p> 
  
-**'Unreceivable'**
+## Unreceivable
 <p>Most likely means, the source has already been received. Maybe also be related to: Source block doesn't exist; or trying to make an open bock when only state blocks are allowed since network upgrade (might be covered by other errors - not sure about these)</p> 
  
-**'Fork'**
+## Fork
 <p>The node already knows another block with the same "previous". This violates the immutability of the chain continuity. One of the reasons something like this could happen are race conditions when you use the same seed on multiple devices, or an outdated cache within your own app.  <!-- Previous block already has a successor that references it --></p> 
   
-**'Old Block'**
+## Old Block
 <p>The node already knows this block. You probably don't need to do anything. If you feel like other nodes have not received this block yet, use the "republish" command.  </p> 
   
-**'command not found'**
+## command not found
 <p><code>"error": "Unknown command"</code> means that your "action" does not exist. Causes: 1) Typo 2) Deprecated 3) Introduced in a later node version</p> 
  
 	 
-**'command not found'**
+## command not found
 <p><code>"curl: command not found"</code> appears when you mistyped the </p> 
 	 
 	
-**'bad destination account'**
+## bad destination account
 <p><code>"error": "Bad destination account"</code> means that the recipient is malformed (too short or too long) or has a typo in it (checksum incorrect, illegal letter, ...) </p> 
 
 	
-**'Invalid amount number'**
+## Invalid amount number
 <p><code>"error": "Invalid amount number"</code> normally means that you didn't use a integer number between 0 and 340282366920938463463374607431768211455 (2<sup>128</sup>). It needs to be in RAW (1 NANO is 1000000000000000000000000000000 RAW). This needs to be in integer form. Decimals and floats are not accepted. If you ever feel like you sent more than the recipient got, you may have forgotten the 10^30 multiplication factor from NANO to RAW. Keep in mind that by default, amounts smaller than 1 millionth NANO are not being pocketed (you can adjust the threshold in config.json).</p> 
 
-**'bad source'**
+## bad source
 <p><code>"error": "bad source"</code> means that the sending account is malformed. Causes: Typos, wrong checksum, wrong prefix, wrong length, ...</p> 
 
-**'Bad wallet number'**
+## Bad wallet number
 <p><code>"error": "Bad wallet number"</code> means that your string is not a 64-character HEX string, i.e. it's too long or too short or contains non-hex-characters.</p> 
 
-**'This block cannot follow the previous block'**
+## This block cannot follow the previous block
 <p><code>"error": "This block cannot follow the previous block"</code> pops up because you want to broadcast a deprecated block type after the forced network upgrade to the 'state' blocks type. Use state blocks instead. </p> 
 
 
-**'Wallet not found'**
+## Wallet not found
 <p><code> "error": "Wallet not found"</code> can have multiple causes. First of all, keep in mind that the node will never let you choose the wallet ID, 
 it always is randomly assignes as it serves some kind of extra protection when it comes to wallet access - it's almost like an API token, except that it's also used to locally assign data, 
 and you should do further considerations when it comes to API security. <br>Possible solutions are:
@@ -103,16 +103,16 @@ to see which wallets that particular node's database contains. By default, you c
 
 </p> 
 
-<h2>Other node errors explained</h2> 
+## Other Errors
     
-**'cannot assign requested address'**
+## cannot assign requested address
 <p><code>Error response from daemon: driver failed programming external connectivity on endpoint unruffled_hypatia (46223d00f7bd24cdc3229890c7b2f53eb3945fd7e24d0cea38283a07edd5f826): Error starting userland proxy: listen tcp [::1]:7076: bind: cannot assign requested address.</code> probably means that you have not enabled the IPv6 stack, which is mandatory. <br> You can test this with <code>ping6 ::1</code>. If IPv6 is activated, it will show "64 bytes from ::1: icmp_seq=3 ttl=64 time=0.036 ms", otherwise "connect: Cannot assign requested address".</p>
 
 <p><code>bind: cannot assign requested address.</code> will also occur if the RPC address your config.json is set wrong. This setting will not accept specific remote IPs. It has to be a special mask or a loopback address. For example, "::0" or "::1". See my RPC guide for details. </p>
 
 <p>If <code>confirmation_info</code> shows a tally below the quorum_delta of confirmation_quorum, there's no need to worry because the node stopped counting votes because a successive block reached the confirmation threshold already. </p>
 
-##  Common Mistakes
+## Common Mistakes
 
 <ul>
 <li>Not waiting for full node synchronisation. A SSD drive is mandatory, and synchronisation should take less than 1 day. If you're in a hurry, you can download a prebuilt database from a trusted source. 

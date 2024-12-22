@@ -22,16 +22,16 @@
 			"title": "Public API",
 			"menu": [
 				{ "title": "Public Node API", "url": "/nano-rpc.html" },
-				{ "title": "Nano Alias API", "url": "/usernames.html" },
-				{ "title": "Checkout UI", "url": "/checkout.html" }
+				{ "title": "Nano Aliases", "url": "/usernames.html" },
+				{ "title": "NanoPay.js", "url": "/nanopay.html" }
 			]
 		},
 		{
 			"title": "Developer",
 			"menu": [
 				{ "title": "Wallets SDK", "url": "/wallet.html" },
-				{ "title": "Nano Email API", "url": "/nano-email.html" },
-				{ "title": "NanoPay.js", "url": "/nanopay.html" }
+				{ "title": "Checkout SDK", "url": "/checkout.html" },
+				{ "title": "Nano Email SDK", "url": "/nano-email.html" }
 			]
 		},
 		{

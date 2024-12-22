@@ -1,4 +1,7 @@
 - title: NanoPay.js
+- previous: Username API / usernames.html
+- next: Developer API / nano-rpc.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
 -----
 
 Inspired by Apple Pay, NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. 

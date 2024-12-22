@@ -1,4 +1,7 @@
 - title: Nano Node RPC
+- previous: Get Started / get-started.html
+- next: Username API / usernames.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/nano-rpc.md
 -----
 ## version
 

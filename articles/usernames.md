@@ -3,7 +3,9 @@
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
-- video: true
+- previous: Public Nano Node / nano-rpc.html
+- next: NanoPay.js / nanopay.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/usernames.md
 -----
 
 Nano.to Usernames are aliases for Nano addresses. They are standardized for API use, and cost a small nano fee to prevent spam. 

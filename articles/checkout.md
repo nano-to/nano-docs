@@ -6,13 +6,11 @@
 - video: true
 -----
 
-## Checkout Pages
-
 Personal payment pages for your Nano address. 
 
-> Looking to code your own Checkout UI? Use the [Payment Request API](/qrcode-api).
+![](https://camo.githubusercontent.com/592b2704a25c6e0ed446a6774d04a3df67bd70f3463b4eea65dc9dfcd81d5287/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f4677516f4a507958734141326332343f666f726d61743d6a7067266e616d653d6d656469756d)
 
-### Basic Usage
+## Basic Usage
 
 Just share link. Most platforms support HTML and Markdown. Down below are examples for that. 
 
@@ -36,7 +34,7 @@ Live Demo: [https://xno.to/Esteban](https://nano.to/Esteban?title=Coffee&price=5
 Live Demo: [https://nano.to/Esteban](https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg)
 ```
 
-### Available Options:
+## Available Options:
 
 ```bash
 https://nano.to/Moon?title=Donate
@@ -68,7 +66,7 @@ https://nano.to/Moon?title=Donate
 
 Demo: [Tip me in Nano](https://nano.to/Esteban)
 
-## Customize More
+## Customization
 
 More advanced and sensitive data can be passed in the body of a POST request. 
 
@@ -104,7 +102,7 @@ axios.post('https://nano.to/NANO_ADDRESS_OR_USERNAME', {
 })
 ```
 
-### Example response:
+### Response:
 
 ```
 {
@@ -114,7 +112,7 @@ axios.post('https://nano.to/NANO_ADDRESS_OR_USERNAME', {
 }
 ```
 
-## Payments Notifications
+## Notifications
 
 The recommended way to be notified of incoming payments is by passing a 'webhook_url' param in the body of a POST request. The JSON payload will look like this:
 
@@ -164,7 +162,7 @@ server.post('/super-secret-webhook', (req, res) => {
 server.start(8080)
 ```
 
-### Multiple Currency Support
+## Fiat Conversion
 
 ```
 https://nano.to/Esteban?currency=RUB
@@ -172,7 +170,7 @@ https://nano.to/Esteban?currency=RUB
 
 ![](../assets/checkout-rub.png)
 
-### Single Panel UI
+## Single Panel UI
 
 When no ```plans``` are provided, there is no need for the left side of the Checkout UI. 
 
@@ -184,7 +182,7 @@ https://nano.to/Esteban?pay=100
 
 ![](../assets/checkout-single.png)
 
-## Checkout Metadata
+## Metadata
 
 Pass a ```?json=true``` URL flag to the ```url``` in the Response to get a JSON object of the Checkout. 
 
@@ -194,32 +192,8 @@ Pass a ```?json=true``` URL flag to the ```url``` in the Response to get a JSON 
 https://nano.to/checkout/666ee7bf26a?json=true
 ```
 
-### Customize Vanity Highlight
-
-With ```vanity_start``` and ```vanity_end``` params, you can control how your address is presented.
-
-```
-https://nano.to/esteban?vanity_start=10&vanity_end=4
-```
-
 ![](../assets/address_highlight.png)
 
-## Wallet Deep Linking
+## Deep Linking
 
 Clicking (or Tapping) the QR Code will open Natrium and automatically fill in amount and address, on most phones. 
-
-## Github Markdown Support
-
-When creating links in Markdown (or HTML), use **two** underscores (\_\_) instead of spaces, and it will read as spaces. Makes for cleaner links.
-
-[https://nano.to/Moon?title=I__Love__You](https://nano.to/Moon?title=I__Love__You)
-
-## Nano.to Support
-
-[Nano.to](https://fwd.dev/) offers free email support. Think of us like StackOverflow for Nano. 
-
-Ask Away: [support@nano.to](mailto:support@nano.to?subject=Wallet+API)
-
-## Data Deletion Policy
-
-Most of the data provided by Nano.to comes from the Nano Blockchain. Nano.to only stores Usernames leases and Checkout metadata. Checkout metadata is stored in-memory and is deleted after 24 hours. It's cheaper to NOT store your data. Who could have guessed. Our Cloud provider (AWS & DigitalOcean) probably store your IP indefinitely. We can't control that.
