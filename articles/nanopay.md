@@ -6,13 +6,13 @@
 
 Inspired by Apple Pay, NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. 
 
-Easily accept crypto payments on your website(s) with this package. 
+Easily add crypto payments to your website.
 
 ![NanoPay.js](https://camo.githubusercontent.com/3f1e8133d0cd930cf87f9e1767801a0ffe1e1e783b4755ee85aeeb1e7db2ffe4/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f465f344b366636586f4141597450453f666f726d61743d6a7067266e616d653d6d656469756d)
 
 ## Live Demo
 
-[https://pay.nano.to](https://email.nano.to)
+[https://shop.nano.to](https://shop.nano.to)
 
 ## Edit on CodePen
 
@@ -20,7 +20,7 @@ Easily accept crypto payments on your website(s) with this package.
 
 ## Install
 
-First, add NanoPay to your project's *index.html*.
+Add NanoPay to your project's *index.html*.
 
 **CDN:**
 ```html
