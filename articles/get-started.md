@@ -3,7 +3,7 @@
 - next: Developer API / nano-rpc.html
 edit: //github.com/nano-to/nano-docs/blob/master/articles/get-started.md
 -----
-Nano.to is a free public node, non-custodial checkout api & username service for the Nano blockchain.
+Nano.to is a public node, non-custodial checkout api & alias service for the Nano blockchain.
 
 We're on a mission to accelerate the use of Nano around the world.
 
