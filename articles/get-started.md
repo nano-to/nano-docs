@@ -32,7 +32,6 @@ Below are links to different app stores.
 
 ## Nano.to Support
 
-[Nano.to](https://fwd.dev/) offers free email support. Think of us like StackOverflow for Nano. 
-
 - Email: support@nano.to
 - Twitter: [@nano2dev](https://twitter.com/nano2dev)
+- BluSky: [@nano-to](https://bsky.app/profile/nano-to.bsky.social)
