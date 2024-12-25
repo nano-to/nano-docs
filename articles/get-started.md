@@ -1,8 +1,9 @@
 - title: Welcome to Nano
 - previous: Home / index.html
 - next: Developer API / nano-rpc.html
+edit: //github.com/nano-to/nano-docs/blob/master/articles/get-started.md
 -----
-Nano.to is a free, non-custodial API & Alias service for the Nano blockchain.
+Nano.to is a free public node, non-custodial checkout api & username service for the Nano blockchain.
 
 We're on a mission to accelerate the use of Nano around the world.
 
@@ -11,9 +12,9 @@ We're on a mission to accelerate the use of Nano around the world.
 ## **Quick Links**
 
 - [Public Nano Node](/nano-rpc.html)
-- [PoW as a Service](/pow.html)
 - [Checkout API](/checkout.html)
 - [Username API](/usernames.html)
+- [PoW as a Service](/pow.html)
 - [Nano.to Faucet](/faucet.html)
 - [Setup Nano Node](/setup-node.html)
 - [Nano.to Support](#nanoto-support)
