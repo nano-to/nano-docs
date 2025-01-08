@@ -12,13 +12,11 @@ Standalone GPU powered Proof of Work API. Scale Nano apps, easily.
 
 ## Add GPU PoW To Your Node
 
-| **OS/Build**   | **Location** |
-|----------------|--------------|
-| Windows        | `C:\Users\<user>\AppData\Local\Nano\config-node.toml` |
-| macOS          | `/Users/<user>/Library/Nano/config-node.toml` |
-| Linux          | `/home/<user>/Nano/config-node.toml` |
-| Docker         | As defined by the `-v` flag in the `docker run` command |
-| .deb/rpm       | `/var/nanocurrency/Nano/config-node.toml` |
+- **Windows:** ```C:\Users\<user>\AppData\Local\Nano\config-node.toml```
+- **macOS**: ```/Users/<user>/Library/Nano/config-node.toml```
+- **Linux**: ```/home/<user>/Nano/config-node.toml```
+- **Docker**: As defined by the ```-v``` flag in the ```docker run``` command
+- **.deb/rpm**: ```/var/nanocurrency/Nano/config-node.toml```
 
 ```toml
 [node]
@@ -27,8 +25,7 @@ work_peers = [
 ]
 ```
 
-## HTTP RPC API
-## work_generate
+## HTTPS API
 
 ::: code-group-open
 
