@@ -14,23 +14,7 @@ Standalone GPU powered Proof of Work API. Scale Nano apps, easily.
 
 **Free 30 PoW / 30 minute for testing**. For production get [prepaid GPU credits](https://rpc.nano.to?buy).
 
-## Add GPU PoW To Your Node
-
-- **Windows:** ```C:\Users\<user>\AppData\Local\Nano\config-node.toml```
-- **macOS**: ```/Users/<user>/Library/Nano/config-node.toml```
-- **Linux**: ```/home/<user>/Nano/config-node.toml```
-- **Docker**: As defined by the ```-v``` flag in the ```docker run``` command
-- **.deb/rpm**: ```/var/nanocurrency/Nano/config-node.toml```
-
-```toml
-[node]
-work_threads = 0
-work_peers = [
-    "rpc.nano.to/pow/:API_KEY",
-]
-```
-
-## HTTPS API
+## Use via API
 
 ::: code-group-open
 
@@ -286,6 +270,24 @@ len equ $ - $$
   "credits": 9,
   "cached": false,
 }
+```
+
+## Add Directly to Node
+
+> EXPERIMENTAL
+
+- **Windows:** ```C:\Users\<user>\AppData\Local\Nano\config-node.toml```
+- **macOS**: ```/Users/<user>/Library/Nano/config-node.toml```
+- **Linux**: ```/home/<user>/Nano/config-node.toml```
+- **Docker**: As defined by the ```-v``` flag in the ```docker run``` command
+- **.deb/rpm**: ```/var/nanocurrency/Nano/config-node.toml```
+
+```toml
+[node]
+work_threads = 0
+work_peers = [
+    "rpc.nano.to/pow/:API_KEY",
+]
 ```
 
 ## Common Errors
