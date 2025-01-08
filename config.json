@@ -22,6 +22,7 @@
 			"title": "Public API",
 			"menu": [
 				{ "title": "Public Node API", "url": "/nano-rpc.html" },
+                                { "title": "Proof of Work API", "url": "/pow.html" },
 				{ "title": "Nano Aliases", "url": "/usernames.html" },
 				{ "title": "NanoPay.js", "url": "/nanopay.html" }
 			]
