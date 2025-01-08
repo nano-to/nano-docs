@@ -24,6 +24,7 @@ Standalone GPU powered Proof of Work API. Scale Nano apps, easily.
 
 ```toml
 [node]
+work_threads = 0
 work_peers = [
     "rpc.nano.to/pow/:API_KEY",
 ]
