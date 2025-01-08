@@ -289,7 +289,7 @@ len equ $ - $$
 
 ## Common Errors
 
-Rarely, but it's important to be ready for them. We recommend you **precache** work. By requesting it from us, before you need it and storing it.
+Rarely, but it's important to be ready for them. We recommend you **precache** work. By requesting it, before you need it.
 
 **Code 429: Exhausted your free usage:**
 
