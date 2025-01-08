@@ -12,7 +12,7 @@ Standalone GPU powered Proof of Work API. Scale Nano apps, easily.
 
 > [Get Free API Key](https://rpc.nano.to?buy)
 
-**Free 30 PoW / 30 minute for testing**. For production applications get [prepaid GPU credits](https://rpc.nano.to?buy).
+**Free 30 PoW / 30 minute for testing**. For production get [prepaid GPU credits](https://rpc.nano.to?buy).
 
 ## Add GPU PoW To Your Node
 
