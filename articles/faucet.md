@@ -6,9 +6,7 @@
 - video: true
 -----
 
-If you lease a Nano.to Username, you will portion of daily Nano.to revenue. Automatically, every 24 hours. For the duration of the username lease.
-
-> **Note:** There is no daily guarantee. Any day that Nano.to does not make a sale, the Faucet will not pay that day. Other days may be better. You can always check the [Faucet Address Nanolooker](https://nanobrowse.com/account/nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys) page to check balance, when it last paid, and how much. You can also vist [Nano.to/Faucet](https://nano.to/faucet) to see how many Usernames there are, and calculated payment amount.
+Receive small amounts of Nano automatically. Included with every Nano.to Username.
 
 ## Quick Links
 
