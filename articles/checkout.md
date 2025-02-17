@@ -78,7 +78,8 @@ POST: https://nano.to/NANO_ADDRESS_OR_USERNAME
 // npm install axios
 const axios = require('axios')
 
-axios.post('https://nano.to/NANO_ADDRESS_OR_USERNAME', {
+axios.post('https://rpc.nano.to', {
+    "action": "checkout",
     "title": "New Order",
     "currency": "USD", // any valid ISO string
     "plans": [
