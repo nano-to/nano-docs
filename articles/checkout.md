@@ -80,21 +80,19 @@ const axios = require('axios')
 
 axios.post('https://rpc.nano.to', {
     "action": "checkout",
+    "address": "@development", // YOUR_NANO_ADDRESS
+    "description": "Welcome to McDonalds",
     "title": "New Order",
-    "currency": "USD", // any valid ISO string
+    "currency": "USD",
     "plans": [
         { "name": "Fries", "price": 5 },
         { "name": "Burger", "price": 10 },
         { "name": "Happy Meal", "price": 15 },
         { "name": "Cookies 🍪", "price": 3 }
     ],
-    "business": {
-        "name": "McDonalds",
-        "logo": "https://www.tailorbrands.com/wp-content/uploads/2020/07/mcdonalds-logo.jpg"
-    },
     "image": "https://files.muzli.space/2d7af141fab097859ef66de8d7c50932.jpeg", 
     "color": "black,white",
-    "background": "#00000,#311ac5",
+    "background": "#FFF,#311ac5",
     "success_url": "https://mywebsite.com/success?id={{id}}&anotherParam=hello",
     "cancel_url": "https://google.com",
     "webhook_url": "https://mywebsite.com/super-secret-webhook",
