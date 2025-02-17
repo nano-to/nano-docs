@@ -37,7 +37,6 @@ Every 24 hours, 20% of Nano.to Development proceeds go to the Nano.to Faucet.
 - Faucet runs at 8PM (US-EAST), everyday.
 - At the time of this writting,  ~500 usernames get a share of the Faucet balance. 
 
-
 ```
 FAUCET BALANCE / USERNAMES = PAYMENT
 ```
