@@ -10,6 +10,8 @@ Personal payment pages for your Nano address.
 
 ![](https://camo.githubusercontent.com/592b2704a25c6e0ed446a6774d04a3df67bd70f3463b4eea65dc9dfcd81d5287/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f4677516f4a507958734141326332343f666f726d61743d6a7067266e616d653d6d656469756d)
 
+> For Username documentation [click here](/usernames)
+
 ## Basic Usage
 
 Just share link. Most platforms support HTML and Markdown. Down below are examples for that. 
