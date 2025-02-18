@@ -103,11 +103,25 @@ axios.post('https://rpc.nano.to', {
 
 ### Response:
 
-```
+```js
 {
-    "id": "666ee7bf26a",
-    "url": "https://nano.to/checkout/666ee7bf26a",
-    "exp": "2021-09-23T01:51:23.853Z"
+  id: "5c363461",
+  browser: "http://nano.to/id_5c363461",
+  json: "https://api.nano.to/checkout/5c363461",
+  check: "https://api.nano.to/confirm/5c363461",
+  address: "nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o",
+  plans: [
+    {
+      title: "Fries",
+      value: "3",
+      value_raw: "3000000000000000000000000000000",
+      link: "nano:nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o?amount=3000000000000000000000000000000",
+      qrcode: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...LU",
+    }
+    ...
+  ],
+  rate: "1.45",
+  currency: "USD"
 }
 ```
 
