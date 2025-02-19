@@ -72,10 +72,6 @@ Demo: [Tip me in Nano](https://nano.to/Esteban)
 
 More advanced and sensitive data can be passed in the body of a POST request. 
 
-```
-POST: https://nano.to/NANO_ADDRESS_OR_USERNAME
-```
-
 ```javascript
 // npm install axios
 const axios = require('axios')
