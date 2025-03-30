@@ -113,8 +113,7 @@ axios.post('https://rpc.nano.to', {
       title: "Fries",
       value: "3",
       value_raw: "3000000000000000000000000000000",
-      link: "nano:nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o?amount=3000000000000000000000000000000",
-      qrcode: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...LU",
+      link: "nano:nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o?amount=3000000000000000000000000000000"
     }
     ...
   ],
