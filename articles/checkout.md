@@ -179,8 +179,6 @@ server.start(8080)
 https://nano.to/Esteban?currency=RUB
 ```
 
-![](../assets/checkout-rub.png)
-
 ## Single Panel UI
 
 When no ```plans``` are provided, there is no need for the left side of the Checkout UI. 
@@ -191,8 +189,6 @@ https://nano.to/Esteban?pay=100
 
 > When setting the price, you can use ```pay```, ```price``` or ```amount```. They all work the same.
 
-![](../assets/checkout-single.png)
-
 ## Metadata
 
 Pass a ```?json=true``` URL flag to the ```url``` in the Response to get a JSON object of the Checkout. 
@@ -202,8 +198,6 @@ Pass a ```?json=true``` URL flag to the ```url``` in the Response to get a JSON 
 ```
 https://nano.to/checkout/666ee7bf26a?json=true
 ```
-
-![](../assets/address_highlight.png)
 
 ## Deep Linking
 
