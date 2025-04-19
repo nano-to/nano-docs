@@ -21,18 +21,19 @@
 		{
 			"title": "Public API",
 			"menu": [
-				{ "title": "Public Node API", "url": "/nano-rpc.html" },
-                                { "title": "Proof of Work API", "url": "/pow.html" },
-				{ "title": "Nano Aliases", "url": "/usernames.html" },
-				{ "title": "NanoPay.js", "url": "/nanopay.html" }
+				{ "title": "Public Node", "url": "/nano-rpc.html" },
+				{ "title": "Websockets", "url": "/websocket.html" },
+				{ "title": "Checkout API", "url": "/checkout.html" },
+                { "title": "Proof of Work", "url": "/pow.html" },
+				{ "title": "Nano Usernames", "url": "/usernames.html" },
+				{ "title": "NanoPay.js", "url": "/nanopay.html" },
+				{ "title": "Nano Email SDK", "url": "/nano-email.html" }
 			]
 		},
 		{
-			"title": "Developer",
+			"title": "Developer SDK",
 			"menu": [
-				{ "title": "Wallets SDK", "url": "/wallet.html" },
-				{ "title": "Checkout SDK", "url": "/checkout.html" },
-				{ "title": "Nano Email SDK", "url": "/nano-email.html" }
+				{ "title": "Wallets SDK", "url": "/wallet.html" }
 			]
 		},
 		{
