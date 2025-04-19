@@ -2,17 +2,21 @@
 - previous: Username API / usernames.html
 - next: Developer API / nano-rpc.html
 - edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
+- scripts: //cdn.nano.to/pay.js
 -----
 
-Inspired by Apple Pay, NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. 
-
-Easily add crypto payments to your website.
+NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. Easily add crypto payments to your website.
 
 ![NanoPay.js](https://camo.githubusercontent.com/3f1e8133d0cd930cf87f9e1767801a0ffe1e1e783b4755ee85aeeb1e7db2ffe4/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f465f344b366636586f4141597450453f666f726d61743d6a7067266e616d653d6d656469756d)
 
 ## Live Demo
 
-[https://shop.nano.to](https://shop.nano.to)
+<a 
+data-title="Tip @Nano2Dev" 
+data-amount="0.133"  
+data-address="@development" 
+data-button="Open Natrium">
+Tip 0.133 NANO</a>
 
 ## Edit on CodePen
 
@@ -24,15 +28,20 @@ Add NanoPay to your project's *index.html*.
 
 **CDN:**
 ```html
-<script src="https://pay.nano.to/latest.js"></script>
+<script src="https://cdn.nano.to/pay.js"></script>
 ```
 
-**Local:**
+**With Integrity Hash:**
 ```html
-<script src="/NanoPay.js"></script>
+<script src="https://cdn.nano.to/pay.js" integrity="sha384-+cLlleejm9vk0O/ClJFXInfEMI/LvZuYEjy0SJ4jDVbmxD5JO7PY4nW9t1QQrfgz" crossorigin="anonymous"></script>
 ```
 
-Download [latest](https://pay.nano.to/latest.js) version.
+**Locally Hosted:**
+```html
+<script src="/pay.js"></script>
+```
+
+Download [latest](https://cdn.nano.to/pay.js) version.
 
 ## HTML Usage
 

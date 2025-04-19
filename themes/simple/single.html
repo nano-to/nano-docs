@@ -403,5 +403,11 @@
 
       </script>
 
+      <% if (article.scripts) { %>
+      <% article.scripts.split(',').map(script => { %>
+      <script src="<%- script %>"></script>
+      <% }) %>
+      <% } %>
+
    </body>
 </html>
