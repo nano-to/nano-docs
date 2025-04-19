@@ -1,4 +1,4 @@
-- title: Websocket API
+- title: WebSocket API
 - date: 04-19-2025
 - tags: Guide
 - author: @nano2bot
