@@ -13,7 +13,7 @@ NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial b
 
 <a 
 data-title="Tip @Nano2Dev" 
-data-amount="0.133"  
+data-amount="0.13300XXXX"  
 data-address="@development" 
 data-button="Open Natrium">
 Tip 0.133 NANO</a>
@@ -45,12 +45,12 @@ Download [latest](https://cdn.nano.to/pay.js) version.
 
 ## HTML Usage
 
-Simple payments can be achieved with basic HTML. No javascript required. 
+Simple payments can be achieved with basic HTML. No javascript required. Adding '**X**' to the amount will make it unique. Preventing payment collisions when using the same Nano address.
 
 ```html
 <a 
 data-title="Tip @Nano2Dev" 
-data-amount="0.133"  
+data-amount="0.13300XXX"  
 data-address="@development" 
 data-button="Open Natrium" 
 data-position="top">
@@ -62,8 +62,8 @@ Tip 0.133 NANO</a>
 ```js
 NanoPay.open({ 
     title: "Donate",
-    address: 'nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o', 
-    amount: 0.133,
+    address: 'nano_37y6iq8...9jrcf4o',  // unique address per payment
+    amount: 0.133, // fixed amount
     success: (block) => {
         window.alert("Thanks!")
     }
