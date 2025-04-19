@@ -33,7 +33,7 @@ Add NanoPay to your project's *index.html*.
 
 **With Integrity Hash:**
 ```html
-<script src="https://cdn.nano.to/pay.js" integrity="sha384-+cLlleejm9vk0O/ClJFXInfEMI/LvZuYEjy0SJ4jDVbmxD5JO7PY4nW9t1QQrfgz" crossorigin="anonymous"></script>
+<script src="https://cdn.nano.to/pay.js" integrity="sha512-vihlRMJ5xlS5Lg+wcNs4RLbs2TdS3OvFjjtF2nVn2IfiVVUe/yo5LJMXpc62+nn8p9TFy/QEhclG/emWactPqw==" crossorigin="anonymous"></script>
 ```
 
 **Locally Hosted:**
