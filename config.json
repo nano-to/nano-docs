@@ -33,7 +33,7 @@
 			"title": "Developer SDK",
 			"menu": [
 				{ "title": "NanoPay.js", "url": "/nanopay.html" },
-				{ "title": "Wallets SDK", "url": "/wallet.html" }
+				{ "title": "@nano/wallet", "url": "/wallet.html" }
 			]
 		},
 		{
