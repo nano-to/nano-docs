@@ -1,6 +1,5 @@
 - title: How-To Guides
 - date: 01-15-2025
-- tags: guides, nanopay, tutorials, implementation
 - author: @nano2dev
 -----
 

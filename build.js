@@ -193,12 +193,13 @@ try {
 	var pages = [ { url: 'https://' + parsed + '/', timestamp: moment().format('YYYY-MM-DD') } ]
 	articles.filter(a => !a.hidden).map(a => pages.push({ url: 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/' + a.slug, timestamp: moment(a.date).format('YYYY-MM-DD') }))
 	guides.filter(g => !g.hidden).map(g => pages.push({ url: 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/' + g.slug, timestamp: moment(g.date).format('YYYY-MM-DD') }))
-	var authors = articles.filter(a => a.author && !a.hidden).map(a => a.author)
+	var authors = [...articles.filter(a => a.author && !a.hidden), ...guides.filter(g => g.author && !g.hidden)].map(a => a.author)
 	authors.filter(a => !a.hidden).map(a => {
 		if (!pages.find(b => b.url === 'https://' + parsed + '/' + a)) pages.push({ url: 'https://' + parsed + '/' + a, timestamp: moment(a.date).format('YYYY-MM-DD') })
 	})
 	var tags = []
-	articles.filter(a => !a.hidden).filter(a => a.tags).map(a => a.tags.split(', ').map(b => tags.push({ name: b, articles: articles.filter(c => c.tags && c.tags.includes(b)) })))
+	var all_content_for_tags = [...articles.filter(a => !a.hidden), ...guides.filter(g => !g.hidden)]
+	all_content_for_tags.filter(a => a.tags).map(a => a.tags.split(', ').map(b => tags.push({ name: b, articles: all_content_for_tags.filter(c => c.tags && c.tags.includes(b)) })))
 	tags.map(_tag => {
 		var url = 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/tag/' + _tag.name.toLowerCase().split(' ').join('-')
 		if (!pages.find(a => a.url === url)) pages.push({ url, timestamp: moment(_tag.articles[0] ? _tag.articles[0].date : '').format('YYYY-MM-DD') })
