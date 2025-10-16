@@ -23,7 +23,7 @@
 			"menu": [
 				{ "title": "Public Node", "url": "/nano-rpc.html" },
 				{ "title": "Checkout API", "url": "/checkout.html" },
-				{ "title": "WebSocket API", "url": "/websocket.html" },
+				{ "title": "Realtime API", "url": "/websocket.html" },
                 { "title": "Proof of Work", "url": "/pow.html" },
 				{ "title": "Nano Usernames", "url": "/usernames.html" },
 				{ "title": "Nano to Email", "url": "/nano-email.html" }

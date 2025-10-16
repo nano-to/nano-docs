@@ -86,35 +86,131 @@ function slugify(string) {
 function search(e) {
     if (!e.value) return reset_search()
     document.getElementById('clear-search').style.display = 'block'
-    var found = data.filter(a => {
-        return a.title.toLowerCase().includes(e.value.toLowerCase()) ||
-                a.html.toLowerCase().includes(e.value.toLowerCase())
-            // (a.title && a.title.toLowerCase().includes(e.value.toLowerCase())) || 
-            // (a.endpoints && a.endpoints.find(b => b.title.toLowerCase().includes(e.value.toLowerCase()))) ||
-            // (a.endpoints && a.endpoints.find(b => b.params && b.params.find(d => d.key.includes(e.value.toLowerCase())))) ||
-            // (a.endpoints && a.endpoints.find(b => b.params && b.params.find(d => d.description.toLowerCase().includes(e.value.toLowerCase())))) || 
-            // (a.endpoints && a.endpoints.find(b => b.response && Object.keys(b.response).includes(e.value.toLowerCase())))
-    }).reverse()
+    
+    const query = e.value.toLowerCase()
+    const queryWords = query.split(/\s+/).filter(word => word.length > 0)
+    
+    // Score and filter results
+    var scoredResults = data.map(item => {
+        const title = item.title.toLowerCase()
+        const content = item.html.toLowerCase()
+        
+        let score = 0
+        let matchType = 'content'
+        let snippet = ''
+        
+        // Title exact match gets highest score
+        if (title.includes(query)) {
+            score += 100
+            matchType = 'title'
+        }
+        
+        // Title word matches
+        queryWords.forEach(word => {
+            if (title.includes(word)) {
+                score += 50
+                matchType = 'title'
+            }
+        })
+        
+        // Content matches
+        if (content.includes(query)) {
+            score += 20
+            snippet = extractSnippet(item.html, query)
+        }
+        
+        // Content word matches
+        queryWords.forEach(word => {
+            if (content.includes(word)) {
+                score += 10
+                if (!snippet) {
+                    snippet = extractSnippet(item.html, word)
+                }
+            }
+        })
+        
+        return {
+            ...item,
+            score,
+            matchType,
+            snippet: snippet || extractSnippet(item.html, queryWords[0] || query)
+        }
+    }).filter(item => item.score > 0)
+    
+    // Sort by relevance (score) descending
+    scoredResults.sort((a, b) => b.score - a.score)
+    
     var html = ``
-    // var categories = []
-    // found.map(a => !categories.includes(a.title) ? categories.push(a.title) : '')
-    // var related = []
-    // found.map(a => {
-    //     a.endpoints.filter(i => {
-    //         return i.title.toLowerCase().includes(e.value.toLowerCase()) || 
-    //         i.params && i.params.find(d => d.key.includes(e.value.toLowerCase())) ||
-    //         (i.params && i.params.find(d => d.description && d.description.toLowerCase().includes(e.value.toLowerCase()))) ||
-    //         (i.response && i.response && Object.keys(i.response).includes(e.value.toLowerCase()))
-    //     })
-    //     .map(d => {
-    //         d.category = a.title
-    //         related.push(d)
-    //     })
-    // })
-    found.map(b => {
-        // var related_html = found.filter(a => a.title === b.title).map(a => ``).join('')
-        html += `<div class="search-item-wrapper"><a href="/${b.slug}.html" class="search-item"><h2>${b.title}</h2></a></div>`
+    scoredResults.forEach(item => {
+        const highlightedTitle = highlightText(item.title, query)
+        const highlightedSnippet = highlightText(item.snippet, query)
+        
+        html += `<div class="search-item-wrapper">
+            <a href="/${item.slug}.html" class="search-item">
+                <h2>${highlightedTitle}</h2>
+                <p class="search-snippet">${highlightedSnippet}</p>
+            </a>
+        </div>`
     })
+    
     document.getElementById('search-results').innerHTML = html
     index = -1
+}
+
+function extractSnippet(html, query) {
+    // Remove HTML tags for snippet extraction
+    const textContent = html.replace(/<[^>]*>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+    
+    const queryLower = query.toLowerCase()
+    const textLower = textContent.toLowerCase()
+    
+    const index = textLower.indexOf(queryLower)
+    if (index === -1) {
+        // If exact query not found, try individual words
+        const words = query.split(/\s+/)
+        for (let word of words) {
+            const wordIndex = textLower.indexOf(word.toLowerCase())
+            if (wordIndex !== -1) {
+                return extractSnippetAroundIndex(textContent, wordIndex, word.length)
+            }
+        }
+        // Fallback to first 150 characters
+        return textContent.substring(0, 150) + (textContent.length > 150 ? '...' : '')
+    }
+    
+    return extractSnippetAroundIndex(textContent, index, query.length)
+}
+
+function extractSnippetAroundIndex(text, index, queryLength) {
+    const snippetLength = 150
+    const start = Math.max(0, index - snippetLength / 2)
+    const end = Math.min(text.length, start + snippetLength)
+    
+    let snippet = text.substring(start, end)
+    
+    // Add ellipsis if we're not at the beginning/end
+    if (start > 0) snippet = '...' + snippet
+    if (end < text.length) snippet = snippet + '...'
+    
+    return snippet.trim()
+}
+
+function highlightText(text, query) {
+    if (!query) return text
+    
+    const queryWords = query.split(/\s+/).filter(word => word.length > 0)
+    let highlightedText = text
+    
+    queryWords.forEach(word => {
+        const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi')
+        highlightedText = highlightedText.replace(regex, '<mark>$1</mark>')
+    })
+    
+    return highlightedText
+}
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }

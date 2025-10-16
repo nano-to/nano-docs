@@ -176,6 +176,15 @@ if (domain) {
 	fs.writeFileSync(`${dest}/CNAME`, `${domain}`, { encoding: "utf8" } )
 }
 
+// llms.txt
+try {
+	if (fs.existsSync('./llms.txt')) {
+		fs.copyFileSync('./llms.txt', `${dest}/llms.txt`)
+	}
+} catch(err) {
+	console.error('Error copying llms.txt:', err)
+}
+
 // optinal blog path 
 if (blog_path && !fs.existsSync(dest + '/' + blog_path)) {
 	fs.mkdirSync(dest + '/' + blog_path)

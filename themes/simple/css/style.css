@@ -2542,10 +2542,25 @@ html:not(.dark) .VPImage.dark[data-v-0c71c7f1] {
     border-bottom: 1px solid var(--vp-c-gutter);
     padding-top: var(--vp-layout-top-height, 0px);
     width: 100%;
-    background-color: var(--vp-local-nav-bg-color);
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 .VPLocalNav.fixed[data-v-da48a524] {
     position: fixed;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.dark .VPLocalNav[data-v-da48a524] {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.dark .VPLocalNav.fixed[data-v-da48a524] {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 @media (min-width: 960px) {
     .VPLocalNav[data-v-da48a524] {
@@ -3841,21 +3856,51 @@ svg.DocSearch-Hit-Select-Icon {
     pointer-events: none;
     white-space: nowrap;
     transition: background-color 0.25s;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 .VPNavBar.screen-open[data-v-84a11e99] {
     transition: none;
-    background-color: var(--vp-nav-bg-color);
+    background-color: rgba(255, 255, 255, 0.8);
     border-bottom: 1px solid var(--vp-c-divider);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 .VPNavBar[data-v-84a11e99]:not(.home) {
-    background-color: var(--vp-nav-bg-color);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.dark .VPNavBar[data-v-84a11e99]:not(.home) {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.dark .VPNavBar.screen-open[data-v-84a11e99] {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 @media (min-width: 960px) {
     .VPNavBar[data-v-84a11e99]:not(.home) {
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .dark .VPNavBar[data-v-84a11e99]:not(.home) {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
     .VPNavBar[data-v-84a11e99]:not(.has-sidebar):not(.home.top) {
-        background-color: var(--vp-nav-bg-color);
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .dark .VPNavBar[data-v-84a11e99]:not(.has-sidebar):not(.home.top) {
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
 }
 .wrapper[data-v-84a11e99] {
@@ -3939,10 +3984,24 @@ svg.DocSearch-Hit-Select-Icon {
 @media (min-width: 960px) {
     .VPNavBar:not(.home.top) .content-body[data-v-84a11e99] {
         position: relative;
-        background-color: var(--vp-nav-bg-color);
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .dark .VPNavBar:not(.home.top) .content-body[data-v-84a11e99] {
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
     .VPNavBar:not(.has-sidebar):not(.home.top) .content-body[data-v-84a11e99] {
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    .dark .VPNavBar:not(.has-sidebar):not(.home.top) .content-body[data-v-84a11e99] {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
 }
 @media (max-width: 767px) {

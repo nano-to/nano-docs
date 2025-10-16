@@ -1,29 +1,35 @@
-- title: NanoPay.js
-- previous: Username API / usernames.html
-- next: Developer API / nano-rpc.html
-- edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
-- scripts: //cdn.nano.to/pay.js
------
+![line](https://raw.githubusercontent.com/nano-to/nano-node-cli/main/.github/line.png)
 
-<div align="center" style="display: flex; gap: 20px; width: fit-content; margin: 20px auto 0 auto 0 0;">
+<h1 align="center">NanoPay.js 2.0.0</h1>
+
+<h3 align="center">The Ultimate Nano Currency Payment Library</h3>
+
+<p align="center">
+  <strong>Accept Nano payments with just a few lines of code!</strong><br>
+  Beautiful, customizable payment modals with glass morphism effects, dark mode support, premium content walls, and enterprise-grade security.
+</p>
+
+<div align="center">
   <img src="https://img.shields.io/badge/Version-2.0.0-blue.svg" alt="Version 2.0.0">
   <img src="https://img.shields.io/badge/Security-Enhanced-green.svg" alt="Enhanced Security">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Updated-January%202025-brightgreen.svg" alt="Updated January 2025">
 </div>
 
-NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. Easily add crypto payments to your website.
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
-## 🆕 What's New in 2.0.0 - October 15, 2025
+## 🆕 What's New in 2.0.0
 
 - 🐛 **Enhanced Security** - Comprehensive input validation and XSS protection
-- 🛒 **Advanced Line Items** - Support for quantities, variants, descriptions, and more.
+- 🛒 **Advanced Line Items** - Support for quantities, variants, descriptions, and images
 - 🔍 **Debug Mode** - Built-in debugging tools for development and testing
 - 🎨 **Glass Morphism UI** - Modern backdrop blur effects and improved aesthetics
 - 📦 **Better Shipping** - Enhanced shipping form with country selection
 - 📧 **Improved Email Validation** - More robust email format validation
 - 🔧 **API Improvements** - Better error handling and response validation
 - 📱 **Mobile Optimization** - Enhanced mobile experience and touch interactions
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## ✨ Features
 
@@ -43,6 +49,8 @@ NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial b
 - 🛒 **Advanced Line Items** - Support for quantities, variants, descriptions, and images
 - 🔍 **Debug Mode** - Built-in debugging tools for development and testing
 - 🎯 **Enhanced UX** - Improved user experience with better animations and interactions
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 🚀 Quick Start
 
@@ -69,17 +77,11 @@ NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial b
 </div>
 ```
 
-**Live Example:**
-
-<div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Buy Coffee">
-    Pay 1 NANO
-</div>
-
 ### 3. That's It! 🎉
 
 The button automatically becomes a beautiful payment modal when clicked!
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 📖 Basic Examples
 
@@ -93,14 +95,6 @@ The button automatically becomes a beautiful payment modal when clicked!
 </div>
 ```
 
-**Live Example:**
-
-<div data-amount="5" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Buy Premium Access">
-    Get Premium Access - 5 NANO
-</div>
-
 ### Payment with Description
 
 ```html
@@ -111,15 +105,6 @@ The button automatically becomes a beautiful payment modal when clicked!
     Download Ebook - 2.5 NANO
 </div>
 ```
-
-**Live Example:**
-
-<div data-amount="2.5" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Digital Download"
-     data-description="Download our latest ebook">
-    Download Ebook - 2.5 NANO
-</div>
 
 ### Payment Requiring Email
 
@@ -132,15 +117,6 @@ The button automatically becomes a beautiful payment modal when clicked!
 </div>
 ```
 
-**Live Example:**
-
-<div data-amount="10" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Newsletter Subscription"
-     data-contact="true">
-    Subscribe to Newsletter - 10 NANO
-</div>
-
 ### Payment with Shipping
 
 ```html
@@ -152,14 +128,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 </div>
 ```
 
-**Live Example:**
-
-<div data-amount="25" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Physical Product"
-     data-shipping="true">
-    Buy Physical Product - 25 NANO
-</div>
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 🎨 Customization Examples
 
@@ -175,17 +144,6 @@ The button automatically becomes a beautiful payment modal when clicked!
     Custom Styled Payment
 </div>
 ```
-
-**Live Example:**
-
-<div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Custom Styled Payment"
-     data-background="#2c3e50"
-     data-text="#ecf0f1"
-     data-button="Custom Pay Button">
-    Custom Styled Payment
-</div>
 
 ### Different Modal Positions
 
@@ -206,20 +164,6 @@ The button automatically becomes a beautiful payment modal when clicked!
 </div>
 ```
 
-**Live Examples:**
-
-<div data-amount="1" data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" data-position="bottom">
-    Bottom Payment
-</div>
-
-<div data-amount="1" data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" data-position="top">
-    Top Payment
-</div>
-
-<div data-amount="1" data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" data-position="center">
-    Center Payment
-</div>
-
 ### Custom Wallet Preference
 
 ```html
@@ -229,14 +173,6 @@ The button automatically becomes a beautiful payment modal when clicked!
     Pay with Natrium
 </div>
 ```
-
-**Live Example:**
-
-<div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-wallet="natrium">
-    Pay with Natrium
-</div>
 
 ### Payment with Enhanced Line Items (Shopping Cart)
 
@@ -265,30 +201,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 </div>
 ```
 
-**Live Example:**
-
-<div data-amount="15" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-     data-title="Shopping Cart"
-     data-line-items='[
-         {
-             "name": "Premium T-Shirt", 
-             "price": 10, 
-             "quantity": 2,
-             "variants": {"color": "Blue", "size": "Large"},
-             "description": "100% Cotton Premium T-Shirt",
-             "image": "https://example.com/tshirt.jpg"
-         },
-         {
-             "name": "Ceramic Coffee Mug", 
-             "price": 5, 
-             "quantity": 1,
-             "variants": {"color": "White", "material": "Ceramic"},
-             "description": "Handcrafted ceramic mug"
-         }
-     ]'>
-    Complete Purchase - 15 NANO
-</div>
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 🔧 Programmatic Usage
 
@@ -360,7 +273,7 @@ window.NanoPay.wall({
 window.NanoPay.open({
     title: 'Shopping Cart',
     address: 'nano_1yourwalletaddresshere',
-  line_items: [
+    line_items: [
         { 
             name: 'Premium T-Shirt', 
             price: 2.5, 
@@ -424,6 +337,8 @@ window.NanoPay.open({
     }
 });
 ```
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 🎨 Custom CSS Themes
 
@@ -523,6 +438,8 @@ window.NanoPay.dark_mode = true;
 </style>
 ```
 
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
+
 ## 🌟 Real-World Use Cases
 
 ### E-commerce Store
@@ -543,21 +460,6 @@ window.NanoPay.dark_mode = true;
 </div>
 ```
 
-**Live Example:**
-
-<div class="product-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 300px;">
-    <h3>Premium T-Shirt</h3>
-    <p>High-quality cotton t-shirt with custom design</p>
-    <div data-amount="25" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-         data-title="Premium T-Shirt"
-         data-shipping="true"
-         data-contact="true"
-         data-description="Premium cotton t-shirt with custom design">
-        Buy Now - 25 NANO
-    </div>
-</div>
-
 ### Digital Downloads
 
 ```html
@@ -574,20 +476,6 @@ window.NanoPay.dark_mode = true;
     </div>
 </div>
 ```
-
-**Live Example:**
-
-<div class="download-section" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 300px;">
-    <h3>Premium Software License</h3>
-    <p>Unlock all features with a one-time payment</p>
-    <div data-amount="50" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-         data-title="Software License"
-         data-contact="true"
-         data-description="Premium software license with lifetime updates">
-        Purchase License - 50 NANO
-    </div>
-</div>
 
 ### Subscription Service
 
@@ -610,24 +498,6 @@ window.NanoPay.dark_mode = true;
 </div>
 ```
 
-**Live Example:**
-
-<div class="subscription-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 300px;">
-    <h3>Monthly Premium Access</h3>
-    <ul>
-        <li>Unlimited downloads</li>
-        <li>Priority support</li>
-        <li>Exclusive content</li>
-    </ul>
-    <div data-amount="10" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-         data-title="Monthly Subscription"
-         data-contact="true"
-         data-description="Monthly premium access to all features">
-        Subscribe - 10 NANO/month
-    </div>
-</div>
-
 ### Donation Button
 
 ```html
@@ -643,19 +513,6 @@ window.NanoPay.dark_mode = true;
     </div>
 </div>
 ```
-
-**Live Example:**
-
-<div class="donation-section" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 300px;">
-    <h3>Support Our Project</h3>
-    <p>Help us continue developing amazing features</p>
-    <div data-amount="5" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-         data-title="Support Development"
-         data-description="Thank you for supporting our project!">
-        Donate 5 NANO
-    </div>
-</div>
 
 ### Premium Content Wall
 
@@ -689,34 +546,7 @@ window.NanoPay.wall({
 </script>
 ```
 
-**Live Example:**
-
-<div id="premium-article-demo" class="article" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 400px;">
-    <h2>Premium Article Title</h2>
-    <p>This is a preview of the premium content...</p>
-    <div class="premium-content">
-        <h3>This content is locked!</h3>
-        <p>Pay to unlock the full article</p>
-        <div data-amount="2" 
-             data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
-             data-title="Unlock Premium Article"
-             data-description="Access to the full premium article">
-            Unlock Article - 2 NANO
-        </div>
-    </div>
-</div>
-
-<script>
-// Lock the premium content for demo
-window.NanoPay.wall({
-    element: '#premium-article-demo',
-    title: 'Unlock Premium Article',
-    amount: 2,
-    address: 'nano_1demo1234567890abcdefghijklmnopqrstuvwxyz',
-    description: 'Access to the full premium article',
-    button: 'Unlock Article'
-});
-</script>
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 🔧 Advanced Configuration
 
@@ -793,6 +623,8 @@ window.NanoPay.open({
 });
 ```
 
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
+
 ## 🛡️ Security Features
 
 ### Enterprise-Grade Security
@@ -829,7 +661,7 @@ Add this to your HTML `<head>` for maximum security:
     default-src 'self';
     script-src 'self' 'unsafe-inline' https://cdn.nano.to;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' data: https://cdn.nano.to;
+    img-src 'self' data: https://cdn.nano.to https://wall.nano.to;
     connect-src 'self' https://api.nano.to https://rpc.nano.to;
     font-src 'self';
     object-src 'none';
@@ -845,6 +677,8 @@ Add this to your HTML `<head>` for maximum security:
 3. **Implement server-side validation** for payment verification
 4. **Monitor for suspicious activity** (unusual payment patterns)
 5. **Keep NanoPay updated** to the latest version
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ## 🛠️ Troubleshooting & FAQ
 
@@ -920,6 +754,16 @@ NanoPay.js works on all modern browsers:
 - ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 - ⚠️ Internet Explorer: Not supported (use modern browsers for best experience)
 
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
+
+## 📚 Documentation
+
+For complete API documentation and advanced features:
+
+**[📖 Full Documentation](https://docs.nano.to/nanopay)**
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
+
 ## 🎯 Live Demo
 
 See NanoPay in action:
@@ -940,6 +784,8 @@ You can also test NanoPay locally by opening the included `index.html` file in y
 
 Simply open `index.html` in your browser to start testing immediately!
 
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
@@ -954,10 +800,16 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+![line](https://raw.githubusercontent.com/nano-to/nano-node-cli/main/.github/line.png)
+
 ## ⭐ Stargazers
 
 [![Stargazers over time](https://starchart.cc/fwd/nano-pay.svg)](https://github.com/fwd/nano-pay)
 
+![line](https://raw.githubusercontent.com/nano-to/nano-node-cli/main/.github/line.png)
+
 ## 🏆 Sponsor (DigitalOcean)
 
 <a align="center" target="_blank" href="https://m.do.co/c/f139acf4ddcb"><img style="object-fit: contain; max-width: 100%;" src="https://github.com/fwd/fwd/raw/master/ads/digitalocean_new.png" width="970" /></a>
+
+![line](https://raw.githubusercontent.com/nano-to/nano-node-cli/main/.github/line.png)
