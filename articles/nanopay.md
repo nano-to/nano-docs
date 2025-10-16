@@ -3,6 +3,7 @@
 - next: Developer API / nano-rpc.html
 - edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
 - scripts: //cdn.nano.to/pay.js
+- tags: nanopay, guide, payment, ecommerce, saas, content
 -----
 
 <div align="center" style="display: flex; gap: 20px; width: fit-content; margin: 20px auto 0 auto 0 0;">

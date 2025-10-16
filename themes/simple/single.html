@@ -176,6 +176,73 @@
              color: inherit;
          }
 
+         /* Related Guides Styling */
+         .related-guides {
+            margin-top: 24px;
+            padding: 16px;
+            background: var(--vp-c-bg-soft);
+            border-radius: 8px;
+            border: 1px solid var(--vp-c-divider);
+         }
+
+         .related-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--vp-c-text-1);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--vp-c-divider);
+         }
+
+         .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+         }
+
+         .related-item {
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+         }
+
+         .related-item:hover {
+            background: var(--vp-c-bg-alt);
+         }
+
+         .related-link {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: inherit;
+         }
+
+         .related-title-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--vp-c-text-1);
+            line-height: 1.4;
+            margin-bottom: 4px;
+         }
+
+         .related-preview {
+            font-size: 12px;
+            color: var(--vp-c-text-2);
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+         }
+
+         .dark .related-guides {
+            background: var(--vp-c-bg-soft);
+            border-color: var(--vp-c-divider);
+         }
+
+         .dark .related-item:hover {
+            background: var(--vp-c-bg-alt);
+         }
+
       </style> 
    </head>
    <body>
@@ -317,7 +384,28 @@
                                     </div>
                                  </nav>
                                  <div data-v-d156f047="" class="spacer"></div>
-                                 <!--v-if-->
+                                 <!-- Related Guides Section -->
+                                 <% if (relatedGuides && relatedGuides.length > 0) { %>
+                                 <div data-v-d156f047="" class="VPDocAsideRelated">
+                                    <div class="related-guides">
+                                       <div class="related-title">Related Guides</div>
+                                       <div class="related-list">
+                                          <% relatedGuides.forEach(guide => { %>
+                                          <div class="related-item">
+                                             <a href="<%- guide.slug %>.html" class="related-link">
+                                                <div class="related-content">
+                                                   <div class="related-title-text"><%- guide.title %></div>
+                                                   <% if (guide.preview) { %>
+                                                   <div class="related-preview"><%- guide.preview %></div>
+                                                   <% } %>
+                                                </div>
+                                             </a>
+                                          </div>
+                                          <% }) %>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <% } %>
                               </div>
                            </div>
                         </div>

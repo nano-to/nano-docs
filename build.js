@@ -37,6 +37,7 @@ const favicon = config.favicon || '../img/favicon.png'
 const verified = config.verified
 
 var articles = []
+var guides = []
 var exlcude = ['.DS_Store']
 
 function hash(str) {
@@ -49,7 +50,7 @@ function hash(str) {
 	return Math.abs(hash);
 }
 
-// fancy ain't it.
+// Process articles
 fs.readdirSync(source).forEach(file => {
 	if (exlcude.includes(file)) return
 	var parse
@@ -91,6 +92,50 @@ fs.readdirSync(source).forEach(file => {
 	articles = _.orderBy(articles, 'timestamp').reverse()
 })
 
+// Process guides
+if (fs.existsSync('./guides')) {
+	fs.readdirSync('./guides').forEach(file => {
+		if (exlcude.includes(file)) return
+		var parse
+		var content = fs.readFileSync('./guides/' + file, { encoding: "utf8" })
+		var slug = file.replace('.md', '')
+		// for the kiddies
+		if (content.includes('----')) parse = content.split('----')
+		if (content.includes('-----')) parse = content.split('-----')
+		var guide = {}
+		if (!parse) return
+		parse[0]
+			.split('\n')
+			.filter(a => a)
+			.map(line => guide[line.split(':')[0].replace('- ', '')] = line.split(':')[1].trim()) // old 'reliable
+		var title = guide.title
+		var date = moment(guide.date)
+		var body = parse[1].replace('\n', '')
+		var clean = domain.replace('http://', '').replace('https://', '').split('/').join('')
+		guide.id = hash(title)
+		guide.path = blog_path
+		guide.slug = slug
+		guide.timestamp = date.unix()
+		guide.date = date.format('LL')
+		guide.fromNow = date.format('MMM DD, YYYY')
+		const regex = /id="([^"]*?)"/g;
+		guide.html = md.render(body).replace(regex, (match, p1) => {
+		    const updatedId = p1.replace(/-/g, '_'); // Replace all dashes with underscores
+		    return `id="${updatedId}"`;
+		});
+		if (guide.price) guide.html = 'PREMIUM-ARTICLE-A' + Buffer.from(guide.html).toString('base64') + '+HRT'
+		guide.url = `https://${clean}${blog_path ? '/' + blog_path : '' }/${slug}.html` // who needs fancy req objects.
+		guide.preview = guide.preview || guide.snippet
+		if (guide.goal) guide.html = guide.html
+			.split('[funding]')
+			.join(`<div class="goal" data-title="${guide.goal.split('|')[1]}" data-address="${guide.address ? guide.address : nano_address}" data-amount="${guide.goal.split('|')[0]}"></div>`)
+			.split('[goal]')
+			.join(`<div class="goal" data-title="${guide.goal.split('|')[1]}" data-address="${guide.address ? guide.address : nano_address}" data-amount="${guide.goal.split('|')[0]}"></div>`)
+		guides.push(guide)
+		guides = _.orderBy(guides, 'timestamp').reverse()
+	})
+}
+
 if (!fs.existsSync(dest)) fs.mkdirSync(dest)
 
 // why is this not a nodejs method, tf.
@@ -124,7 +169,13 @@ if (json_api) {
 		if (a.price) delete a.html
 		return a
 	})
-	fs.writeFileSync(`${dest}/api.json`, JSON.stringify(articles.filter(a => !a.hidden), null, 4), { encoding: "utf8" } )
+	var json_guides = JSON.parse(JSON.stringify(guides)).map(g => {
+		if (g.price) delete g.html
+		return g
+	})
+	// Combine articles and guides for search
+	var all_content = [...articles.filter(a => !a.hidden), ...guides.filter(g => !g.hidden)]
+	fs.writeFileSync(`${dest}/api.json`, JSON.stringify(all_content, null, 4), { encoding: "utf8" } )
 }
 
 // rss_api
@@ -141,6 +192,7 @@ try {
 	var parsed = domain.replace('https://', '').split('/').join('').replace('http://', '')
 	var pages = [ { url: 'https://' + parsed + '/', timestamp: moment().format('YYYY-MM-DD') } ]
 	articles.filter(a => !a.hidden).map(a => pages.push({ url: 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/' + a.slug, timestamp: moment(a.date).format('YYYY-MM-DD') }))
+	guides.filter(g => !g.hidden).map(g => pages.push({ url: 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/' + g.slug, timestamp: moment(g.date).format('YYYY-MM-DD') }))
 	var authors = articles.filter(a => a.author && !a.hidden).map(a => a.author)
 	authors.filter(a => !a.hidden).map(a => {
 		if (!pages.find(b => b.url === 'https://' + parsed + '/' + a)) pages.push({ url: 'https://' + parsed + '/' + a, timestamp: moment(a.date).format('YYYY-MM-DD') })
@@ -209,12 +261,26 @@ if (blog_path && !fs.existsSync(dest + '/' + blog_path)) {
 // all articles
 var single_html = fs.readFileSync(`./themes/${theme}/single.html`, { encoding: "utf8" })
 for (var article of articles) {
+	// Find related guides based on tags
+	var relatedGuides = []
+	if (article.tags) {
+		var articleTags = article.tags.split(', ').map(tag => tag.trim())
+		// Look for guides in both articles and guides arrays
+		var allGuides = [...articles.filter(a => a.tags && a.tags.includes('guide')), ...guides]
+		relatedGuides = allGuides.filter(a => 
+			a.slug !== article.slug && 
+			a.tags && 
+			a.tags.split(', ').some(tag => articleTags.includes(tag.trim()))
+		).slice(0, 3) // Limit to 3 related guides
+	}
+	
 	var article_html = ejs.render(single_html, { 
 		footer, 
 		nav, 
 		color, 
 		site_title, 
 		articles : articles.filter(a => a.slug !== article.slug), 
+		relatedGuides,
 		article, 
 		domain, 
 		cover, 
@@ -228,4 +294,41 @@ for (var article of articles) {
 		website, 
 		iconSize })
 	fs.writeFileSync(`${dest}${blog_path ? '/' + blog_path : '' }/${article.slug}.html`, article_html, { encoding: "utf8" } )
+}
+
+// all guides
+for (var guide of guides) {
+	// Find related guides based on tags
+	var relatedGuides = []
+	if (guide.tags) {
+		var guideTags = guide.tags.split(', ').map(tag => tag.trim())
+		// Look for guides in both articles and guides arrays
+		var allGuides = [...articles.filter(a => a.tags && a.tags.includes('guide')), ...guides]
+		relatedGuides = allGuides.filter(a => 
+			a.slug !== guide.slug && 
+			a.tags && 
+			a.tags.split(', ').some(tag => guideTags.includes(tag.trim()))
+		).slice(0, 3) // Limit to 3 related guides
+	}
+	
+	var guide_html = ejs.render(single_html, { 
+		footer, 
+		nav, 
+		color, 
+		site_title, 
+		articles : articles.filter(a => a.slug !== guide.slug), 
+		relatedGuides,
+		article: guide, 
+		domain, 
+		cover, 
+		favicon, 
+		title, 
+		nano_address: guide.address || nano_address, 
+		metrics, 
+		verified, 
+		twitter, 
+		github, 
+		website, 
+		iconSize })
+	fs.writeFileSync(`${dest}${blog_path ? '/' + blog_path : '' }/${guide.slug}.html`, guide_html, { encoding: "utf8" } )
 }
