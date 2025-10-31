@@ -1,0 +1,284 @@
+{
+  "user@example.com": {
+    "credits": 91813,
+    "plan": "prepaid",
+    "email": "user@example.com",
+    "created_at": "2024-01-15T10:30:00Z",
+    "last_active": "2024-12-15T14:22:00Z",
+    "usage": {
+      "2024-12-15": {
+        "account_info": 45,
+        "account_history": 12,
+        "receivable": 8,
+        "work_generate": 23,
+        "process": 15,
+        "rpc_credits": 2,
+        "errors": 3,
+        "successes": 100,
+        "free_usage": 85,
+        "paid_usage": 15,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 245,
+          "max_ms": 1200,
+          "min_ms": 89
+        }
+      },
+      "2024-12-14": {
+        "account_info": 38,
+        "account_history": 9,
+        "receivable": 6,
+        "work_generate": 18,
+        "process": 12,
+        "rpc_credits": 1,
+        "errors": 2,
+        "successes": 86,
+        "free_usage": 78,
+        "paid_usage": 8,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 198,
+          "max_ms": 890,
+          "min_ms": 67
+        }
+      },
+      "2024-12-13": {
+        "account_info": 52,
+        "account_history": 15,
+        "receivable": 11,
+        "work_generate": 31,
+        "process": 19,
+        "rpc_credits": 3,
+        "errors": 4,
+        "successes": 132,
+        "free_usage": 95,
+        "paid_usage": 37,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 312,
+          "max_ms": 1500,
+          "min_ms": 95
+        }
+      },
+      "2024-12-12": {
+        "account_info": 41,
+        "account_history": 13,
+        "receivable": 7,
+        "work_generate": 25,
+        "process": 16,
+        "rpc_credits": 2,
+        "errors": 2,
+        "successes": 104,
+        "free_usage": 82,
+        "paid_usage": 22,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 267,
+          "max_ms": 1100,
+          "min_ms": 78
+        }
+      },
+      "2024-12-11": {
+        "account_info": 47,
+        "account_history": 11,
+        "receivable": 9,
+        "work_generate": 28,
+        "process": 14,
+        "rpc_credits": 2,
+        "errors": 3,
+        "successes": 109,
+        "free_usage": 88,
+        "paid_usage": 21,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 289,
+          "max_ms": 1300,
+          "min_ms": 82
+        }
+      },
+      "2024-12-10": {
+        "account_info": 39,
+        "account_history": 8,
+        "receivable": 5,
+        "work_generate": 20,
+        "process": 11,
+        "rpc_credits": 1,
+        "errors": 1,
+        "successes": 84,
+        "free_usage": 75,
+        "paid_usage": 9,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 201,
+          "max_ms": 950,
+          "min_ms": 71
+        }
+      },
+      "2024-12-09": {
+        "account_info": 44,
+        "account_history": 14,
+        "receivable": 10,
+        "work_generate": 26,
+        "process": 17,
+        "rpc_credits": 3,
+        "errors": 2,
+        "successes": 111,
+        "free_usage": 89,
+        "paid_usage": 22,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 278,
+          "max_ms": 1250,
+          "min_ms": 85
+        }
+      },
+      "2025-10-22": {
+        "account_info": 1,
+        "account_history": 0,
+        "receivable": 0,
+        "work_generate": 0,
+        "process": 0,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 1,
+        "free_usage": 1,
+        "paid_usage": 0
+      }
+    }
+  },
+  "developer@test.com": {
+    "credits": 5000,
+    "plan": "free",
+    "email": "developer@test.com",
+    "created_at": "2024-11-20T08:15:00Z",
+    "last_active": "2024-12-15T16:45:00Z",
+    "usage": {
+      "2024-12-15": {
+        "account_info": 12,
+        "account_history": 3,
+        "receivable": 2,
+        "work_generate": 5,
+        "process": 4,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 26,
+        "free_usage": 26,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 189,
+          "max_ms": 650,
+          "min_ms": 45
+        }
+      },
+      "2024-12-14": {
+        "account_info": 8,
+        "account_history": 2,
+        "receivable": 1,
+        "work_generate": 3,
+        "process": 2,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 16,
+        "free_usage": 16,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 156,
+          "max_ms": 420,
+          "min_ms": 38
+        }
+      },
+      "2024-12-13": {
+        "account_info": 15,
+        "account_history": 4,
+        "receivable": 3,
+        "work_generate": 7,
+        "process": 5,
+        "rpc_credits": 0,
+        "errors": 1,
+        "successes": 34,
+        "free_usage": 34,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 203,
+          "max_ms": 780,
+          "min_ms": 52
+        }
+      },
+      "2024-12-12": {
+        "account_info": 10,
+        "account_history": 2,
+        "receivable": 2,
+        "work_generate": 4,
+        "process": 3,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 21,
+        "free_usage": 21,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 167,
+          "max_ms": 520,
+          "min_ms": 41
+        }
+      },
+      "2024-12-11": {
+        "account_info": 6,
+        "account_history": 1,
+        "receivable": 1,
+        "work_generate": 2,
+        "process": 1,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 11,
+        "free_usage": 11,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 142,
+          "max_ms": 380,
+          "min_ms": 35
+        }
+      },
+      "2024-12-10": {
+        "account_info": 9,
+        "account_history": 3,
+        "receivable": 2,
+        "work_generate": 3,
+        "process": 2,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 19,
+        "free_usage": 19,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 178,
+          "max_ms": 580,
+          "min_ms": 48
+        }
+      },
+      "2024-12-09": {
+        "account_info": 7,
+        "account_history": 2,
+        "receivable": 1,
+        "work_generate": 2,
+        "process": 1,
+        "rpc_credits": 0,
+        "errors": 0,
+        "successes": 13,
+        "free_usage": 13,
+        "paid_usage": 0,
+        "uptime_checks": 1,
+        "response_times": {
+          "avg_ms": 165,
+          "max_ms": 450,
+          "min_ms": 42
+        }
+      }
+    }
+  }
+}
