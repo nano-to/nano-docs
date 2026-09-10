@@ -141,7 +141,7 @@ Scale your payment infrastructure with enterprise-grade solutions. Migrate from 
 
 ## Nano Wallets
 
-Before you can use Nano.to, you need to be able to send and receive Nano. The best Wallet hands down, is called [Natrium](https://natrium.io/). Wallets are different from Exchanges because they are anonymous. Anyone can have a Nano wallet in under 30 seconds.
+Before you can use Nano.to, you need to be able to send and receive Nano. The best wallet, hands down, is called [Natrium](https://natrium.io/). Wallets are different from Exchanges because they are anonymous. Anyone can have a Nano wallet in under 30 seconds.
 
 Below are links to different app stores.
 
