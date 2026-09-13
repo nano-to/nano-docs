@@ -709,13 +709,15 @@ window.NanoPay.wall({
 
 <script>
 // Lock the premium content for demo
-window.NanoPay.wall({
-    element: '#premium-article-demo',
-    title: 'Unlock Premium Article',
-    amount: 2,
-    address: '@development',
-    description: 'Access to the full premium article',
-    button: 'Unlock Article'
+window.addEventListener('load', function () {
+    window.NanoPay.wall({
+        element: '#premium-article-demo',
+        title: 'Unlock Premium Article',
+        amount: 2,
+        address: '@development',
+        description: 'Access to the full premium article',
+        button: 'Unlock Article'
+    });
 });
 </script>
 
