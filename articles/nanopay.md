@@ -64,7 +64,7 @@ NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial b
 ```html
 <!-- Simple payment button -->
 <div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Buy Coffee">
     Pay 1 NANO
 </div>
@@ -73,7 +73,7 @@ NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial b
 **Live Example:**
 
 <div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Buy Coffee">
     Pay 1 NANO
 </div>
@@ -97,7 +97,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="5" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Buy Premium Access">
     Get Premium Access - 5 NANO
 </div>
@@ -116,7 +116,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="2.5" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Digital Download"
      data-description="Download our latest ebook">
     Download Ebook - 2.5 NANO
@@ -136,7 +136,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="10" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Newsletter Subscription"
      data-contact="true">
     Subscribe to Newsletter - 10 NANO
@@ -156,7 +156,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="25" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Physical Product"
      data-shipping="true">
     Buy Physical Product - 25 NANO
@@ -180,7 +180,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Custom Styled Payment"
      data-background="#2c3e50"
      data-text="#ecf0f1"
@@ -209,15 +209,15 @@ The button automatically becomes a beautiful payment modal when clicked!
 
 **Live Examples:**
 
-<div data-amount="1" data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" data-position="bottom">
+<div data-amount="1" data-address="@development" data-position="bottom">
     Bottom Payment
 </div>
 
-<div data-amount="1" data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" data-position="top">
+<div data-amount="1" data-address="@development" data-position="top">
     Top Payment
 </div>
 
-<div data-amount="1" data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" data-position="center">
+<div data-amount="1" data-address="@development" data-position="center">
     Center Payment
 </div>
 
@@ -234,7 +234,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="1" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-wallet="natrium">
     Pay with Natrium
 </div>
@@ -269,7 +269,7 @@ The button automatically becomes a beautiful payment modal when clicked!
 **Live Example:**
 
 <div data-amount="15" 
-     data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+     data-address="@development"
      data-title="Shopping Cart"
      data-line-items='[
          {
@@ -550,7 +550,7 @@ window.NanoPay.dark_mode = true;
     <h3>Premium T-Shirt</h3>
     <p>High-quality cotton t-shirt with custom design</p>
     <div data-amount="25" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+         data-address="@development"
          data-title="Premium T-Shirt"
          data-shipping="true"
          data-contact="true"
@@ -582,7 +582,7 @@ window.NanoPay.dark_mode = true;
     <h3>Premium Software License</h3>
     <p>Unlock all features with a one-time payment</p>
     <div data-amount="50" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+         data-address="@development"
          data-title="Software License"
          data-contact="true"
          data-description="Premium software license with lifetime updates">
@@ -621,7 +621,7 @@ window.NanoPay.dark_mode = true;
         <li>Exclusive content</li>
     </ul>
     <div data-amount="10" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+         data-address="@development"
          data-title="Monthly Subscription"
          data-contact="true"
          data-description="Monthly premium access to all features">
@@ -651,7 +651,7 @@ window.NanoPay.dark_mode = true;
     <h3>Support Our Project</h3>
     <p>Help us continue developing amazing features</p>
     <div data-amount="5" 
-         data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+         data-address="@development"
          data-title="Support Development"
          data-description="Thank you for supporting our project!">
         Donate 5 NANO
@@ -699,7 +699,7 @@ window.NanoPay.wall({
         <h3>This content is locked!</h3>
         <p>Pay to unlock the full article</p>
         <div data-amount="2" 
-             data-address="nano_1demo1234567890abcdefghijklmnopqrstuvwxyz" 
+             data-address="@development"
              data-title="Unlock Premium Article"
              data-description="Access to the full premium article">
             Unlock Article - 2 NANO
@@ -713,7 +713,7 @@ window.NanoPay.wall({
     element: '#premium-article-demo',
     title: 'Unlock Premium Article',
     amount: 2,
-    address: 'nano_1demo1234567890abcdefghijklmnopqrstuvwxyz',
+    address: '@development',
     description: 'Access to the full premium article',
     button: 'Unlock Article'
 });
