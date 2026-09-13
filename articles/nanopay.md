@@ -2,7 +2,7 @@
 - previous: Username API / usernames.html
 - next: Developer API / nano-rpc.html
 - edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
-- scripts: https://cdn.nano.to/pay.js?v=2.0.9
+- scripts: //cdn.nano.to/pay.js?v=2.0.9
 - tags: nanopay, guide, payment, ecommerce, saas, content
 -----
 
