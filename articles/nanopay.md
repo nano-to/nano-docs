@@ -2,12 +2,12 @@
 - previous: Username API / usernames.html
 - next: Developer API / nano-rpc.html
 - edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
-- scripts: //cdn.nano.to/pay.js?v=2.0.9
+- scripts: //cdn.nano.to/pay.js?v=2.0.10
 - tags: nanopay, guide, payment, ecommerce, saas, content
 -----
 
 <div align="center" style="display: flex; flex-wrap: wrap; gap: 8px 12px; width: 100%; max-width: 100%; margin: 20px auto 0; box-sizing: border-box;">
-  <img src="https://img.shields.io/badge/Version-2.0.9-blue.svg" alt="Version 2.0.9">
+  <img src="https://img.shields.io/badge/Version-2.0.10-blue.svg" alt="Version 2.0.10">
   <img src="https://img.shields.io/badge/Security-Enhanced-green.svg" alt="Enhanced Security">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License">
   <img src="https://img.shields.io/badge/Updated-January%202025-brightgreen.svg" alt="Updated January 2025">
@@ -15,7 +15,7 @@
 
 NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. Easily add crypto payments to your website.
 
-## 🆕 What's New in 2.0.9 - October 15, 2025
+## 🆕 What's New in 2.0.10 - September 13, 2026
 
 - 🐛 **Enhanced Security** - Comprehensive input validation and XSS protection
 - 🛒 **Advanced Line Items** - Support for quantities, variants, descriptions, and more.
@@ -56,7 +56,7 @@ NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial b
 **With Integrity Hash (Recommended for Production):**
 
 ```html
-<script src="https://cdn.nano.to/pay.js?v=2.0.9" integrity="sha512-g+IG81Wgt7aNRQiO6YUQ00HR+xovbmLxkJcNp1M4/eger3ltFNYss77KfDh0pg8GVOUq9paOT419Mf90suVUow==" crossorigin="anonymous"></script>
+<script src="https://cdn.nano.to/pay.js?v=2.0.10" integrity="sha512-79Uiayl3gRY9VBzLOvCnwlVqzPcP+ZTKIeBwCCFosCdu2ULhIcCfmOoeNi8f6twtFBcTHp1Ij1AY6TEoeSUcnw==" crossorigin="anonymous"></script>
 ```
 
 ### 2. Add a Payment Button
@@ -800,7 +800,7 @@ window.NanoPay.open({
 
 ### Enterprise-Grade Security
 
-NanoPay 2.0.9 includes comprehensive security features to protect your users and your application:
+NanoPay 2.0.10 includes comprehensive security features to protect your users and your application:
 
 #### **XSS Protection**
 - All user content is sanitized before rendering
@@ -881,7 +881,7 @@ A: Set `debug: true` in your payment configuration. Debug buttons will appear be
 A: Ensure your line items array is properly formatted with required fields (name, price) and optional fields (quantity, variants, description, image).
 
 **Q: Enhanced features not available?**
-A: Make sure you're using NanoPay 2.0.9 or later. Check the version with `window.NanoPay.version`.
+A: Make sure you're using NanoPay 2.0.10 or later. Check the version with `window.NanoPay.version`.
 
 ### Debug Mode
 
