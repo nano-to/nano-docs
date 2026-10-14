@@ -14,6 +14,11 @@ wss://ws.nano.to
 ```
 
 ## Basic Usage
+
+Server messages contain UTF-8 JSON, but browser WebSocket clients may receive
+them as either text or binary `Blob` frames. Decode binary frames before
+parsing the JSON.
+
 ```html
 <script>
 const socket = new WebSocket('wss://ws.nano.to');
@@ -27,9 +32,8 @@ socket.onopen = () => {
   socket.send(JSON.stringify(message));
 }
   
-socket.onmessage = (event) => {
-  const blob = event.data;
-  const text = await blob.text();
+socket.onmessage = async (event) => {
+  const text = event.data instanceof Blob ? await event.data.text() : event.data;
   const json = JSON.parse(text);
   console.log("Message received:", json);
 };
