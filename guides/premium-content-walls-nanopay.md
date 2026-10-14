@@ -390,7 +390,7 @@ Alex's content platform now generates consistent revenue from premium content. T
 ## Resources
 
 - [NanoPay.js Documentation](/nanopay.html)
-- [Content Wall Examples](/nanopay.html#premium-content-wall)
+- [Content Wall Examples](/nanopay.html#premium_content_wall)
 - [Nano Wallet Setup](/wallet.html)
 
 ---

@@ -1,123 +1,78 @@
-- title: Username Integration
-- date: 04-12-2024
-- tags: Guide
-- image: images/setup-node/hero.jpeg
+- title: Nano Username Integration API
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Integrate Nano.to username availability, hosted lease checkout, alias resolution, and username metadata into an application.
+- tags: Guide, Usernames, API
 - author: @nano2bot
-- video: true
+- previous: Nano Usernames / usernames.html
+- next: NanoPay.js / nanopay.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/username-advanced-api.md
 -----
 
-Nano.to Usernames can be registered in-app from other applications. This makes it easy to integrate into other projects. Common use case are offering a crypto 'search and pay' feature in websites, and even in-game currency with Nano.
+Use Nano.to usernames to let users search for a readable alias instead of pasting a long Nano address. Username registration is a paid registry flow; your application should show the current lease plans and wait for confirmed payment before treating a name as owned.
 
-## Base URL
+## Check availability and get lease plans
 
-You can use this single endpoint to check for valid usernames. It's adviced to throttle request to at most, 1 per second. 
+Call the Nano.to RPC with `get_name` and the desired username:
 
-```
-https://nano.to/lease/:username
-```
-
-```js
-// npm install axios
-
-const axios = require('axios')
-
-axios.get('https://nano.to/lease/fosse2').then((res) => {
-	console.log(res.data)
-})
+```bash
+curl -X POST https://rpc.nano.to \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"get_name","name":"NanoBull"}'
 ```
 
-```js
+The legacy registry response can include availability, a hosted `checkout`, and one or more `plans` with the amount, receiving address, lease duration, and checkout ID. Treat the response as a quote that can expire.
+
+## Let the customer pay
+
+You can redirect to the hosted checkout returned by the registry, or render the current plan list in your own UI. Display the exact amount and Nano address from the selected plan. Do not calculate the payment amount from a cached exchange rate.
+
+Wait for the plan's returned check state or the registry confirmation before showing the username as active. A customer redirect alone is not proof of payment.
+
+## Resolve after registration
+
+Use the public username list or RPC account resolution after confirmation:
+
+```bash
+curl -X POST https://rpc.nano.to \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"account_info","account":"@NanoBull"}'
+```
+
+For a directory response:
+
+```bash
+curl -X POST https://rpc.nano.to \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"known"}'
+```
+
+Cache public names briefly, but resolve the name again before creating a long-lived payment or payout record. Persist both the display username and the resolved address used for that transaction.
+
+## User profile updates
+
+Authorized registry clients can use `update_name` for supported profile metadata such as title, address, social links, location, donation address, and other documented fields:
+
+```json
 {
-	"available": true,
-	"username": "fosse2",
-	"premium": false,
-	"checkout": "https://nano.to/checkout/[HOSTED_CHECKOUT_ID]",
-	"plans": [
-		{
-			"name": "1 Day",
-			"amount": "0.4153219",
-			"address": "[NANO.TO ADDRESS]",
-			"rate": 2.41,
-			"price": 1,
-			"value": "2.41",
-			"amount_raw": "[RAW_AMOUNT]",
-			"href": "nano:[NANO.TO ADDRESS]?amount=[RAW_AMOUNT]",
-			"qrcode": "[QRCODE_URI]",
-			"expires": "April 11, 2022 10:02 PM",
-			"expires_unix": 1649714537,
-			"id": "[CHECKOUT_ID]",
-			"check_url": "https://nano.to/[NANO.TO ADDRESS]/history/0.4153219?check=[CHECKOUT_ID]"
-		},
-		// {...}
-	]
+  "action": "update_name",
+  "username": "NanoBull",
+  "changes": {
+    "title": "NanoBull Payments",
+    "address": "nano_1youraddress..."
+  }
 }
 ```
 
-There's a lot to unpack. Essentially, use ```checkout``` if don't want to provide your own UI. Use ```plans``` to provide your own 'Dropdown' select UI. Every object inside ```plans``` is a unique Checkout. Each object brings a ```check_url``` which you can GET to check if payment went through.
+Only send fields documented by the live service. Do not store secrets in public username metadata.
 
-> We recommended you provide a 'Loading' UI, while the person waits. Check the ```check_url``` immediately, and then every 5 seconds, if first time is not successful. In most cases the payment is confirmed immediately.
+## Security and reliability
 
-**Name is alreaddy taken, or not available:**
+- Validate the requested name before displaying it as available.
+- Treat lease plans and checkout IDs as short-lived payment state.
+- Verify confirmed payment against the selected plan and destination.
+- Do not issue a username twice after a timeout; check the original plan first.
+- Resolve aliases server-side before validating or persisting Checkout addresses.
+- Preserve the complete `{ action: 'get_alias', alias, address, amount, link }` shape for legacy alias mutations.
 
-```
-{
-	"available": false,
-	"status": "leased"
-}
-```
-
-## Send Funds & Lease Username
-
-If you're reading these docs, we assume you have your own means of programmatically sending funds to the provided address. Once you've done that use the ```check_url``` in the response to check if the payment was successful or not.
-
-```js
-// npm install axios
-
-const axios = require('axios')
-
-axios.get('https://nano.to/[NANO.TO ADDRESS]/history/0.4153219?check=[CHECKOUT_ID]').then((res) => {
-	console.log(res.data)
-})
-```
-
-```js
-{ 
-	"id": "6dd1f4o",
-	"completed": true, 
-	"hash": "[BLOCK_HASH]",
-	"success_url": "https://nano.to/hash/[BLOCK_HASH]"
-}
-```
-
-## Available @ /Known API
-
-After a successful purchase, your Username will be immediately available throughout Nano.to.
-
-```js
-// npm install axios
-
-const axios = require('axios')
-
-axios.get('https://nano.to/known').then((res) => {
-	console.log(res.data)
-})
-```
-
-```js
-[
-	{
-		"name": "fosse2",
-		"address": "[YOUR_ADDRESS]",
-		"created": "April 1, 2022",
-		"expires": "April 1, 2024",
-		"created_unix": 1648793880,
-		"expires_unix": 1711952280
-	},
-	// {..}
-]
-```
-
-## Questions or Comments? 
-
-- Email: support@nano.to
-- Twitter: [@nano2dev](https://twitter.com/nano2dev)
+See [Nano Usernames](usernames.html), [Checkout API](checkout.html), and the [live RPC reference](https://rpc.nano.to/docs/rpc).

@@ -1,47 +1,52 @@
 {
-	"site_title": "Blog - Nano.to",
-	"title": "Nano.to Blog",
-	"domain": "docs2.nano.to",
+	"site_title": "Nano.to Developer Documentation",
+	"title": "Nano.to Developer Docs",
+	"domain": "docs.nano.to",
+	"description": "Build with Nano.to: public RPC, wallet SDK, hosted checkout, WebSocket confirmations, proof of work, and developer tools for Nano payments.",
 	"theme": "simple",
 	"source": "./articles",
 	"dest": "./docs",
 	"path": "",
 	"twitter": "@nano2dev",
 	"color": "#3498db",
-	"footer": "<a href='../'>Nano.to Blog</a>",
+	"footer": "<a href='/'>Nano.to Developer Docs</a>",
 	"website": "nano.to",
 	"contact": "support@nano.to",
 	"navigation": [
 		{
 			"title": "Introduction",
 			"menu": [
-				{ "title": "Get Started", "url": "/get-started.html" }
+				{ "title": "Get Started", "url": "/get-started.html" },
+				{ "title": "Nano Faucet", "url": "/faucet.html" }
 			]
 		},
 		{
-			"title": "Public API",
+			"title": "Core APIs",
 			"menu": [
-				{ "title": "Public Node", "url": "/nano-rpc.html" },
+				{ "title": "RPC API", "url": "/nano-rpc.html" },
 				{ "title": "Checkout API", "url": "/checkout.html" },
-				{ "title": "Realtime API", "url": "/websocket.html" },
-                { "title": "Proof of Work", "url": "/pow.html" },
-				{ "title": "Nano Usernames", "url": "/usernames.html" },
-				{ "title": "Nano to Email", "url": "/nano-email.html" }
+				{ "title": "WebSocket API", "url": "/websocket.html" },
+				{ "title": "Proof of Work API", "url": "/pow.html" },
+				{ "title": "x402 Nano Payments", "url": "/x402.html" },
+				{ "title": "Nano Usernames", "url": "/usernames.html" }
 			]
 		},
 		{
-			"title": "Developer SDK",
+			"title": "SDKs & Products",
 			"menu": [
 				{ "title": "NanoPay.js", "url": "/nanopay.html" },
-				{ "title": "@nano/wallet", "url": "/wallet.html" }
+				{ "title": "@nano/wallet", "url": "/wallet.html" },
+				{ "title": "Cloud Wallets", "url": "/cloud-wallet.html" }
 			]
 		},
 		{
 			"title": "Nano Guides",
 			"menu": [
 				{ "title": "Run Nano Node", "url": "/nano-docker.html" },
-				{ "title": "Sell Nano PoW", "url": "/sell-pow.html" },
+				{ "title": "Work Servers", "url": "/sell-pow.html" },
+				{ "title": "Rate Limits", "url": "/rate-limits.html" },
 				{ "title": "Nano RPC Errors", "url": "/rpc-errors.html" },
+				{ "title": "AI Agent Integration", "url": "/ai-agent.html" },
 				{ "title": "All Nano Links", "url": "/nano-projects.html" }
 			]
 		}

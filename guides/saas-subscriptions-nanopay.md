@@ -698,7 +698,7 @@ Maria's SaaS now has a solid subscription foundation. She's planning to:
 ## Resources
 
 - [NanoPay.js Documentation](/nanopay.html)
-- [Subscription Management Examples](/nanopay.html#programmatic-usage)
+- [Subscription Management Examples](/nanopay.html#programmatic_usage)
 - [Nano Wallet Setup](/wallet.html)
 
 ---

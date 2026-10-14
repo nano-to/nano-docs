@@ -1,5 +1,6 @@
 - title: All Nano Links
 - date: 04-12-2024
+- description: A curated directory of Nano ecosystem websites, wallets, developer resources, communities, and projects.
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot
@@ -413,7 +414,7 @@ Learn everything there is to know about Nano!
 Have a great idea? Jump in and start coding. Anyone can join!
 
 - [The Nano Center - Community Driven Projects](https://nanocenter.org/)
-- [Build-off Competition 2020](/build2020)
+- [Nano developer projects](https://nano.org/ecosystem)
 
 ## Nano Main Protocol
 

@@ -1,14 +1,28 @@
 <html class="mac" lang="en-US" dir="ltr">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Nano.to - Public Nano Node</title>
+      <title><%- title %></title>
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="description" content="An open, scalable, online streaming setup. All-in-one toolkit from ingest to adaptive video playback.">
+      <meta name="description" content="<%- description %>">
+      <link rel="canonical" href="https://<%- domain %>/">
       <link rel="icon" type="image/png" href="assets/logo-mascotte.png">
       <meta property="og:type" content="website">
       <meta property="og:locale" content="en">
-      <meta property="og:title" content="Nano.to | All-in-one toolkit from ingest to adaptive video playback">
+      <meta property="og:title" content="<%- title %>">
+      <meta property="og:description" content="<%- description %>">
+      <meta property="og:url" content="https://<%- domain %>/">
       <meta property="og:site_name" content="Nano.to">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<%- title %>">
+      <meta name="twitter:description" content="<%- description %>">
+      <script type="application/ld+json"><%- JSON.stringify({
+         '@context': 'https://schema.org',
+         '@type': 'TechArticle',
+         headline: title,
+         description: description,
+         url: `https://${domain}/`,
+         publisher: { '@type': 'Organization', name: 'Nano.to', url: 'https://nano.to' }
+      }) %></script>
       <script id="check-dark-mode">
          if (localStorage.getItem('dark-mode') || window.matchMedia('(prefers-color-scheme: dark)').matches)
            document.documentElement.classList.add('dark')
@@ -179,7 +193,7 @@
                               <nav data-v-15d0e968="" data-v-84a11e99="" aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu">
                                  <span data-v-15d0e968="" id="main-nav-aria-label" class="visually-hidden"> Main Navigation </span>
                                  
-                                 <a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink" href="../get-started.html" tabindex="0"><span data-v-687a61d0="">Reference</span></a>
+                                  <a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink" href="/get-started.html" tabindex="0"><span data-v-687a61d0="">Get Started</span></a>
                                  <a data-v-687a61d0="" data-v-15d0e968="" class="VPLink link VPNavBarMenuLink" href="https://status.nano.to" target="_blank" tabindex="0"><span data-v-687a61d0="">Status</span></a>
 
                                  <div data-v-ce7cea34="" data-v-15d0e968="" class="VPFlyout VPNavBarMenuGroup">
@@ -237,78 +251,14 @@
             <div class="VPNavScreen" data-v-1e3d9e14="" data-v-a3bfa20d="" id="VPNavScreen">
                 <div class="container" data-v-1e3d9e14="">
                     <nav class="VPNavScreenMenu menu" data-v-1e3d9e14="">
-                        <a class="VPLink link VPNavScreenMenuLink" data-v-5e10110c="" href="/guide/what-is-vitepress">
-                            <span data-v-5e10110c="">
-                                Guide
-                            </span>
-                        </a>
-                        <a class="VPLink link VPNavScreenMenuLink" data-v-5e10110c="" href="/reference/site-config">
-                            <span data-v-5e10110c="">
-                                Reference
-                            </span>
-                        </a>
-                        <div class="VPNavScreenMenuGroup" data-v-1dabfab8="">
-                            <button aria-controls="NavScreenGroup-1.5.0" aria-expanded="false" class="button" data-v-1dabfab8="">
-                                <span class="button-text" data-v-1dabfab8="">
-                                    1.5.0
-                                </span>
-                                <span class="vpi-plus button-icon" data-v-1dabfab8="">
-                                </span>
-                            </button>
-                            <div class="items" data-v-1dabfab8="" id="NavScreenGroup-1.5.0">
-                                <div class="item" data-v-1dabfab8="">
-                                    <a class="VPLink link vp-external-link-icon VPNavScreenMenuGroupLink" data-v-1dabfab8="" data-v-c2543e07="" href="https://github.com/vuejs/vitepress/blob/main/CHANGELOG.md" rel="noreferrer" target="_blank">
-                                        <span data-v-c2543e07="">
-                                            Changelog
-                                        </span>
-                                    </a>
-                                </div>
-                                <div class="item" data-v-1dabfab8="">
-                                    <a class="VPLink link vp-external-link-icon VPNavScreenMenuGroupLink" data-v-1dabfab8="" data-v-c2543e07="" href="https://github.com/vuejs/vitepress/blob/main/.github/contributing.md" rel="noreferrer" target="_blank">
-                                        <span data-v-c2543e07="">
-                                            Contributing
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="VPLink link VPNavScreenMenuLink" href="/get-started.html">Get Started</a>
+                        <a class="VPLink link VPNavScreenMenuLink" href="/faucet.html">Nano Faucet</a>
+                        <a class="VPLink link VPNavScreenMenuLink" href="/nano-rpc.html">RPC API</a>
+                        <a class="VPLink link VPNavScreenMenuLink" href="/checkout.html">Checkout</a>
+                        <a class="VPLink link VPNavScreenMenuLink" href="/websocket.html">WebSocket</a>
+                        <a class="VPLink link VPNavScreenMenuLink" href="/wallet.html">@nano/wallet</a>
+                        <a class="VPLink link VPNavScreenMenuLink" href="https://rpc.nano.to/login">Get an API key</a>
                     </nav>
-                    <div class="VPNavScreenTranslations translations" data-v-1e3d9e14="" data-v-9984abf6="">
-                        <button class="title" data-v-9984abf6="">
-                            <span class="vpi-languages icon lang" data-v-9984abf6="">
-                            </span>
-                            English
-                            <span class="vpi-chevron-down icon chevron" data-v-9984abf6="">
-                            </span>
-                        </button>
-                        <ul class="list" data-v-9984abf6="">
-                            <li class="item" data-v-9984abf6="">
-                                <a class="VPLink link link" data-v-9984abf6="" href="/zh/guide/extending-default-theme">
-                                    简体中文
-                                </a>
-                            </li>
-                            <li class="item" data-v-9984abf6="">
-                                <a class="VPLink link link" data-v-9984abf6="" href="/pt/guide/extending-default-theme">
-                                    Português
-                                </a>
-                            </li>
-                            <li class="item" data-v-9984abf6="">
-                                <a class="VPLink link link" data-v-9984abf6="" href="/ru/guide/extending-default-theme">
-                                    Русский
-                                </a>
-                            </li>
-                            <li class="item" data-v-9984abf6="">
-                                <a class="VPLink link link" data-v-9984abf6="" href="/es/guide/extending-default-theme">
-                                    Español
-                                </a>
-                            </li>
-                            <li class="item" data-v-9984abf6="">
-                                <a class="VPLink link link" data-v-9984abf6="" href="/ko/guide/extending-default-theme">
-                                    한국어
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="VPNavScreenAppearance appearance" data-v-0a6f6206="" data-v-1e3d9e14="">
                         <p class="text" data-v-0a6f6206="">
                             Appearance
@@ -325,7 +275,7 @@
                         </button>
                     </div>
                     <div class="VPSocialLinks VPNavScreenSocialLinks social-links" data-v-1e3d9e14="" data-v-c0ed24e6="">
-                        <a aria-label="github" class="VPSocialLink no-icon" data-v-0ec81c6a="" data-v-c0ed24e6="" href="https://github.com/vuejs/vitepress" rel="noopener" target="_blank">
+                         <a aria-label="github" class="VPSocialLink no-icon" data-v-0ec81c6a="" data-v-c0ed24e6="" href="https://github.com/nano-to/nano-docs" rel="noopener" target="_blank">
                             <span class="vpi-social-github">
                             </span>
                         </a>
@@ -369,11 +319,11 @@
                      <div data-v-89d2fc22="" class="container">
                         <div data-v-89d2fc22="" class="main">
                            <h1 data-v-89d2fc22="" class="name"><span data-v-89d2fc22="" class="clip">Nano.to</span></h1>
-                           <p data-v-89d2fc22="" class="text">Enterprise-Ready Public Nano Node</p>
-                           <p data-v-89d2fc22="" class="tagline">Build blockchain apps in record time.</p>
+                            <p data-v-89d2fc22="" class="text">Nano developer infrastructure</p>
+                            <p data-v-89d2fc22="" class="tagline">Build wallets, payment flows, and real-time Nano applications with clear APIs and practical guides.</p>
                            <div data-v-89d2fc22="" class="actions">
-                              <div data-v-89d2fc22="" class="action"><a data-v-a6f37409="" data-v-89d2fc22="" class="VPButton medium brand" href="../get-started.html">Get Started</a></div>
-                              <div data-v-89d2fc22="" class="action"><a data-v-a6f37409="" data-v-89d2fc22="" class="VPButton medium alt" href="../guides.html" target="_blank" rel="noreferrer">How-to Guides</a></div>
+                               <div data-v-89d2fc22="" class="action"><a data-v-a6f37409="" data-v-89d2fc22="" class="VPButton medium brand" href="/get-started.html">Get Started</a></div>
+                               <div data-v-89d2fc22="" class="action"><a data-v-a6f37409="" data-v-89d2fc22="" class="VPButton medium alt" href="https://rpc.nano.to/login">Get a Free API Key</a></div>
                            </div>
                         </div>
                         <div data-v-89d2fc22="" class="image">
@@ -398,18 +348,18 @@
                         <div data-v-d6f3b7e5="" class="items">
                            <div data-v-d6f3b7e5="" class="item grid-4">
                               <div data-v-e8895942="" data-v-d6f3b7e5="" class="VPLink no-icon VPFeature">
-                                 <a href="https://status.nano.to" target="_blank">                                    
+                                  <a href="/faucet.html">
                                  <article data-v-e8895942="" class="box">
                                     <img data-v-0c71c7f1="" class="VPImage" src="assets/globe.svg" width="50" height="48" alt="">
-                                    <h2 data-v-e8895942="" class="title">99.99% Uptime</h2>
-                                    <p data-v-e8895942="" class="details">Experience unparalleled uptime with our resilient infrastructure.</p>
+                                     <h2 data-v-e8895942="" class="title">Nano Faucet</h2>
+                                     <p data-v-e8895942="" class="details">Get a small amount of real NANO for wallet and payment testing.</p>
                                  </article>
                                  </a>
                               </div>
                            </div>
                            <div data-v-d6f3b7e5="" class="item grid-4">
                               <div data-v-e8895942="" data-v-d6f3b7e5="" class="VPLink no-icon VPFeature">
-                                 <a href="../wallet.html">                                    
+                                  <a href="/wallet.html">
                                  <article data-v-e8895942="" class="box">
                                     <img data-v-0c71c7f1="" class="VPImage" src="assets/lock.svg" width="46" height="48" alt="">
                                     <h2 data-v-e8895942="" class="title">Non-Custodial SDK</h2>
@@ -420,22 +370,22 @@
                            </div>
                            <div data-v-d6f3b7e5="" class="item grid-4">
                               <div data-v-e8895942="" data-v-d6f3b7e5="" class="VPLink no-icon VPFeature">
-                                 <a href="../pow.html">
+                                  <a href="/checkout.html">
                                     <article data-v-e8895942="" class="box">
                                        <img data-v-0c71c7f1="" class="VPImage" src="assets/gpu.svg" width="48" height="48" alt="">
-                                       <h2 data-v-e8895942="" class="title">PoW as a Service</h2>
-                                       <p data-v-e8895942="" class="details">Add GPU powered PoW to any Nano Node easily and securely.</p>
+                                        <h2 data-v-e8895942="" class="title">Hosted Checkout</h2>
+                                        <p data-v-e8895942="" class="details">Create payment links, templates, and webhooks for Nano payments.</p>
                                     </article>
                                  </a>
                               </div>
                            </div>
                            <div data-v-d6f3b7e5="" class="item grid-4">
                               <div data-v-e8895942="" data-v-d6f3b7e5="" class="VPLink no-icon VPFeature">
-                                 <a href="mailto:support@nano.to">
+                                  <a href="/websocket.html">
                                  <article data-v-e8895942="" class="box">
                                     <img data-v-0c71c7f1="" class="VPImage" src="assets/support.svg" width="50" height="48" alt="">
-                                    <h2 data-v-e8895942="" class="title">Dedicated Support</h2>
-                                    <p data-v-e8895942="" class="details">Expert assistance from our team for first-time setup and ongoing.</p>
+                                     <h2 data-v-e8895942="" class="title">WebSocket Confirmations</h2>
+                                     <p data-v-e8895942="" class="details">Stream confirmed transactions to live dashboards and payment flows.</p>
                                     <!--v-if-->
                                  </article>
                                  </a>
@@ -460,8 +410,8 @@
          </div>
       </div>
 
-      <script src="../js/search.js"></script>
-      <script src="../js/script.js"></script>
+       <script src="js/search.js"></script>
+       <script src="js/script.js"></script>
 
    </body>
 </html>

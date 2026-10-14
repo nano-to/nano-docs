@@ -1,4 +1,4 @@
-- title: Nano.to Cloud
+- title: Legacy Nano.to Cloud API
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
@@ -7,7 +7,7 @@
 - hidden: true
 -----
 
-Use Nano at scale. One simple API.
+This page describes an older Nano.to Cloud API and is retained for URL compatibility only. New integrations should use the current [RPC API](nano-rpc.html), [Cloud Wallets](cloud-wallet.html), [Checkout](checkout.html), or [@nano/wallet SDK](wallet.html).
 
 > First Nano Bank is **not** a "Crypto Ramp". This API only facilitates using the Nano blockchain.
 
@@ -15,9 +15,9 @@ Use Nano at scale. One simple API.
 
 Let's say you wanted to add Nano as an in-game currency to a game you're building. You have two choices. Setup your own Nano Node, and code all Wallet logic. Or use First Nano Bank's HTTPS API, and have it setup in your game, in under 5 minutes. 
 
-> Prefer non-custodial? We encourage you to [run your own Node](/setup-node). 
+> Prefer non-custodial? Use the [@nano/wallet SDK](wallet.html) or run a current Nano node with [Nano Docker](nano-docker.html).
 
-> Already have a Node? Need faster proof of work? We offer a standalone [PoW API](/pow-api).
+> Need proof of work? Use the current [PoW API](pow.html) or [Work Servers](sell-pow.html).
 
 ### Base URL
 

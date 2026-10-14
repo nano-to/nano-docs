@@ -804,7 +804,7 @@ David's marketplace now processes hundreds of dynamic payments daily. He's plann
 
 - [NanoPay.js Documentation](/nanopay.html)
 - [Nano RPC API](/nano-rpc.html)
-- [Backend Integration Examples](/nanopay.html#programmatic-usage)
+- [Backend Integration Examples](/nanopay.html#programmatic_usage)
 
 ---
 

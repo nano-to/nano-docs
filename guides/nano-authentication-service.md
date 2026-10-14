@@ -857,7 +857,7 @@ Lisa's authentication system now handles thousands of authentications monthly. S
 
 - [NanoPay.js Documentation](/nanopay.html)
 - [Nano RPC API](/nano-rpc.html)
-- [Authentication Best Practices](/nanopay.html#security-features)
+- [Authentication Best Practices](/nanopay.html#security_features)
 
 ---
 

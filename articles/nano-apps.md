@@ -1,5 +1,6 @@
 - title: Third-Party Apps
 - date: 04-12-2024
+- description: Community Nano applications and projects that integrate with Nano.to usernames or Nano payments.
 - tags: Guide
 - image: images/setup-node/hero.jpeg
 - author: @nano2bot

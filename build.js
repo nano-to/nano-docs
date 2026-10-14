@@ -36,6 +36,24 @@ const cover = config.cover || '../img/cover.png'
 const favicon = config.favicon || '../img/favicon.png'
 const verified = config.verified
 
+function parseMetadata(lines, target) {
+	lines
+		.split('\n')
+		.filter(line => line.trim())
+		.forEach(line => {
+			const separator = line.indexOf(':')
+			if (separator === -1) return
+			const key = line.slice(0, separator).replace('- ', '').trim()
+			const value = line.slice(separator + 1).trim()
+			if (key) target[key] = value
+		})
+}
+
+function parseDate(value) {
+	const parsed = value ? moment(value) : moment(0)
+	return parsed.isValid() ? parsed : moment(0)
+}
+
 var articles = []
 var guides = []
 var exlcude = ['.DS_Store']
@@ -61,12 +79,9 @@ fs.readdirSync(source).forEach(file => {
 	if (content.includes('-----')) parse = content.split('-----')
 	var article = {}
 	if (!parse) return
-	parse[0]
-		.split('\n')
-		.filter(a => a)
-		.map(line => article[line.split(':')[0].replace('- ', '')] = line.split(':')[1].trim()) // old 'reliable
+	parseMetadata(parse[0], article)
 	var title = article.title
-	var date = moment(article.date)
+	var date = parseDate(article.date || article.updated)
 	var body = parse[1].replace('\n', '')
 	var clean = domain.replace('http://', '').replace('https://', '').split('/').join('')
 	article.id = hash(title)
@@ -83,11 +98,13 @@ fs.readdirSync(source).forEach(file => {
 	if (article.price) article.html = 'PREMIUM-ARTICLE-A' + Buffer.from(article.html).toString('base64') + '+HRT'
 	article.url = `https://${clean}${blog_path ? '/' + blog_path : '' }/${slug}.html` // who needs fancy req objects.
 	article.preview = article.preview || article.snippet
+	article.description = article.description || article.preview || `${article.title} documentation for Nano.to developers.`
 	if (article.goal) article.html = article.html
 		.split('[funding]')
 		.join(`<div class="goal" data-title="${article.goal.split('|')[1]}" data-address="${article.address ? article.address : nano_address}" data-amount="${article.goal.split('|')[0]}"></div>`)
 		.split('[goal]')
 		.join(`<div class="goal" data-title="${article.goal.split('|')[1]}" data-address="${article.address ? article.address : nano_address}" data-amount="${article.goal.split('|')[0]}"></div>`)
+	article.html = article.html.replace(/<p>(<div class="goal"[^>]*><\/div>)<\/p>/g, '$1')
 	articles.push(article)
 	articles = _.orderBy(articles, 'timestamp').reverse()
 })
@@ -104,12 +121,9 @@ if (fs.existsSync('./guides')) {
 		if (content.includes('-----')) parse = content.split('-----')
 		var guide = {}
 		if (!parse) return
-		parse[0]
-			.split('\n')
-			.filter(a => a)
-			.map(line => guide[line.split(':')[0].replace('- ', '')] = line.split(':')[1].trim()) // old 'reliable
+		parseMetadata(parse[0], guide)
 		var title = guide.title
-		var date = moment(guide.date)
+		var date = parseDate(guide.date || guide.updated)
 		var body = parse[1].replace('\n', '')
 		var clean = domain.replace('http://', '').replace('https://', '').split('/').join('')
 		guide.id = hash(title)
@@ -126,11 +140,13 @@ if (fs.existsSync('./guides')) {
 		if (guide.price) guide.html = 'PREMIUM-ARTICLE-A' + Buffer.from(guide.html).toString('base64') + '+HRT'
 		guide.url = `https://${clean}${blog_path ? '/' + blog_path : '' }/${slug}.html` // who needs fancy req objects.
 		guide.preview = guide.preview || guide.snippet
-		if (guide.goal) guide.html = guide.html
-			.split('[funding]')
-			.join(`<div class="goal" data-title="${guide.goal.split('|')[1]}" data-address="${guide.address ? guide.address : nano_address}" data-amount="${guide.goal.split('|')[0]}"></div>`)
-			.split('[goal]')
-			.join(`<div class="goal" data-title="${guide.goal.split('|')[1]}" data-address="${guide.address ? guide.address : nano_address}" data-amount="${guide.goal.split('|')[0]}"></div>`)
+		guide.description = guide.description || guide.preview || `${guide.title} guide for Nano.to developers.`
+	if (guide.goal) guide.html = guide.html
+		.split('[funding]')
+		.join(`<div class="goal" data-title="${guide.goal.split('|')[1]}" data-address="${guide.address ? guide.address : nano_address}" data-amount="${guide.goal.split('|')[0]}"></div>`)
+		.split('[goal]')
+		.join(`<div class="goal" data-title="${guide.goal.split('|')[1]}" data-address="${guide.address ? guide.address : nano_address}" data-amount="${guide.goal.split('|')[0]}"></div>`)
+	guide.html = guide.html.replace(/<p>(<div class="goal"[^>]*><\/div>)<\/p>/g, '$1')
 		guides.push(guide)
 		guides = _.orderBy(guides, 'timestamp').reverse()
 	})
@@ -161,7 +177,7 @@ copyFolderSync(`./videos`, `${dest}/videos`)
 
 // homepage
 var index_html = fs.readFileSync(`./themes/${theme}/index.html`, { encoding: "utf8" })
-fs.writeFileSync(`${dest}/index.html`, ejs.render(index_html, { footer, footer, nav, color, articles: articles.filter(a => !a.hidden), cover, favicon, title, site_title, metrics, twitter, github, website, iconSize, verified }), { encoding: "utf8" } )
+fs.writeFileSync(`${dest}/index.html`, ejs.render(index_html, { footer, nav, color, articles: articles.filter(a => !a.hidden), cover, favicon, title, site_title, description, domain, metrics, twitter, github, website, iconSize, verified }), { encoding: "utf8" } )
 
 // json_api
 if (json_api) {
@@ -190,20 +206,13 @@ if (rss_api) {
 try {
 	var sitemap = fs.readFileSync(`./themes/${theme}/sitemap.xml`, { encoding: "utf8" })
 	var parsed = domain.replace('https://', '').split('/').join('').replace('http://', '')
-	var pages = [ { url: 'https://' + parsed + '/', timestamp: moment().format('YYYY-MM-DD') } ]
-	articles.filter(a => !a.hidden).map(a => pages.push({ url: 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/' + a.slug, timestamp: moment(a.date).format('YYYY-MM-DD') }))
-	guides.filter(g => !g.hidden).map(g => pages.push({ url: 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/' + g.slug, timestamp: moment(g.date).format('YYYY-MM-DD') }))
-	var authors = [...articles.filter(a => a.author && !a.hidden), ...guides.filter(g => g.author && !g.hidden)].map(a => a.author)
-	authors.filter(a => !a.hidden).map(a => {
-		if (!pages.find(b => b.url === 'https://' + parsed + '/' + a)) pages.push({ url: 'https://' + parsed + '/' + a, timestamp: moment(a.date).format('YYYY-MM-DD') })
-	})
-	var tags = []
-	var all_content_for_tags = [...articles.filter(a => !a.hidden), ...guides.filter(g => !g.hidden)]
-	all_content_for_tags.filter(a => a.tags).map(a => a.tags.split(', ').map(b => tags.push({ name: b, articles: all_content_for_tags.filter(c => c.tags && c.tags.includes(b)) })))
-	tags.map(_tag => {
-		var url = 'https://' + parsed + `${blog_path ? '/' + blog_path : '' }` + '/tag/' + _tag.name.toLowerCase().split(' ').join('-')
-		if (!pages.find(a => a.url === url)) pages.push({ url, timestamp: moment(_tag.articles[0] ? _tag.articles[0].date : '').format('YYYY-MM-DD') })
-	})
+	var all_content = [...articles.filter(a => !a.hidden), ...guides.filter(g => !g.hidden)]
+	var newest = all_content.reduce((latest, item) => Math.max(latest, item.timestamp || 0), 0)
+	var pages = [ { url: 'https://' + parsed + '/', timestamp: newest ? moment.unix(newest).format('YYYY-MM-DD') : null } ]
+	all_content.map(item => pages.push({
+		url: item.url,
+		timestamp: item.timestamp ? moment.unix(item.timestamp).format('YYYY-MM-DD') : null
+	}))
 	fs.writeFileSync(`${dest}/sitemap.xml`, ejs.render(sitemap, { pages }), { encoding: "utf8" } )
 } catch(err) {
 	console.error(err)
@@ -219,7 +228,7 @@ try {
 
 // nano.txt (?)
 try {
-  if (theme && !fs.existsSync(`./themes/${theme}/nano.txt`)) {
+  if (theme && fs.existsSync(`./themes/${theme}/nano.txt`)) {
 	fs.copyFile(`./themes/${theme}/nano.txt`, `./${dest}/nano.txt`)
   }
 } catch(err) {}
@@ -267,7 +276,7 @@ for (var article of articles) {
 	if (article.tags) {
 		var articleTags = article.tags.split(', ').map(tag => tag.trim())
 		// Look for guides in both articles and guides arrays
-		var allGuides = [...articles.filter(a => a.tags && a.tags.includes('guide')), ...guides]
+		var allGuides = [...articles.filter(a => a.tags && a.tags.toLowerCase().includes('guide')), ...guides]
 		relatedGuides = allGuides.filter(a => 
 			a.slug !== article.slug && 
 			a.tags && 
@@ -282,8 +291,9 @@ for (var article of articles) {
 		site_title, 
 		articles : articles.filter(a => a.slug !== article.slug), 
 		relatedGuides,
-		article, 
+		article,
 		domain, 
+		description,
 		cover, 
 		favicon, 
 		title, 
@@ -304,7 +314,7 @@ for (var guide of guides) {
 	if (guide.tags) {
 		var guideTags = guide.tags.split(', ').map(tag => tag.trim())
 		// Look for guides in both articles and guides arrays
-		var allGuides = [...articles.filter(a => a.tags && a.tags.includes('guide')), ...guides]
+		var allGuides = [...articles.filter(a => a.tags && a.tags.toLowerCase().includes('guide')), ...guides]
 		relatedGuides = allGuides.filter(a => 
 			a.slug !== guide.slug && 
 			a.tags && 
@@ -319,8 +329,9 @@ for (var guide of guides) {
 		site_title, 
 		articles : articles.filter(a => a.slug !== guide.slug), 
 		relatedGuides,
-		article: guide, 
+		article: guide,
 		domain, 
+		description,
 		cover, 
 		favicon, 
 		title, 

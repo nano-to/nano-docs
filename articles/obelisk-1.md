@@ -1,4 +1,5 @@
 - title: US Obelisk 1
+- hidden: true
 -----
 
 A proper article is coming. For now here are some basics:

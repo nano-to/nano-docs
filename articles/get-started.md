@@ -1,157 +1,113 @@
-- title: Welcome to Nano
+- title: Get Started with Nano.to Developer Tools
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Choose the right Nano.to integration for your project: RPC, wallet SDK, Checkout, WebSocket confirmations, Faucet, Cloud Wallets, or proof of work.
+- tags: Guide, Introduction
+- author: @nano2bot
 - previous: Home / index.html
-- next: Developer API / nano-rpc.html
-edit: //github.com/nano-to/nano-docs/blob/master/articles/get-started.md
+- next: Nano Faucet / faucet.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/get-started.md
 -----
 
-Welcome to **Nano.to** — your gateway to instant, feeless payments powered by the Nano blockchain.
+Nano.to provides developer infrastructure for Nano applications: an authenticated RPC API, the `@nano/wallet` SDK, hosted Checkout, WebSocket confirmations, proof of work, a Faucet for testing, and optional Cloud Wallets.
 
-Nano.to is a public node, non-custodial checkout API & alias service that makes it easy for anyone to accept Nano payments. Whether you're new to cryptocurrency, an experienced developer, or building enterprise solutions, we provide the tools you need to get started.
-
-**We're on a mission to accelerate the use of Nano around the world.**
-
-*Launched September 15th, 2021.*
-
-<style>
-  .welcome-card {
-    display: block;
-    border: 1px solid var(--vp-c-divider);
-    border-radius: 8px;
-    padding: 16px 20px;
-    text-decoration: none;
-    color: var(--vp-c-text-1);
-    transition: border-color 0.25s;
-    margin-bottom: 12px;
-  }
-  .welcome-card:hover {
-    border-color: var(--vp-c-brand-1);
-    color: var(--vp-c-text-1);
-    text-decoration: none;
-  }
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    margin: 1.5rem 0;
-  }
-  @media (min-width: 640px) {
-    .card-container {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-  }
-  .welcome-card-title {
-    display: block;
-    font-weight: 500;
-    line-height: 1.5;
-    font-size: 15px;
-  }
-</style>
-
----
-
-## **Get Started Based on Your Needs**
-
-### **New to Nano**
-
-Just getting started with cryptocurrency? We've made it simple to accept your first Nano payment and understand how instant, feeless payments work.
-
-<div class="card-container">
-  <a href="/building-ecommerce-nanopay.html" class="welcome-card">
-    <span class="welcome-card-title">Build Your First Store</span>
-  </a>
-  <a href="/checkout.html" class="welcome-card">
-    <span class="welcome-card-title">Create Payment Links</span>
-  </a>
-  <a href="/usernames.html" class="welcome-card">
-    <span class="welcome-card-title">Get a Username</span>
-  </a>
+<div class="doc-cta">
+  <a class="doc-cta-primary" href="https://rpc.nano.to/login">Create a free API account</a>
+  <a class="doc-cta-secondary" href="faucet.html">Get NANO for testing</a>
 </div>
 
-**What you'll learn:**
-- How to create your first Nano wallet
-- Accepting payments in minutes
-- Building simple e-commerce stores
-- Understanding Nano's zero-fee advantage
+## Choose your starting point
 
----
+### I need NANO for testing
 
-### **Seasoned Developer**
+Create a free account, verify your email, and use the [Nano Faucet](faucet.html) to claim the current introductory amount. The faucet is intended for development and testing, with eligibility checked across your account, destination address, network, and recent faucet activity.
 
-Ready to integrate Nano payments into your applications? Access powerful APIs, backend integration guides, and advanced features built for production environments.
+### I am building a wallet or Nano app
 
-<div class="card-container">
-  <a href="/backend-integration-nanopay.html" class="welcome-card">
-    <span class="welcome-card-title">Backend Integration</span>
-  </a>
-  <a href="/nano-rpc.html" class="welcome-card">
-    <span class="welcome-card-title">RPC API Docs</span>
-  </a>
-  <a href="/developer-api.html" class="welcome-card">
-    <span class="welcome-card-title">Developer API</span>
-  </a>
-  <a href="/websocket.html" class="welcome-card">
-    <span class="welcome-card-title">WebSocket API</span>
-  </a>
-</div>
+Start with the [@nano/wallet SDK](wallet.html). It can generate wallets locally, receive pending blocks, send Nano, create Checkout links, and call RPC from Node.js, the browser, or the CLI.
 
-**Developer resources:**
-- Complete backend integration examples
-- RESTful APIs and WebSocket connections
-- Code examples in multiple languages
-- Production-ready implementations
+### I need a public API
 
----
+Read the [Nano.to RPC API reference](nano-rpc.html). Basic reads can work without authentication; an API key provides account-scoped quotas, higher limits, PoW access, and product access where enabled.
 
-### **Businesses & Organizations**
+### I accept payments
 
-Scale your payment infrastructure with enterprise-grade solutions. Migrate from traditional payment processors, eliminate fees, and deploy at scale.
+Use [Checkout](checkout.html) to create hosted payment links, templates, unique payment flows, and webhooks. Fulfill orders only after verifying the checkout and confirmed block data.
 
-<div class="card-container">
-  <a href="/stripe-to-nano-migration.html" class="welcome-card">
-    <span class="welcome-card-title">Migrate from Stripe</span>
-  </a>
-  <a href="/nano-authentication-service.html" class="welcome-card">
-    <span class="welcome-card-title">Enterprise Auth</span>
-  </a>
-  <a href="/saas-subscriptions-nanopay.html" class="welcome-card">
-    <span class="welcome-card-title">SaaS Solutions</span>
-  </a>
-  <a href="/exchange-work-generate-integration.html" class="welcome-card">
-    <span class="welcome-card-title">Exchange Integration</span>
-  </a>
-</div>
+### I need live payment updates
 
-**Enterprise solutions:**
-- Complete payment processor migrations
-- Scalable authentication systems
-- Recurring billing and subscriptions
-- High-volume transaction processing
+Use the [WebSocket API](websocket.html) at `wss://ws.nano.to` to subscribe to confirmed Nano transactions and reconnect safely when the connection closes.
 
----
+### I need proof of work
 
-## **Quick Links**
+Use the [Proof of Work API](pow.html) for `work_generate` and `work_validate`, or run a GPU-backed [Work Server](sell-pow.html) for routed requests.
 
-- [Public Nano Node](/nano-rpc.html)
-- [Checkout API](/checkout.html)
-- [Username API](/usernames.html)
-- [PoW as a Service](/pow.html)
-- [Nano.to Faucet](/faucet.html)
-- [Setup Nano Node](/setup-node.html)
-- [All Guides](/guides.html)
+### I need managed wallet records
 
-## Nano Wallets
+Use [Cloud Wallets](cloud-wallet.html) for encrypted wallet records, metadata filters, and backend automation. Access may be invite-only or feature-gated for some accounts.
 
-Before you can use Nano.to, you need to be able to send and receive Nano. The best wallet, hands down, is called [Natrium](https://natrium.io/). Wallets are different from Exchanges because they are anonymous. Anyone can have a Nano wallet in under 30 seconds.
+## First API request
 
-Below are links to different app stores.
+The public RPC endpoint is:
 
-- [Apple App Store](https://itunes.apple.com/us/app/natrium/id1451425707?ls=1&mt=8)
-- [Google Play Store](https://play.google.com/store/apps/details?id=co.banano.natriumwallet)
-- [In-Browser Wallet](https://nault.cc/)
-- [More Wallets](https://hub.nano.org/i/wallets/2)
+```text
+https://rpc.nano.to
+```
 
-## Nano.to Support
+Test it with a read-only request:
 
-- Email: support@nano.to
-- Twitter: [@nano2dev](https://twitter.com/nano2dev)
-- BluSky: [@nano-to](https://bsky.app/profile/nano-to.bsky.social)
+```bash
+curl -X POST https://rpc.nano.to \
+  -H 'Content-Type: application/json' \
+  -d '{"action":"version"}'
+```
+
+For account-scoped requests, send the API key as a bearer token:
+
+```bash
+curl -X POST https://rpc.nano.to \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -d '{"action":"account_info","account":"nano_1youraddress..."}'
+```
+
+Keep API keys in environment variables or a secret manager. Do not place a private key, seed, or server API key in a public frontend bundle.
+
+## Suggested build paths
+
+### Wallet and faucet
+
+1. Install `@nano/wallet`.
+2. Generate a wallet locally.
+3. Claim NANO for testing from the Faucet.
+4. Receive pending funds.
+5. Query balance and account history.
+
+### Merchant checkout
+
+1. Create an API account and key.
+2. Create a checkout with your receiving address and order metadata.
+3. Redirect the customer to the returned `browser` URL.
+4. Verify the checkout and confirmed block or validate the signed webhook.
+5. Fulfill once, using your own idempotency record.
+
+### Live application
+
+1. Use RPC for reads and block processing.
+2. Subscribe to WebSocket confirmations.
+3. Reconnect with backoff and query state after reconnecting.
+4. Add bounded retries for safe reads and respect `429` responses.
+
+## Security checklist
+
+- Keep seeds, private keys, API keys, webhook secrets, and wallet passwords server-side.
+- Validate Nano addresses and amounts before signing or fulfilling.
+- Treat a redirect as navigation, not payment proof.
+- Verify checkout IDs, destinations, amounts, block hashes, and confirmations.
+- Record webhook event IDs and make fulfillment idempotent.
+- Do not blindly retry non-idempotent `process`, payment, or claim requests.
+- Read the [rate limits guide](rate-limits.html) before selecting concurrency.
+
+## Support
+
+For product or account issues, [contact Nano.to support](https://rpc.nano.to/account/support) or email [support@nano.to](mailto:support@nano.to). Never send support a seed, private key, or API key.

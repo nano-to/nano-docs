@@ -1318,7 +1318,7 @@ Jennifer's platform now processes all payments through Nano. She's planning to:
 
 - [NanoPay.js Documentation](/nanopay.html)
 - [Nano RPC Checkout API](/checkout.html)
-- [Migration Best Practices](/nanopay.html#security-features)
+- [Migration Best Practices](/nanopay.html#security_features)
 
 ---
 

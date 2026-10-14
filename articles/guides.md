@@ -1,5 +1,7 @@
 - title: How-To Guides
 - date: 01-15-2025
+- description: Archived NanoPay.js implementation guides. Use the current Checkout API, wallet SDK, and RPC documentation for new integrations.
+- hidden: true
 - author: @nano2dev
 -----
 

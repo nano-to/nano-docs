@@ -1,124 +1,99 @@
-- title: Sell Nano Proof of Work
-- date: 04-12-2024
-- tags: Guide
-- image: images/setup-node/hero.jpeg
+- title: Nano Work Servers: Earn NANO with GPU Proof of Work
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Connect a GPU-backed Nano work server to Nano.to. Learn the installer flow, WORK_API_KEY setup, fixed payout, routing bid, health checks, and access requirements.
+- tags: Guide, Work Servers, PoW
 - author: @nano2bot
-- video: true
+- previous: Proof of Work API / pow.html
+- next: Cloud Wallets / cloud-wallet.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/sell-pow.md
 -----
 
-## Nano PoW
+Nano does not use mining rewards. It uses lightweight proof of work to rate-limit spam. A Work Server earns NANO by generating valid work for Nano.to requests and returning the result quickly.
 
-Nano currency uses mathemetical proof of works as a rate-limiter to prevent spam. You can't mine Nano, but you can sell GPU capacity to Nano.to in exchange for Nano.
+<div class="doc-cta">
+  <a class="doc-cta-primary" href="https://rpc.nano.to/work-servers">Open Work Servers</a>
+  <a class="doc-cta-secondary" href="https://rpc.nano.to/login">Request access</a>
+</div>
 
-## 0. Pre-requisites
+## Current program
 
-- Ubuntu 18+ 
-- GPU(s)
-- Avg. PoW in under 5 seconds.
+- Successful work currently pays a fixed **0.000001 NANO per PoW**.
+- Payouts settle daily to the Nano payout address configured for the server.
+- The editable bid affects routing priority; it does not change the fixed payout amount.
+- Work Servers may be invite-only or feature-gated. Request access from the dashboard before deploying capacity.
+- Your server must return valid work within the service health and latency requirements.
 
-> Window & Mac (M1) guide soon.
+Do not model revenue from the example dashboard estimate. Actual requests depend on account traffic, availability, latency, validation, and routing.
 
-```bash
-# OpenCL, GCC & Build Tools
-sudo apt install ocl-icd-opencl-dev gcc build-essential -y
+## Installer
 
-# Rust
-curl https://sh.rustup.rs -sSf | sh
-source $HOME/.cargo/env
-
-# Nano Vanity
-cargo install nano-vanity
-```
-
-## 1. Install [PoW Worker](https://github.com/nanocurrency/nano-work-server)
+Create or obtain a Work API key from the dashboard. On Linux or macOS:
 
 ```bash
-cd ~/
-git clone https://github.com/nanocurrency/nano-work-server.git
-cd nano-work-server
-cargo build --release
+export WORK_API_KEY="WORK-KEY-..."
+curl -fsSL https://rpc.nano.to/install/pow.sh | bash
 ```
 
-**Setup Cron**
+On Windows PowerShell:
+
+```powershell
+$env:WORK_API_KEY="WORK-KEY-..."
+iwr https://rpc.nano.to/install/pow.ps1 -UseB | iex
+```
+
+The installer configures the Nano work server, public tunnel, service startup, and health check. Review the installer source and run it only on a machine you control. Never paste a Work API key into a public issue, screenshot, or shared shell history.
+
+## After installation
+
+Use the local CLI to inspect and maintain the worker:
 
 ```bash
-# crontab -e
-@reboot ~/nano-work-server/target/release/nano-work-server --cpu-threads 4
+nano-pow status
+nano-pow logs --tail 100
+nano-pow restart
+nano-pow doctor
 ```
 
-Adjut ```--cpu-threads``` to your needs.
+The dashboard lets you configure the Nano payout address, view status, and change routing settings. Keep the worker online and monitor rejects; an invalid work server can be removed from routing.
 
-**With GPU**
+## Work request contract
 
-```
-@reboot ~/nano-work-server/target/release/nano-work-server --gpu 0:0
-```
+Nano.to sends a request like:
 
-Adjust ```--gpu``` to each local device id. Setting up GPUs on Linux is not easy. Don't feel bad if you struggle. 
-
----
-
-## 2. Install [PoW Proxy](https://github.com/fwd/nano-pow-proxy)
-
-```bash
-cd ~/
-git clone https://github.com/fwd/nano-pow-proxy
-cd nano-pow-proxy
-npm install
+```json
+{
+  "action": "work_generate",
+  "hash": "718CC2121C3E641059BC1C2CFC45666C...",
+  "difficulty": "fffffff800000000"
+}
 ```
 
-**Create config file**
+Your server returns a valid work value:
 
-```bash
-nano .env
+```json
+{
+  "work": "2bf29ef00786a6bc"
+}
 ```
 
-> Kinda funny how the Ubuntu editor 'nano' shares the coin name. Edit nano with nano.
+Validate returned work against the exact hash and difficulty. A `200` response with an invalid work value is still a failed job.
 
-Paste configs from below.
+## Hardware and operations
 
-**Required:**
-```
-NAME=Esteban's GPU 💪🏽
-PAYMENT=YOUR_NANO_ADDRESS
-SECRET=joe-mama
-```
+The worker needs a GPU or CPU capacity capable of generating Nano work within the service latency target. Use a stable Linux host for the simplest deployment, keep system packages current, and restrict access to the worker management interface. The public endpoint should accept only the expected work-generation contract.
 
-Please change the ```SECRET``` to something long, and secure.
+When troubleshooting:
 
-**Optional:**
+1. Run `nano-pow doctor`.
+2. Check worker logs and GPU utilization.
+3. Confirm the tunnel is online and the service can reach Nano.to.
+4. Validate a sample work response.
+5. Contact support with server ID and timestamps, never with private keys or API secrets.
 
-```bash
-PORT=2819
-VANITY_PATH=/my/custom/path/nano-vanity
-GPU=TRUE
-```
+## Related documentation
 
-- **PORT**: Can be any number between 1000 - 9999
-- **SECRET**: Lock communication between your node and First Nano Bank. 
-- **GPU**: Enable GPU. Make sure the Worker is running in the background.
-- **VANITY_PATH**: Path to where you installed Nano Vanity, if it's not working out of the box.
-
-### 3. Run it
-
-```
-node index.js
-```
-
-If you see ```http://localhost:[PORT]``` printed on the screen. All is well.
-
-
-### 4. Run it 24/7
-
-```bash
-npm install -g pm2
-pm2 start index.js --name nano-pow-proxy
-pm2 startup
-pm2 save
-```
-
-### 5. Have a beer 🍺
-
-Job well done. You'll start to see payments every hour.
-
-Post your experience on https://reddit.com/r/nanoapi, or Tweet us [@nano2dev](https://twitter.com/nano2dev)
+- [Proof of Work API](pow.html)
+- [RPC API](nano-rpc.html)
+- [Work Servers product page](https://rpc.nano.to/work-servers)
+- [Support](https://rpc.nano.to/account/support)

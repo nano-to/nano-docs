@@ -1,6 +1,7 @@
 - title: Nano Wallet SDK
 - date: 02-17-2024
 - tags: Release
+- hidden: true
 - image: images/nano-cloud/hero.png
 - author: @nano2dev
 -----

@@ -7,6 +7,8 @@
 - hidden: true
 -----
 
+This older iframe route is retained for compatibility and is not part of the current recommended integration path. For new payment pages, use [Nano Checkout](checkout.html) or [NanoPay.js](nanopay.html).
+
 ## Streaming iFrame
 
 The iFrame API is designed for embedding NANO balance & payments anywhere on the internet. But specially while Live Streaming on Twitch or Youtube. 
@@ -37,7 +39,6 @@ https://nano.to/Moon/iframe?color=purple
 </html>
 ```
 
-![](../assets/iframe-home.png)
 
 ## Change The Page Color
 
@@ -57,7 +58,6 @@ https://nano.to/YOUR_USERNAME/iframe?color=green
 
 More coming soon.
 
-![](../assets/iframe-home-green.png)
 
 ## Page With Payments & Donations
 
@@ -65,7 +65,6 @@ More coming soon.
 https://nano.to/Kraken/iframe?body=-donations-
 ```
 
-![](../assets/iframe-donations.png)
 
 
 ## Page With Your Qr Code
@@ -74,7 +73,6 @@ https://nano.to/Kraken/iframe?body=-donations-
 https://nano.to/Kraken/iframe?body=-qr-
 ```
 
-![Test](../assets/iframe-qrcode.png)
 
 
 ## Page With Custom Text (Advanced)
@@ -85,7 +83,6 @@ https://nano.to/Moon/iframe
 &title=false
 ```
 
-![Test](../assets/iframe-message.png)
 
 #### Available Variables
 

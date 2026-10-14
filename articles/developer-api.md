@@ -1,4 +1,4 @@
-- title: Sample Video
+- title: Legacy Developer API
 - date: 04-12-2024
 - tags: Guide
 - image: images/setup-node/hero.jpeg
@@ -6,6 +6,8 @@
 - video: true
 - hidden: true
 -----
+
+This page contains legacy Nano.to HTTP routes and is retained for URL compatibility only. New applications should use the current [Nano.to RPC API](nano-rpc.html), [Checkout API](checkout.html), and [@nano/wallet SDK](wallet.html).
 
 ## Blockchain API
 
@@ -289,7 +291,7 @@ https://nano.to/reps
 
 As of January 2022, there are over 500 registered Usernames on Nano.to. You're welcomed to use these Usernames in your applications. You may cache the list on your machine for as long as you'd like, or hit our endpoint everytime (up to 5 per second). This specific endpoint is designed for hobby & high demand applications.
 
-> Looking to add Nano.to Usernames to your app? See the [Username Integration Docs](/username-advanced-api). 
+> Looking to add Nano.to Usernames to your app? See the [Username Integration Docs](/username-advanced-api.html).
 
 ```bash
 https://nano.to/known

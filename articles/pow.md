@@ -1,329 +1,82 @@
-- title: Nano.to PoW API
-- date: 04-12-2024
-- tags: Guide
-- image: images/setup-node/hero.jpeg
+- title: Nano Proof of Work API
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Generate Nano proof of work through Nano.to. Learn API authentication, free and paid usage, work validation, rate limits, and how to run your own GPU work server.
+- tags: Guide, PoW, RPC
 - author: @nano2bot
-- video: true
+- previous: RPC API / nano-rpc.html
+- next: Work Servers / sell-pow.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/pow.md
 -----
 
-Standalone GPU powered Proof of Work API. Scale Nano apps, easily. 
+Nano uses lightweight proof of work as an anti-spam mechanism. You do not mine Nano with PoW; you generate a work value for a block before publishing it. Nano.to provides an API for applications that need reliable work generation without operating their own GPU infrastructure.
 
-## Authentication
+<div class="doc-cta">
+  <a class="doc-cta-primary" href="https://rpc.nano.to/login">Get a free RPC key</a>
+  <a class="doc-cta-secondary" href="https://rpc.nano.to/docs/work-servers">Run a Work Server</a>
+</div>
 
-> [Get Free API Key](https://rpc.nano.to?buy)
+## Generate work
 
-**Free 30 PoW / 30 minute for testing**. For production get [prepaid GPU credits](https://rpc.nano.to?buy).
-
-## Use via API
-
-::: code-group-open
+Send `work_generate` to `https://rpc.nano.to` with the block frontier or hash that needs work. Use a bearer header for backend applications:
 
 ```bash
-curl -d '{
-  "action": "work_generate",
-  "hash": ":FRONTIER",
-  "key": "RPC-API-KEY"
-}' \
--H "Content-Type: application/json" \
-"https://rpc.nano.to"
+curl -X POST https://rpc.nano.to/ \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -d '{
+    "action": "work_generate",
+    "hash": "FRONTIER_HASH"
+  }'
 ```
 
-```js
-const axios = require('axios');
+The response includes a work value and difficulty information. Attach the returned work to the block you are preparing, then validate and process the block through your normal signing and broadcast flow.
 
-axios.post('https://rpc.nano.to', {
-  "action": "work_generate",
-  "hash": ":FRONTIER",
-  "key": "RPC-API-KEY"
-}).then((res) => {
-  console.log(res.data);
-});
+## Validate work
+
+Use `work_validate` to check a work value before publishing a block or accepting work from an external worker:
+
+```bash
+curl -X POST https://rpc.nano.to/ \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "action": "work_validate",
+    "hash": "FRONTIER_HASH",
+    "work": "WORK_VALUE"
+  }'
 ```
 
-```python
-import requests
+For a paid work server integration, validate samples against a trusted Nano node as well as checking the API response. A successful HTTP response is not proof that a returned work value is valid for your exact frontier and difficulty.
 
-url = 'https://rpc.nano.to'
+## Usage and authentication
 
-myobj = {
-  "action": "work_generate",
-  "hash": ":FRONTIER",
-  "key": "RPC-API-KEY"
-}
+- Public unauthenticated PoW is protected by strict anti-abuse limits.
+- Authenticated accounts receive the free PoW allowance shown by the current account quota and product configuration.
+- The current free fallback is 100 PoW requests per day for eligible users.
+- Active paid plans have plan-specific PoW allowances and burst limits.
+- Prepaid credits can continue eligible usage after free or finite-plan allowances are exhausted, subject to account and abuse controls.
+- A `429` response can mean burst shaping, a free allowance, a plan cap, or abuse protection. Read `retry_after` and the response message before retrying.
 
-x = requests.post(url, json = myobj)
+Limits can change. Check [account quota](https://rpc.nano.to/api/account/quota), the dashboard, or the [current RPC docs](https://rpc.nano.to/docs/rpc) before designing capacity around a fixed number.
 
-print(x.text)
-```
+## Work-generation reliability
 
-```rust
-use reqwest::Client;
-use serde_json::json;
-use std::collections::HashMap;
+Use bounded retries with backoff and keep the original frontier attached to each request. If work is invalid:
 
-async fn work_generate(title: &str) -> Result<reqwest::Response, reqwest::Error> {
-    let client = Client::new();
-    let url = "https://rpc.nano.to"
+1. Validate the exact `hash`, `work`, and `difficulty` together.
+2. Record which work server returned the value.
+3. Retry against the service after a short backoff.
+4. Do not publish a block until work validates.
 
-    let mut data = HashMap::new();
-    data.insert("action", "work_generate");
-    data.insert("hash", ":FRONTIER");
-    data.insert("key", "RPC-API-KEY");
-    
+For high-volume applications, combine the API with your own fallback work server or [Nano.to Work Servers](sell-pow.html).
 
-  let res = client
-    .post(url)
-    .json(&data)
-    .send()
-    .await?;
+## Run your own Work Server
 
-  Ok(res)
-}
-```
+Nano.to can route work requests to approved GPU-backed servers. The current installer and access flow are documented in [Work Servers](sell-pow.html). It uses a `WORK_API_KEY`, a public work endpoint, health checks, and a Nano payout address.
 
-```ruby
-require 'net/http'
-require 'uri'
-require 'json'
+## Related documentation
 
-def work_generate(title)
-  uri = URI.parse('https://rpc.nano.to')
-  header = {'Content-Type': 'application/json'}
-  data = {
-  action: 'work_generate',
-  hash: ':FRONTIER',
-  key: 'RPC-API-KEY'
-}
-
-  http = Net::HTTP.new(uri.host, uri.port)
-  request = Net::HTTP::Post.new(uri.request_uri, header)
-  request.body = data.to_json
-
-  response = http.request(request)
-  response.body
-end
-```
-
-```php
-<?php
-function work_generate($title) {
-  $url = 'https://rpc.nano.to';
-  $data = array({
-  action: 'work_generate',
-  hash: ':FRONTIER',
-  key: 'RPC-API-KEY'
-});
-  $options = array(
-    'http' => array(
-      'header'  => "Content-Type: application/json\r\n",
-      'method'  => 'POST',
-      'content' => json_encode($data),
-    ),
-  );
-  $context  = stream_context_create($options);
-  $result = file_get_contents($url, false, $context);
-  if ($result === FALSE) { /* Handle error */ }
-
-  return $result;
-}
-```
-
-```dart
-// import 'dart:convert';
-Future<http.Response> work_generate(String title) {
-  return http.post(
-  Uri.parse('https://rpc.nano.to'),
-  headers: <String, String>{
-    'Content-Type': 'application/json',
-  },
-  body: jsonEncode(<String, String>{
-  "action": "work_generate",
-  "hash": ":FRONTIER",
-  "key": "RPC-API-KEY"
-}),
-)}
-```
-
-```go
-package main
-
-import (
-  "bytes"
-  "encoding/json"
-  "net/http"
-)
-
-func work_generate(title string) (*http.Response, error) {
-  url := "https://rpc.nano.to"
-  data := map[string]interface{}{
-  action  "work_generate",
-  hash  " FRONTIER",
-  key  "RPC-API-KEY"
-}
-
-  jsonData, err := json.Marshal(data)
-  if err != nil {
-      return nil, err
-  }
-
-  req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-  if err != nil {
-      return nil, err
-  }
-  req.Header.Set("Content-Type", "application/json")
-
-  client := &http.Client{}
-  resp, err := client.Do(req)
-  if err != nil {
-      return nil, err
-  }
-
-  return resp, nil
-}
-```
-
-```c
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-public class ApiClient {
-    private static readonly HttpClient client = new HttpClient();
-
-    public static async Task<HttpResponseMessage> work_generate(string title) {
-        var uri = new Uri("https://rpc.nano.to");
-        var data = new {
-  {
-  action = "work_generate",
-  hash = " FRONTIER",
-  key = "RPC-API-KEY"
-}
-        };
-
-        var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-
-        return await client.PostAsync(uri, content);
-    }
-}
-```
-
-```x86asm
-section .data
-  url db 'https://rpc.nano.to', 0
-  header db 'Content-Type: application/json', 0
-	    data db '{
-  action: work_generate,
-  hash: :FRONTIER,
-  key: RPC-API-KEY
-}', 0
-
-section .bss
-  response resb 256
-
-section .text
-  global _start
-
-_start:
-  ; Normally here you would set up a socket and perform the HTTP request
-  ; For simplicity, print the URL, headers, and data
-
-  ; Print URL
-  mov edx, len url
-  mov ecx, url
-  mov ebx, 1
-  mov eax, 4
-  int 0x80
-
-  ; Print Header
-  mov edx, len header
-  mov ecx, header
-  mov ebx, 1
-  mov eax, 4
-  int 0x80
-
-  ; Print Data
-  mov edx, len data
-  mov ecx, data
-  mov ebx, 1
-  mov eax, 4
-  int 0x80
-
-  ; Exit
-  mov eax, 1
-  xor ebx, ebx
-  int 0x80
-
-len equ $ - $$
-```
-
-::: code-group-close
-
-```json
-{
-  "difficulty": "fffffff800000000",
-  "multiplier": "1.4403398628545552",
-  "work": "4e278d4edc807508",
-  "frontier": "7D27B311666C82....6C8637D277F1FD2ED",
-  "duration": "0.883s"
-  "credits": 9,
-  "cached": false,
-}
-```
-
-## Add Directly to Node
-
-> EXPERIMENTAL
-
-- **Windows:** ```C:\Users\<user>\AppData\Local\Nano\config-node.toml```
-- **macOS**: ```/Users/<user>/Library/Nano/config-node.toml```
-- **Linux**: ```/home/<user>/Nano/config-node.toml```
-- **Docker**: As defined by the ```-v``` flag in the ```docker run``` command
-- **.deb/rpm**: ```/var/nanocurrency/Nano/config-node.toml```
-
-```toml
-[node]
-work_threads = 0
-work_peers = [
-    "rpc.nano.to/pow/:API_KEY",
-]
-```
-
-## Common Errors
-
-Rarely, but it's important to be ready for them. We recommend you **precache** work. By requesting it, before you need it.
-
-**Code 429: Exhausted your free usage:**
-
-```js
-{
-    "error": 429,
-    "message": "Too many requests."
-}
-```
-
-**Code 503: GPUs are not available, (very rare):**
-
-```js
-{
-    "error": 503, 
-    "message": "Sorry, no GPUs available. Try again in a few seconds."
-}
-```
-
-**Code 500: Service is not available (very rare):**
-
-```js
-{
-    "error": 500, 
-    "message": "Service not available. Try again in a few minutes."
-}
-```
-
-## Questions or Comments? 
-
-- Support: support@nano.to
-- Twitter: [@nano2dev](https://twitter.com/nano2dev)
-- BlueSky: [@nano2dev](https://twitter.com/nano2dev)
-- @nano2dev on [Nano Discord](https://discord.com/invite/RNAE2R9) 
+- [RPC API authentication](nano-rpc.html)
+- [Common RPC errors](rpc-errors.html)
+- [Work Servers](sell-pow.html)
+- [Wallet SDK](wallet.html)

@@ -1,4 +1,5 @@
 - title: Nano Email
+- hidden: true
 -----
 
 Send Nano to any Email address on the internet.

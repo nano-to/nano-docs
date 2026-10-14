@@ -1,17 +1,33 @@
 <html class="mac" lang="en-US" dir="ltr">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title><%- article.title %> | Nano.to - Public Nano Node</title>
+      <title><%- article.title %> | Nano.to Developer Docs</title>
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="description" content="<%- article.title %> | Nano.to - Public Nano Node">
+      <meta name="description" content="<%- article.description %>">
+      <meta name="robots" content="<% if (article.hidden) { %>noindex,follow<% } else { %>index,follow<% } %>">
+      <link rel="canonical" href="<%- article.url %>">
       <link rel="stylesheet" href="css/search.css">
-      <link rel="stylesheet" href="../css/highlight.min.css">
-      <link rel="stylesheet" href="../css/single.css">
+       <link rel="stylesheet" href="css/highlight.min.css">
+       <link rel="stylesheet" href="css/single.css">
       <link rel="icon" type="image/png" href="assets/logo-mascotte.png">
       <meta property="og:type" content="website">
       <meta property="og:locale" content="en">
-      <meta property="og:title" content="<%- article.title %> | Nano.to - Public Nano Node">
+      <meta property="og:title" content="<%- article.title %> | Nano.to Developer Docs">
+      <meta property="og:description" content="<%- article.description %>">
+      <meta property="og:url" content="<%- article.url %>">
       <meta property="og:site_name" content="Nano.to">
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<%- article.title %> | Nano.to Developer Docs">
+      <meta name="twitter:description" content="<%- article.description %>">
+      <script type="application/ld+json"><%- JSON.stringify({
+         '@context': 'https://schema.org',
+         '@type': 'TechArticle',
+         headline: article.title,
+         description: article.description,
+         dateModified: article.updated || article.date,
+         url: article.url,
+         publisher: { '@type': 'Organization', name: 'Nano.to', url: 'https://nano.to' }
+      }) %></script>
       <script id="check-mac-os">document.documentElement.classList.toggle('mac', /Mac|iPhone|iPod|iPad/i.test(navigator.platform))</script>
       <script id="check-dark-mode">
          if (localStorage.getItem('dark-mode') || window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -415,7 +431,7 @@
                            <main data-v-343c73d6="" class="main">
                               <div data-v-343c73d6="" id="content-body" class="vp-doc _guide_getting-started" style="position: relative;">
                                     <h1 tabindex="-1"><%- article.title %></h1>
-                                    <p><%- article.html %></p>
+                                     <%- article.html %>
                               </div>
                            </main>
                            <footer data-v-43384334="" data-v-343c73d6="" class="VPDocFooter">
@@ -454,12 +470,12 @@
 
       </div>
 
-      <script src="../js/highlight.min.js"></script>
-      <script src="../js/dart.min.js"></script>
-      <script src="../js/x86asm.min.js"></script>
-      <script src="../js/django.min.js"></script>
-      <script src="../js/search.js"></script>
-      <script src="../js/script.js"></script>
+       <script src="js/highlight.min.js"></script>
+       <script src="js/dart.min.js"></script>
+       <script src="js/x86asm.min.js"></script>
+       <script src="js/django.min.js"></script>
+       <script src="js/search.js"></script>
+       <script src="js/script.js"></script>
       <script>window.hljs.highlightAll();</script>
 
       <script>

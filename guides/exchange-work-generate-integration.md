@@ -1189,8 +1189,8 @@ Carlos's exchange now processes millions in Nano trading volume daily. He's plan
 ## Resources
 
 - [Nano RPC Documentation](/nano-rpc.html)
-- [Work Generation API](/nano-rpc.html#work-generate)
-- [Exchange Integration Examples](/nanopay.html#programmatic-usage)
+- [Work Generation API](/nano-rpc.html#proof_of_work)
+- [Exchange Integration Examples](/nanopay.html#programmatic_usage)
 
 ---
 

@@ -1,203 +1,140 @@
-- title: Checkout UI
-- date: 04-12-2024
-- tags: Guide
-- image: images/setup-node/hero.jpeg
+- title: Nano Checkout API: Hosted Payment Links and Webhooks
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Create hosted Nano payment pages with the Nano.to Checkout API. Learn authentication, fiat pricing, templates, metadata, redirects, webhook verification, and payment confirmation.
+- tags: Guide, Checkout, Payments
 - author: @nano2bot
-- video: true
+- previous: RPC API / nano-rpc.html
+- next: WebSocket API / websocket.html
+- edit: //github.com/nano-to/nano-docs/blob/master/articles/checkout.md
 -----
 
-Personal payment pages for your Nano address. 
+Nano.to Checkout creates hosted payment pages for merchants and applications. Create a checkout with the [Checkout API](https://rpc.nano.to/docs/checkout), redirect the customer to the returned `browser` URL, and verify payment through the returned `check` URL or a signed webhook.
 
-![](https://camo.githubusercontent.com/592b2704a25c6e0ed446a6774d04a3df67bd70f3463b4eea65dc9dfcd81d5287/68747470733a2f2f7062732e7477696d672e636f6d2f6d656469612f4677516f4a507958734141326332343f666f726d61743d6a7067266e616d653d6d656469756d)
+<div class="doc-cta">
+  <a class="doc-cta-primary" href="https://rpc.nano.to/checkout">Open Checkout</a>
+  <a class="doc-cta-secondary" href="https://rpc.nano.to/login">Get an API key</a>
+</div>
 
-> For Username documentation [click here](/usernames)
+## Quick start
 
-## Basic Usage
-
-Just share link. Most platforms support HTML and Markdown. Down below are examples for that. 
-
-> Usernames are optional, but recommended. It makes creating links even easier. 
-
-```
-https://xno.to/NANO_ADDRESS_OR_USERNAME?title=Coffee
-```
-
-Live Demo: [https://xno.to/Esteban](https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg)
-
-***HTML***
-
-```html
-<a href="https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg">https://nano.to/Esteban</a>
-```
-
-***Markdown***
-
-```markdown
-Live Demo: [https://nano.to/Esteban](https://nano.to/Esteban?title=Coffee&price=5&image=https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg)
-```
-
-## Available Options:
-
-```bash
-https://nano.to/Moon?title=Donate
-&price=50
-&donate=false
-&color=white
-&currency=USD
-&background=blue,red
-&image=https://media3.giphy.com/media/cnuNz0fTBIUGnx4F9T/giphy.gif
-&description=<p>HTML allowed 😎</p>
-&suggest=Basic:30,Premium:50
-&success_url=https://mywebsite.com/success
-&cancel_url=https://mywebsite.com/
-```
-
-> ***Note:*** When using **GET**, CSS colors with hashtags ex. #000000 are supported, but replace the **#** with a **$** symbol. This is a URL limitation. This is not an issue with POST requests. See below. 
-
-***HTML***
-
-```html
-<a href="https://nano.to/ADDRESS_OR_USERNAME">Donate with Nano</a>
-```
-
-***Markdown***
-
-```
-[Tip me $5](https://nano.to/Esteban?price=5)
-```
-
-Demo: [Tip me in Nano](https://nano.to/Esteban)
-
-## Customization
-
-More advanced and sensitive data can be passed in the body of a POST request. 
-
-```javascript
-// npm install axios
-const axios = require('axios')
-
-axios.post('https://rpc.nano.to', {
-    "action": "checkout",
-    "address": "@development", // YOUR_NANO_ADDRESS
-    "description": "Welcome to McDonalds",
-    "title": "New Order",
-    "currency": "USD",
-    "plans": [
-        { "name": "Fries", "price": 5 },
-        { "name": "Burger", "price": 10 },
-        { "name": "Happy Meal", "price": 15 },
-        { "name": "Cookies 🍪", "price": 3 }
-    ],
-    "image": "https://files.muzli.space/2d7af141fab097859ef66de8d7c50932.jpeg", 
-    "color": "black,white",
-    "background": "#FFF,#311ac5",
-    "success_url": "https://mywebsite.com/success?id={{id}}&anotherParam=hello",
-    "cancel_url": "https://google.com",
-    "webhook_url": "https://mywebsite.com/super-secret-webhook",
-    "webhook_secret": "my-super-secret",
-    "metadata": { "userId": "joe-mama" }
-})
-```
-
-### Response:
+Create a checkout from a trusted server or serverless function. Keep API keys and webhook secrets out of browser code.
 
 ```js
+const response = await fetch('https://rpc.nano.to', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    action: 'checkout',
+    address: 'nano_1yourmerchantaddress...',
+    amount: '5.00',
+    currency: 'USD',
+    title: 'Coffee',
+    webhook_url: 'https://example.com/nano/webhook',
+    metadata: { order_id: 'order_123' }
+  })
+})
+
+const checkout = await response.json()
+console.log(checkout.browser)
+```
+
+A successful response includes the checkout ID, hosted payment page, verification URL, receiving address, and currency-specific pricing fields. Nano-denominated checkouts include `amount`; fiat-denominated checkouts include `fiat_amount` and convert to Nano dynamically when the payment page loads:
+
+```json
 {
-  id: "5c363461",
-  browser: "http://nano.to/id_5c363461",
-  json: "https://api.nano.to/checkout/5c363461",
-  check: "https://api.nano.to/confirm/5c363461",
-  address: "nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o",
-  plans: [
-    {
-      title: "Fries",
-      value: "3",
-      value_raw: "3000000000000000000000000000000",
-      link: "nano:nano_37y6iq8m1zx9inwkkcgqh34kqsihzpjfwgp9jir8xpb9jrcwhkmoxpo61f4o?amount=3000000000000000000000000000000"
-    }
-    ...
-  ],
-  rate: "1.45",
-  currency: "USD"
+  "id": "abc123",
+  "browser": "https://rpc.nano.to/pay/abc123",
+  "check": "https://rpc.nano.to/check/abc123",
+  "address": "nano_1yourmerchantaddress...",
+  "currency": "USD",
+  "fiat_amount": "5.00",
+  "note": "Fiat-priced checkout (USD). Nano equivalent is calculated at page load using live rates."
 }
 ```
 
-## Notifications
+Share `browser` with the customer. Do not construct payment URLs by hand or trust a client-supplied amount after checkout creation.
 
-The recommended way to be notified of incoming payments is by passing a 'webhook_url' param in the body of a POST request. The JSON payload will look like this:
+## Authentication
 
-```javascript
-{
-    id: '6e9d1f58c40',
-    status: 'complete',
-    amount: 1,
-    method: {
-        symbol: 'nano',
-        address: 'YOUR_ADDRESS',
-        name: 'Nano',
-        rate: '5.43262',
-        amount: '0.18621',
-        value: '1.01',
-        raw: false
-    },
-    plan: {
-        price: 1,
-        name: '1 Month'
-    },
-    block: {
-        type: 'pending',
-        amount: '0.18621',
-        hash: '6EE79D2BA2A8995179..',
-        source: 'THEIR_ADDRESS',
-        amount_raw: '1862100000000..'
-    },
-    metadata: {
-        id: 'joe-mama'
-    }
-}
-```
+Use `Authorization: Bearer YOUR_API_KEY` for server-side and Cloudflare Worker integrations. A JSON `key` is also supported for trusted server-side calls. Never expose either credential in public browser code.
 
-**Your server listening for POST request, would look like this:**
+For client-side checkout creation, use a configured public key or a saved checkout template. A public key is not a substitute for webhook verification or server-side order validation.
 
-```js
-// npm install fwd/server
-const server = require('@fwd/server')
+## Checkout fields
 
-// listen at this path, with a POST method.
-server.post('/super-secret-webhook', (req, res) => {
-    console.log(req.body) // data from example above
-    res.send("Ok")
-})
-// start server
-server.start(8080)
-```
+- `action`: required; set to `checkout`.
+- `address`: required; the Nano account that receives payment. Nano usernames such as `@development` can be resolved by the service where supported.
+- `amount`: optional fixed amount. Use a string to avoid floating-point rounding.
+- `currency`: optional; `NANO` by default, or a supported fiat currency such as `USD` or `EUR`.
+- `title`, `description`, `image`: payment-page presentation.
+- `webhook_url`: optional URL for signed payment events.
+- `webhook_secret`: secret used to validate webhook signatures; keep it server-side.
+- `success_url`, `cancel_url`: optional customer redirects.
+- `metadata`: application data returned with payment events.
+- `template`: optional existing checkout ID whose saved configuration can be reused.
+- `mode`: optional checkout mode such as `unique_amount`, `unique_address`, or `generated_wallet` when enabled for the account.
 
-## Fiat Conversion
+See the [current Checkout API reference](https://rpc.nano.to/docs/checkout) for the exact fields and availability of each mode.
 
-```
-https://nano.to/Esteban?currency=RUB
-```
+## Templates for browser integrations
 
-## Single Panel UI
+A template lets you save sensitive configuration once and create transaction-specific checkouts without placing an address, webhook URL, or secret in browser code.
 
-When no ```plans``` are provided, there is no need for the left side of the Checkout UI. 
+Typical flow:
 
-```
-https://nano.to/Esteban?pay=100
-```
+1. Create a template from the dashboard or a trusted backend.
+2. Reference its checkout ID as `template` from the client integration.
+3. Override only safe per-order fields such as `amount`, `title`, `description`, and `metadata`.
+4. Confirm that the template belongs to the same account before using it.
 
-> When setting the price, you can use ```pay```, ```price``` or ```amount```. They all work the same.
+Templates are a convenience layer, not an authorization boundary. Your backend still owns order state and fulfillment.
 
-## Metadata
+## Payment confirmation
 
-Pass a ```?json=true``` URL flag to the ```url``` in the Response to get a JSON object of the Checkout. 
+Use the returned `check` URL or a webhook to observe payment state. Fulfill an order only after matching the event to your own checkout ID and verifying the confirmed block details.
 
-> In most cases you do don't need this.
+Do not fulfill based only on:
 
-```
-https://nano.to/checkout/666ee7bf26a?json=true
-```
+- A customer redirect to `success_url`.
+- A client-side “paid” message.
+- An unconfirmed block.
+- A matching amount without the expected checkout or destination.
 
-## Deep Linking
+Nano confirmations are fast, but your integration should still handle pending, delayed, duplicate, and replayed events safely.
 
-Clicking (or Tapping) the QR Code will open Natrium and automatically fill in amount and address, on most phones. 
+## Webhooks
+
+For a webhook integration:
+
+1. Generate a high-entropy webhook secret and store it in a server secret manager.
+2. Create the checkout with `webhook_url` and the secret.
+3. Read the complete raw request body before parsing JSON.
+4. Validate the HMAC signature over the exact serialized body.
+5. Verify event ID, checkout ID, amount, destination, metadata, block hash, and confirmation state.
+6. Make fulfillment idempotent. The same event may be delivered again after a timeout.
+7. Return a successful HTTP response only after recording the event safely.
+
+The payment monitor retries failed deliveries. Store event IDs and return the same result for a replay instead of delivering the product twice.
+
+For generated-wallet checkouts, the persisted receiving address must match both the top-level payment address and the nested payment address in the webhook payload.
+
+## Common mistakes
+
+- Putting an API key or webhook secret in frontend JavaScript.
+- Treating a redirect as proof of payment.
+- Comparing decimal amounts with binary floating point.
+- Fulfilling before confirmation.
+- Ignoring duplicate webhook deliveries.
+- Paying a timed-out checkout again without checking its status.
+
+## Continue building
+
+- [RPC API reference](nano-rpc.html)
+- [WebSocket confirmations](websocket.html)
+- [@nano/wallet SDK](wallet.html)
+- [NanoPay.js browser integration](nanopay.html)
+- [Common RPC errors](rpc-errors.html)

@@ -1,4 +1,7 @@
 - title: NanoPay.js
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Add Nano payment modals, buttons, premium content walls, contact forms, shipping, and browser payment callbacks with NanoPay.js.
 - previous: Username API / usernames.html
 - next: Developer API / nano-rpc.html
 - edit: //github.com/nano-to/nano-docs/blob/master/articles/nanopay.md
@@ -13,7 +16,7 @@
   <img src="https://img.shields.io/badge/Updated-January%202025-brightgreen.svg" alt="Updated January 2025">
 </div>
 
-NanoPay.js is an [open source](https://github.com/fwd/nano-pay), non-custodial browser library for the Nano blockchain. Easily add crypto payments to your website.
+NanoPay.js is an [open source](https://github.com/nano-to/pay-js), non-custodial browser library for Nano payments. Add a payment button or modal to a website, then handle the confirmed block in your callback or backend verification flow.
 
 ## 🆕 What's New in 2.0.16 - September 13, 2026
 
@@ -945,7 +948,7 @@ Simply open `index.html` in your browser to start testing immediately!
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+We welcome contributions! Please see the [Contributing Guidelines](https://github.com/nano-to/pay-js/blob/master/CONTRIBUTING.md) for details.
 
 ## 📄 License
 

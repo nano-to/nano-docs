@@ -1,4 +1,7 @@
 - title: Setup Nano Node
+- date: 2026-10-14
+- updated: 2026-10-14
+- description: Deploy a Nano node with Docker using the nano-docker project. Review the current repository instructions before installing.
 - edit: //github.com/fwd/nano-docker/blob/master/readme.md
 -----
 ## ❯ Quick Install
@@ -60,7 +63,7 @@ Optional Reading: [How To Setup a Server on Digital Ocean](https://docs.digitalo
 
 ---
 
-### Understand The Magic 🪄 (Optional)
+### Understand The Magic (Optional)
 
 #### 1. Install [Docker](https://docs.docker.com/engine/install/ubuntu)
 
@@ -115,7 +118,7 @@ sudo ./setup.sh -s
 - Set up Node on localhost port 7076. Use '[::1]:7076' for IPv6.
 - Node Websocket set up on localhost port 7078. Use '[::1]:7078' for IPv6.
 - <u>**Node **not** accessible from Internet. Bring your own "Proxy".**</u>
-- See [setup.sh](/setup.sh) for complete setup script.
+- See the [setup.sh source](https://github.com/fwd/nano-docker/blob/master/setup.sh) for the complete setup script.
 
 #### 5. Talk to Node
 

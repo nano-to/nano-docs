@@ -3,7 +3,9 @@
     <% pages.map((page) => { %>
     <url>
       <loc><%- page.url %></loc>
+      <% if (page.timestamp) { %>
       <lastmod><%- page.timestamp %></lastmod>
+      <% } %>
     </url>
     <% }) %>
-</urlset> 
+</urlset>
