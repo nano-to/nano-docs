@@ -138,6 +138,39 @@ console.log(report.summary, report.revenue)
 
 Supported filters include `status`, `from`, `to`, `metadata_filter`, `metadata_key`, and `metadata_value`. Natural-language periods include `last 30 days`, `last 3 months`, and `last 1 year`. The response includes matching checkouts, status counts, and revenue totals grouped by currency.
 
+## Administrative Checkout API
+
+Nano.to also provides an authenticated REST API for dashboard and operational checkout management. This is separate from the `checkout` and `checkout_report` RPC actions and is not intended to be a homepage RPC example.
+
+The base path is `https://rpc.nano.to/api/admin/checkouts`.
+
+Authenticate with a dashboard session JWT or an RPC API key:
+
+```http
+Authorization: Bearer YOUR_TOKEN_OR_API_KEY
+```
+
+Available endpoints:
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/admin/checkouts` | List checkouts; supports `limit`, `offset`, and `status`. |
+| `POST` | `/api/admin/checkouts` | Create a checkout using the normal checkout fields. |
+| `GET` | `/api/admin/checkouts/:id` | Read a checkout, payments, webhook events, and wallet status. |
+| `PUT` | `/api/admin/checkouts/:id` | Update an owned checkout. |
+| `DELETE` | `/api/admin/checkouts/:id` | Delete an owned checkout. |
+| `GET` | `/api/admin/checkouts/stats` | Return checkout statistics for the authenticated account. |
+| `GET` | `/api/admin/checkouts/overview` | Return the global overview; administrator access is required. |
+
+Example:
+
+```bash
+curl -s https://rpc.nano.to/api/admin/checkouts \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+The `/api/admin` path does not grant administrator access. Ordinary authenticated callers remain scoped to their own checkout records; administrator accounts can list and report across accounts. The `POST` endpoint accepts the same checkout fields documented above, including `notify`, `metadata`, webhooks, redirects, checkout modes, and payment plans. Use `/api/checkouts` for equivalent user-scoped REST paths.
+
 ## Templates for browser integrations
 
 A template lets you save sensitive configuration once and create transaction-specific checkouts without placing an address, webhook URL, or secret in browser code.
