@@ -1,6 +1,6 @@
 - title: Nano Checkout API: Hosted Payment Links and Webhooks
 - date: 2026-10-14
-- updated: 2026-10-14
+- updated: 2026-10-16
 - description: Create hosted Nano payment pages with the Nano.to Checkout API. Learn authentication, fiat pricing, templates, metadata, redirects, webhook verification, and payment confirmation.
 - tags: Guide, Checkout, Payments
 - author: @nano2bot
@@ -73,12 +73,70 @@ For client-side checkout creation, use a configured public key or a saved checko
 - `title`, `description`, `image`: payment-page presentation.
 - `webhook_url`: optional URL for signed payment events.
 - `webhook_secret`: secret used to validate webhook signatures; keep it server-side.
+- `notify`: optional merchant email address for one confirmation receipt after payment is confirmed. Requires an RPC API key; public keys cannot use it.
 - `success_url`, `cancel_url`: optional customer redirects.
 - `metadata`: application data returned with payment events.
 - `template`: optional existing checkout ID whose saved configuration can be reused.
 - `mode`: optional checkout mode such as `unique_amount`, `unique_address`, or `generated_wallet` when enabled for the account.
 
 See the [current Checkout API reference](https://rpc.nano.to/docs/checkout) for the exact fields and availability of each mode.
+
+## Completion email notifications
+
+Add `notify` when you want Nano.to to email your team after a checkout payment is confirmed:
+
+```js
+const response = await fetch('https://rpc.nano.to', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    action: 'checkout',
+    address: 'nano_1yourmerchantaddress...',
+    amount: '5.00',
+    currency: 'USD',
+    title: 'Coffee',
+    notify: 'orders@example.com',
+    metadata: { order_id: 'order_123' }
+  })
+})
+```
+
+The email is sent from `Nano.to <alerts@nano.to>` with subject `Payment received` or `Payment received: <title>`. It includes:
+
+- The payer username when available, otherwise the sending address.
+- The confirmed NANO amount and fiat value.
+- A link to the payment block on Blocklattice.
+- Checkout metadata and checkout ID.
+
+Nano.to sends the notification once per checkout after confirmation. It is a merchant notification, not proof of payment for fulfillment. Keep verifying the checkout status or signed webhook in your backend, and do not use `notify` with a public key or expose an RPC API key in browser code.
+
+## Checkout reports
+
+Authenticated RPC-key clients can query only the checkouts created with that key. Use `checkout_report` for order history and revenue summaries:
+
+```js
+const response = await fetch('https://rpc.nano.to', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    action: 'checkout_report',
+    query: 'revenue last 3 months',
+    metadata_filter: { order_type: 'subscription' },
+    limit: 50
+  })
+})
+
+const report = await response.json()
+console.log(report.summary, report.revenue)
+```
+
+Supported filters include `status`, `from`, `to`, `metadata_filter`, `metadata_key`, and `metadata_value`. Natural-language periods include `last 30 days`, `last 3 months`, and `last 1 year`. The response includes matching checkouts, status counts, and revenue totals grouped by currency.
 
 ## Templates for browser integrations
 
