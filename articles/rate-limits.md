@@ -30,7 +30,19 @@ The configured account state and current dashboard may differ from fallback valu
 
 ### Paid burst shaping
 
-Authenticated subscriptions bypass public IP bans but still receive account-level burst shaping. Starter, Growth, and Enterprise plans have different RPC and PoW per-second and per-minute limits. A burst response is temporary and does not consume a credit.
+Authenticated subscriptions bypass public IP bans but still receive account-level burst shaping. The current limits are:
+
+| Plan | RPC burst | RPC sustained | PoW burst | PoW sustained |
+| --- | ---: | ---: | ---: | ---: |
+| Starter | 6/second | 180/minute | 2/second | 40/minute |
+| Growth | 120/second | 600/minute | 60/second | 120/minute |
+| Enterprise | 40/second | 2,400/minute | 10/second | 300/minute |
+
+RPC limits apply to normal actions. PoW limits apply to `work_generate`. Burst limits are account-scoped one-second buckets; sustained limits are account-scoped one-minute buckets. A burst response is temporary and does not consume a credit. The plan limits are currently fixed configuration, not dynamically adjusted from historical account usage.
+
+### CPU protection
+
+The service also monitors system CPU. If CPU remains at or above 95% for 60 seconds, automatic protection can disable unauthenticated RPC traffic, or localize the lock to a high-volume region when the traffic signal is specific enough. Protection clears after CPU returns to 85% or lower. This is separate from the plan limits above.
 
 ### Plan allowances
 
@@ -48,14 +60,14 @@ Active subscriptions within their allowance do not consume prepaid credits. Keep
 
 ## Handling `429`
 
-Read the complete JSON error response. It may include `retry_after`, a plan or quota reason, and an actionable message.
+Read the complete JSON error response. Plan shaping responses include `retry_after`, `plan_id`, `limit_type`, `usage`, and an actionable message.
 
 ```js
 const response = await fetch('https://rpc.nano.to', options)
 const body = await response.json()
 
 if (response.status === 429) {
-  const seconds = Number(body.retry_after || response.headers.get('Retry-After') || 2)
+  const seconds = Number(body.retry_after || 2)
   await new Promise(resolve => setTimeout(resolve, Math.min(seconds, 30) * 1000))
   // Retry only an operation that is safe to repeat.
 }
