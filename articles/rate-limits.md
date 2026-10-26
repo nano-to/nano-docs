@@ -40,10 +40,6 @@ Authenticated subscriptions bypass public IP bans but still receive account-leve
 
 RPC limits apply to normal actions. PoW limits apply to `work_generate`. Burst limits are account-scoped one-second buckets; sustained limits are account-scoped one-minute buckets. A burst response is temporary and does not consume a credit. The plan limits are currently fixed configuration, not dynamically adjusted from historical account usage.
 
-### CPU protection
-
-The service also monitors system CPU. If CPU remains at or above 95% for 60 seconds, automatic protection can disable unauthenticated RPC traffic, or localize the lock to a high-volume region when the traffic signal is specific enough. Protection clears after CPU returns to 85% or lower. This is separate from the plan limits above.
-
 ### Plan allowances
 
 RPC subscriptions are currently modeled as effectively unlimited monthly volume, subject to burst and service protections. PoW subscriptions can have finite billing-period caps. When a finite PoW allowance is exhausted, prepaid credits may allow continued use.
