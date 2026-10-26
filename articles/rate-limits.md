@@ -36,7 +36,7 @@ Authenticated subscriptions bypass public IP bans but still receive account-leve
 | --- | ---: | ---: | ---: | ---: |
 | Starter | 6/second | 180/minute | 2/second | 40/minute |
 | Growth | 120/second | 600/minute | 60/second | 120/minute |
-| Enterprise | 40/second | 2,400/minute | 10/second | 300/minute |
+| Enterprise | 1,000/second | 2,400/minute | 100/second | 300/minute |
 
 RPC limits apply to normal actions. PoW limits apply to `work_generate`. Burst limits are account-scoped one-second buckets; sustained limits are account-scoped one-minute buckets. A burst response is temporary and does not consume a credit. The plan limits are currently fixed configuration, not dynamically adjusted from historical account usage.
 
